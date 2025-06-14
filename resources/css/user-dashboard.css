@@ -1,0 +1,54 @@
+.user-dashboard{
+    background: linear-gradient(to bottom, #ABD4FE, #D1C2FF);
+    max-width: 100vw;
+    min-height: 100vh;
+    gap: 3rem;
+    padding-bottom: 3rem;
+}
+
+.dashboard-container{
+    width: 80%;
+    min-height: 750px;
+    background-color: #E8EFFF;
+    border-radius: 20px;
+}
+
+.coding-journey-container{
+    gap: 4rem;
+}
+
+.coding-journey{
+    border: 1px solid #659AD2;
+    border-radius: 8px;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .7rem;
+    padding: 1.6rem 0;
+    box-shadow: 1px 5px 5px rgb(175, 175, 175);
+}
+
+.coding-journey > .title{
+    font-weight: 800;
+    font-size: 3rem;
+}
+
+.coding-journey > .description{
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 80%;
+    text-align: center;
+}
+
+.coding-journey > .btn{
+   padding: .5rem 2rem;
+   font-size: 1.2rem;
+}
+
+.material-image-user-dashboard{
+    width: 155px;
+    height: 170px;
+}
