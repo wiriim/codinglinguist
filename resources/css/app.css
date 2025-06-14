@@ -3,6 +3,8 @@
 @import 'home';
 @import 'user-dashboard';
 @import 'sign-up';
+@import 'sign-in';
+
 
 /* Resets */
 *{
@@ -27,6 +29,10 @@ p{
 
 .row > *{
     flex-shrink: 1;
+}
+
+.form-control{
+    border: none;
 }
 
 /* Layouts */

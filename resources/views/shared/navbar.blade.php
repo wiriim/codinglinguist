@@ -35,7 +35,7 @@
                         <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{Route::is('sign-up') ? "active" : ""}}" href="#">Sign In</a>
+                        <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="#">Sign In</a>
                     </li>
                 </ul>
             </div>
