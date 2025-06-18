@@ -23,14 +23,6 @@ p{
     margin: 0;
 }
 
-.row{
-    flex-wrap: nowrap;
-}
-
-.row > *{
-    flex-shrink: 1;
-}
-
 .form-control{
     border: none;
 }

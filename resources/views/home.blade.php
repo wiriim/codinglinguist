@@ -1,8 +1,8 @@
 @extends('shared.layout')
 
 @section('content')
-    <div class="">
-        <div class="row d-flex flex-column row-1-container home-row bg-primary pb-2">
+    <div class="home">
+        <div class="d-flex flex-column row-1-container home-row bg-primary pb-4">
             @include('shared.navbar')
             <div class="container-fluid d-flex justify-content-center align-items-center flex-grow-1 gap-5">
                 <div class="hero-container d-flex flex-column gap-3">
@@ -19,7 +19,7 @@
                 <img class="coding-image-home" src="{{asset('images/CodingImageHome.png')}}" alt="CodingImageHome">
             </div>
         </div>
-        <div class="row row-2-container home-row pt-3 pb-5 d-flex flex-column gap-5">
+        <div class="row-2-container home-row pt-3 pb-5 d-flex flex-column gap-5">
             <h1 class="fw-bold text-center">Our Material</h1>
             <div class="material-container d-flex justify-content-center flex-grow-1">
                 <div class="material">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="row row-3-container home-row bg-primary">
+        <div class="row-3-container home-row bg-primary">
             <div class="container-fluid d-flex justify-content-center align-items-center">
                 <img src="{{asset('images/ClimbLeaderboardHome.png')}}" alt="ClimbLeaderboardHome">
                 <div class="row-3-content d-flex flex-column">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="row row-4-container home-row pt-5 d-flex flex-column align-items-center gap-5">
+        <div class="row-4-container home-row pt-5 d-flex flex-column align-items-center gap-5">
             <div class="row-4-content text-center d-flex flex-column gap-3">
                 <h1>Participate In Our Community!</h1>
                 <h3 class="fw-light">Empower others by sharing knowledge, collaborating to solve challenges, and seeking help when needed to foster growth and innovation.</h3>
