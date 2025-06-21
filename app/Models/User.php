@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,5 +50,40 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function forums(): HasMany
+    {
+        return $this->hasMany(Forum::class);
+    }
+
+    public function badges(): BelongsToMany
+    {
+        return $this->belongsToMany(Badge::class, 'user_badge');
+    }
+
+    public function levels(): BelongsToMany
+    {
+        return $this->belongsToMany(Level::class, 'user_level');
+    }
+
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class, 'user_level_question');
+    }
+
+    public function forumLikes(): BelongsToMany
+    {
+        return $this->belongsToMany(Forum::class, 'user_forum');
+    }
+
+    public function commentLikes(): BelongsToMany
+    {
+        return $this->belongsToMany(Comment::class, 'user_comment');
+    }
+
+    public function replyLikes(): BelongsToMany
+    {
+        return $this->belongsToMany(Reply::class, 'user_reply');
     }
 }
