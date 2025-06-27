@@ -11,29 +11,34 @@
                 <form>
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>
-                        <input type="text" class="form-control" id="postTitle">
+                        <input type="text" class="form-control" id="postTitle" name="postTitle" required>
                     </div>
                     <div class="d-flex gap-5 mb-3">
                         <div class="mb-3 flex-grow-1">
                             <label for="programmingLanguage" class="form-label">Programming Language</label>
-                            <select id="programmingLanguage" class="form-select">
-                                <option>Disabled select</option>
+                            <select id="programmingLanguage" class="form-select" name="programmingLanguage" required>
+                                @foreach($categories as $category){
+                                    <option value="{{$category->category_name}}">{{$category->category_name}}</option>
+                                }
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3 flex-grow-1">
-                            <label for="exampleInputPassword1" class="form-label">Post Type</label>
-                            <select id="postType" class="form-select">
-                                <option>Disabled select</option>
+                            <label for="postType" class="form-label">Post Type</label>
+                            <select id="postType" class="form-select" name="postType" required>
+                                @foreach ($categoryTypes as $categoryType)
+                                    <option value="{{$categoryType->category_type_name}}">{{$categoryType->category_type_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <h3>Image</h3>
-                        <input type="file">
+                    <div class="mb-4 d-flex flex-column">
+                        <label for="image" class="form-label">Image</label>
+                        <input id="image" type="file" name="image">
                     </div>
                     <div class="mb-5 d-flex flex-column">
                         <label for="content" class="form-label">Content</label>
-                        <textarea name="content" id="content" rows="5"></textarea>
+                        <textarea name="content" id="content" rows="5" name="content" class="p-2" required></textarea>
                     </div>
 
                     <div class="d-flex gap-3 justify-content-end">
