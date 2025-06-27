@@ -4,7 +4,7 @@
 @import 'user-dashboard';
 @import 'sign-up';
 @import 'sign-in';
-
+@import 'create-post';
 
 /* Resets */
 *{
@@ -27,6 +27,10 @@ p{
     border: none;
 }
 
+textarea{
+    resize: none;
+}
+
 /* Layouts */
 .navbar{
     width: 80%;
@@ -44,4 +48,24 @@ p{
     background-color: #8d96bb;
 }
 
+/* Extra */
 
+.btn-post{
+    border: 1px solid #4992FD;
+    color: #4992FD;
+}
+
+.btn-cancel{
+    border: 1px solid #E04E5C;
+    color: #E04E5C;
+}
+
+.btn-post:hover{
+    background-color: #4992FD;
+    color: white;
+}
+
+.btn-cancel:hover{
+    background-color: #E04E5C;
+    color: white;
+}
