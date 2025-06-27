@@ -29,7 +29,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary px-5">Sign Up</button>
-                        <p class="fw-bold">Already Have An Account? <a href="#">Sign In</a></p>
+                        <p class="fw-bold">Already Have An Account? <a href="{{route('sign-in')}}">Sign In</a></p>
                     </form>
                 </div>
                 <div class="right-side py-4 flex-grow-1 d-flex justify-content-center align-items-center">

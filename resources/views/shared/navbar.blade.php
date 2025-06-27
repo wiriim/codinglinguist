@@ -1,7 +1,7 @@
 <div class="navbar-container d-flex justify-content-center fw-bold">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand" href="#">CodingLinguist</a>
+            <a class="navbar-brand" href="{{route('home')}}">CodingLinguist</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @if (!Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link {{Route::is('home') ? "active" : ""}} " aria-current="page" href="#">Home</a>
+                            <a class="nav-link {{Route::is('home') ? "active" : ""}} " aria-current="page" href="{{route('home')}}">Home</a>
                         </li>
                     @else
                         <li class="nav-item">
@@ -35,7 +35,7 @@
                         <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="#">Sign In</a>
+                        <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="{{route('sign-in')}}">Sign In</a>
                     </li>
                 </ul>
             </div>
