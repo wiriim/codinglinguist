@@ -69,7 +69,7 @@ class User extends Authenticatable
 
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Question::class, 'user_level_question');
+        return $this->belongsToMany(Question::class, 'user_question');
     }
 
     public function forumLikes(): BelongsToMany

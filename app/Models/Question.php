@@ -16,6 +16,6 @@ class Question extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_level_question');
+        return $this->belongsToMany(User::class, 'user_question');
     }
 }
