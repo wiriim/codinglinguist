@@ -8,38 +8,55 @@
             <div class="create-post-container mt-4">
                 <h1 class="fw-bold">Create Post</h1>
 
-                <form action="{{route('create-post')}}" method="post">
+                <form action="{{ route('create-post') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>
                         <input type="text" class="form-control" id="postTitle" name="postTitle" required>
+                        @error('postTitle')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="d-flex gap-5 mb-3">
                         <div class="mb-3 flex-grow-1">
                             <label for="programmingLanguage" class="form-label">Programming Language</label>
                             <select id="programmingLanguage" class="form-select" name="programmingLanguage" required>
-                                @foreach($categories as $category){
-                                    <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                                }
+                                @foreach ($categories as $category)
+                                    {
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    }
                                 @endforeach
                             </select>
+                            @error('programmingLanguage')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3 flex-grow-1">
                             <label for="postType" class="form-label">Post Type</label>
                             <select id="postType" class="form-select" name="postType" required>
                                 @foreach ($categoryTypes as $categoryType)
-                                    <option value="{{$categoryType->category_type_name}}">{{$categoryType->category_type_name}}</option>
+                                    <option value="{{ $categoryType->id }}">
+                                        {{ $categoryType->category_type_name }}</option>
                                 @endforeach
                             </select>
+                            @error('postType')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-4 d-flex flex-column">
                         <label for="image" class="form-label">Image</label>
                         <input id="image" type="file" name="image">
+                        @error('image')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-5 d-flex flex-column">
                         <label for="content" class="form-label">Content</label>
                         <textarea name="content" id="content" rows="5" name="content" class="p-2" required></textarea>
+                        @error('content')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="d-flex gap-3 justify-content-end">

@@ -26,17 +26,17 @@ class ForumController extends Controller
             'postTitle' => 'required',
             'programmingLanguage' => 'required',
             'postType' => 'required',
-            'image' => 'image',
+            'image' => 'image|nullable',
             'content' => 'required',
         ]);
 
         $forum = new Forum();
         $forum->user_id = Auth::user()->id;
-        $forum->category_id = Category::find($request->category_id)->id;
-        $forum->category_type_id = CategoryType::find($request->category_type_id)->id;
+        $forum->category_id = $validated['programmingLanguage'];
+        $forum->category_type_id = $validated['postType'];
         $forum->title = $validated['postTitle'];
         $forum->content = $validated['content'];
         $forum->save();
-        return redirect()->route('')->with('success','');
+        return redirect()->route('home')->with('success','Post has been created.');
     }
 }
