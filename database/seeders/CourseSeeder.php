@@ -16,7 +16,7 @@ class CourseSeeder extends Seeder
         $names = ['C', 'Python', 'Java'];
         foreach ($names as $name) {
             DB::table('courses')->insert([
-                'name' => $name,
+                'course_name' => $name,
             ]);
         }
     }
