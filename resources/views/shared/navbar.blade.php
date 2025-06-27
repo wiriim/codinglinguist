@@ -14,7 +14,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link {{Route::is('dashboard') ? "active" : ""}}" aria-current="page" href="#">Dashboard</a>
+                            <a class="nav-link {{Route::is('dashboard') ? "active" : ""}}" aria-current="page" href="{{route('user-dashboard')}}">Dashboard</a>
                         </li>
                     @endif
                     <li class="nav-item dropdown">
@@ -35,7 +35,12 @@
                         <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="{{route('sign-in')}}">Sign In</a>
+                        @if (!Auth::check())
+                            <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="{{route('sign-in')}}">Sign In</a>
+                        @else
+                            <a class="nav-link {{Route::is('profile') ? "active" : ""}}" href="#">{{Auth::user()->username}}</a>
+                        @endif
+                        
                     </li>
                 </ul>
             </div>
