@@ -8,7 +8,8 @@
             <div class="create-post-container mt-4">
                 <h1 class="fw-bold">Create Post</h1>
 
-                <form>
+                <form action="{{route('create-post')}}" method="post">
+                    @csrf
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>
                         <input type="text" class="form-control" id="postTitle" name="postTitle" required>

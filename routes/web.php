@@ -15,3 +15,4 @@ Route::view('/sign-in', 'sign-in')->name('sign-in');
 
 // Posts
 Route::get('/create-post', [ForumController::class, 'getCreatePostPage'])->name('create-post');
+Route::post('/create-post', [ForumController::class, 'createPost'])->name('create-post');
