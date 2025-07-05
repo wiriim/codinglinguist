@@ -29,5 +29,7 @@ Route::get('/logout', function(Request $request) {
 });
 
 // Posts
+Route::get('/posts', [ForumController::class,'getAllPostPage'])->name('posts');
+
 Route::get('/create-post', [ForumController::class, 'getCreatePostPage'])->name('create-post');
 Route::post('/create-post', [ForumController::class, 'createPost'])->name('create-post');

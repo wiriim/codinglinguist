@@ -5,6 +5,7 @@
 @import 'sign-up';
 @import 'sign-in';
 @import 'create-post';
+@import 'posts';
 
 /* Resets */
 *{

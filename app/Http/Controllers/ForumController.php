@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
+    public function getAllPostPage()
+    {
+        $posts = Forum::all();
+        return view("posts", ["posts"=> $posts]);
+    }
+
     public function getCreatePostPage()
     {
         $categories = Category::all();

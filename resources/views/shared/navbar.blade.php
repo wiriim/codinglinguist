@@ -29,7 +29,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Forum</a>
+                        <a class="nav-link {{Route::is('posts') ? "active" : ""}}" href="{{route('posts')}}">Forum</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About Us</a>
