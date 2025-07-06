@@ -1,0 +1,32 @@
+.post-detail{
+    background-color: #E8EFFF;
+    max-width: 100vw;
+    min-height: 100vh;
+}
+
+.post{
+    width: 75%;
+}
+
+.seperation{
+    width: 100%;
+    height: 1.5px;
+    background-color: black;
+}
+
+textarea#comment{
+    border-radius: 8px;
+}
+
+.comment-container ~ button{
+    width: 100px;
+    margin-left: auto;
+    display: block;
+}
+
+.comment-sort  ~ select{
+    border-radius: 8px;
+    width: 100px;
+    padding: 5px;
+    margin-left: 10px;
+}

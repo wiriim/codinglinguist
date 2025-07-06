@@ -6,6 +6,7 @@
 @import 'sign-in';
 @import 'create-post';
 @import 'posts';
+@import 'post-detail';
 
 /* Resets */
 *{
@@ -30,6 +31,11 @@ p{
 
 textarea{
     resize: none;
+}
+
+.card-link{
+    text-decoration: none;
+    color: black;
 }
 
 /* Layouts */

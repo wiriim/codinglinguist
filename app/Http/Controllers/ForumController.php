@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\CategoryType;
+use App\Models\Comment;
 use App\Models\Forum;
 use Auth;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
+    public function getPostPage(Forum $post)
+    {
+        $post = Forum::find($post->id);
+        $comments = Comment::where('forum_id', $post->id);
+        return view("post-detail", ["post"=> $post, "comments" => $comments]);
+    }
+
     public function getAllPostPage()
     {
         $posts = Forum::all();

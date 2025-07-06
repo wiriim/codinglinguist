@@ -40,22 +40,31 @@
                         </div>
                     </div>
                     <div class="posts-add d-flex justify-content-end align-items-end">
-                        <button type="submit" class="btn btn-post w-50">+ Add New Post</button>
+                        <a href="{{route('create-post')}}" class="btn btn-post w-50">+ Add New Post</a>
                     </div>
                 </div>
 
             </div>
             <div class="posts-content-container">
                 @foreach ($posts as $post)
-                    <div class="card w-100 mt-3 ps-4 posts-content">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$post->title}}</h5>
-                            <p class="card-text">{{$post->content}}</p>
-                            <a href="#" class="card-link">Like - 10</a>
-                            <a href="#" class="card-link mt-2">Comment - 10</a>
-                            <p class="mt-2">Posted By {{$post->user->username}}</p>
+                    <a href="{{route('post-detail', ["post"=> $post])}}" class="text-decoration-none text-dark">
+                        <div class="card w-100 mt-3 ps-4 posts-content">
+                            <div class="card-body" data-category="{{$post->category->category_name}}">
+                                <h5 class="card-title">{{$post->title}}</h5>
+                                <p class="card-text">{{$post->content}}</p>
+                                <div class="d-flex mt-3">
+                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><img
+                                            src="{{asset('images/heart.svg')}}" alt="heart" width="20">
+                                        {{$post->userLikes->count()}}</a>
+                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><img
+                                            src="{{asset('images/comment.svg')}}" alt="heart" width="20">
+                                        {{$post->comments->count()}}</a>
+                                </div>
+                                <p class="mt-2">Posted By {{$post->user->username}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+
                 @endforeach
             </div>
             <div class="posts-recent-container">
