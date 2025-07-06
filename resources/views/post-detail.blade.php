@@ -27,8 +27,10 @@
                 @endif
 
                 <div class="d-flex gap-2">
-                    <a href="{{route('post-edit', $post)}}" class="card-link"><i class="bi bi-pencil-square"></i></a>
-                    <a href="{{route('post-delete', $post)}}" class="card-link"><i class="bi bi-trash"></i></a>
+                    @if (Auth::check() && $post->user->id == Auth::user()->id )
+                        <a href="{{route('post-edit', $post)}}" class="card-link"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{route('post-delete', $post)}}" class="card-link"><i class="bi bi-trash"></i></a>
+                    @endif
                 </div>
             </div>
 
@@ -43,7 +45,7 @@
                 @if (Auth::check())
                     <button type="submit" class="btn btn-post mt-2">Post</button>
                 @else
-                    <a href="{{ route('sign-in') }}" class="btn btn-post mt-2">Sign In</a>
+                    <a href="{{ route('sign-in') }}" class="btn btn-post mt-2">Comment</a>
                 @endif
 
             </form>

@@ -60,8 +60,13 @@
                     </div>
 
                     <div class="d-flex gap-3 justify-content-end">
-                        <a href="{{route('posts')}}" class="btn btn-cancel">Cancel</a>
-                        <button type="submit" class="btn btn-post">Post</button>
+                        <a href="{{ route('posts') }}" class="btn btn-cancel">Cancel</a>
+                        @if (Auth::check())
+                            <button type="submit" class="btn btn-post">Post</button>
+                        @else
+                            <a href="{{ route('sign-in') }}" class="btn btn-post">Post</a>
+                        @endif
+
                     </div>
                 </form>
             </div>
