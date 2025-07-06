@@ -50,6 +50,12 @@ class ForumController extends Controller
             ->with('success', 'Post has been edited.');
     }
 
+    public function deletePost(Forum $post){
+        $post = Forum::find($post->id);
+        $post->delete();
+        return redirect()->route('posts')->with('success','Post has been deleted.');
+    }
+
     public function getAllPostPage()
     {
         $posts = Forum::all();

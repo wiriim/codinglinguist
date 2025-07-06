@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="posts-add d-flex justify-content-end align-items-end">
-                        <a href="{{ route('create-post') }}" class="btn btn-post w-50">+ Add New Post</a>
+                        <a href="{{ route('post-create') }}" class="btn btn-post w-50">+ Add New Post</a>
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
                                             <li><a class="dropdown-item" href="{{ route('post-edit', $post) }}"><i
                                                         class="bi bi-pen-fill"></i>
                                                     Update</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3"></i>
+                                            <li><a class="dropdown-item" href="{{route('post-delete', $post)}}"><i class="bi bi-trash3"></i>
                                                     Delete</a>
                                             </li>
                                         </ul>
