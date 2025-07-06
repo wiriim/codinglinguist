@@ -27,8 +27,8 @@
                 @endif
 
                 <div class="d-flex gap-2">
-                    <a href="#" class="card-link"><i class="bi bi-pencil-square"></i></a>
-                    <a href="#" class="card-link"><i class="bi bi-trash"></i></a>
+                    <a href="{{route('post-edit', $post)}}" class="card-link"><i class="bi bi-pencil-square"></i></a>
+                    <a href="{{route('post-delete', $post)}}" class="card-link"><i class="bi bi-trash"></i></a>
                 </div>
             </div>
 
