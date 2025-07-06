@@ -35,6 +35,9 @@ Route::get('/posts', [ForumController::class,'getAllPostPage'])->name('posts');
 Route::get('/create-post', [ForumController::class, 'getCreatePostPage'])->name('create-post');
 Route::post('/create-post', [ForumController::class, 'createPost'])->name('create-post');
 
+Route::get('/edit-posts/{post}', [ForumController::class,'getEditPostPage'])->name('post-edit');
+Route::post('/edit-posts/{post}', [ForumController::class,'editPost'])->name('post-edit');
+
 Route::get('/posts/{post}', [ForumController::class,'getPostPage'])->name('post-detail');
 
 // Posts Likes

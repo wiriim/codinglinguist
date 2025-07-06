@@ -3,7 +3,7 @@
 @section('content')
     <div class="post-detail d-flex flex-column">
         @include('shared.navbar')
-
+        
         <div class="post flex-grow-1 mt-3 align-self-center">
             @if (session('success'))
                 <div class="alert alert-success mt-2">{{ session('success') }}</div>

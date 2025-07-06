@@ -34,6 +34,10 @@ textarea{
     resize: none;
 }
 
+.card-title:hover{
+    text-decoration: underline;
+}
+
 .card-link{
     text-decoration: none;
     color: black;

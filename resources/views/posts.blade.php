@@ -52,35 +52,54 @@
                     <div class="alert alert-success mt-2">{{ session('success') }}</div>
                 @endif
                 @foreach ($posts as $post)
-                    <a href="{{ route('post-detail', ['post' => $post]) }}" class="text-decoration-none text-dark">
-                        <div class="card w-100 mt-3 ps-4 posts-content">
-                            <div class="card-body" data-category="{{ $post->category->category_name }}">
-                                <h5 class="card-title">{{ $post->title }}</h5>
-                                <p class="card-text">{{ $post->content }}</p>
-                                <div class="d-flex mt-3">
-                                    @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())
-                                        <a href="{{ route('post-dislike', ['post' => $post]) }}"
-                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                                class="bi bi-heart-fill text-danger"></i>
-                                            {{ $post->userLikes->count() }}</a>
-                                    @elseif (Auth::check())
-                                        <a href="{{ route('post-like', ['post' => $post]) }}"
-                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                                class="bi bi-heart"></i></i>
-                                            {{ $post->userLikes->count() }}</a>
-                                    @else
-                                        <a href="{{ route('sign-in') }}"
-                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                                class="bi bi-heart"></i></i>
-                                            {{ $post->userLikes->count() }}</a>
-                                    @endif
-                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><i class="bi bi-chat"></i>
-                                        {{ $post->comments->count() }}</a>
-                                </div>
-                                <p class="mt-2">Posted By {{ $post->user->username }}</p>
+                    <div class="card w-100 mt-3 ps-4 posts-content">
+                        <div class="card-body" data-category="{{ $post->category->category_name }}">
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ route('post-detail', ['post' => $post]) }}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                </a>
+                                @if (Auth::check() && $post->user->id == Auth::user()->id)
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical post-dropdown" data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu bg-white">
+                                            <li><a class="dropdown-item" href="{{ route('post-edit', $post) }}"><i
+                                                        class="bi bi-pen-fill"></i>
+                                                    Update</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash3"></i>
+                                                    Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
+
                             </div>
+
+                            <p class="card-text">{{ $post->content }}</p>
+                            <div class="d-flex mt-3">
+                                @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())
+                                    <a href="{{ route('post-dislike', ['post' => $post]) }}"
+                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                            class="bi bi-heart-fill text-danger"></i>
+                                        {{ $post->userLikes->count() }}</a>
+                                @elseif (Auth::check())
+                                    <a href="{{ route('post-like', ['post' => $post]) }}"
+                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                            class="bi bi-heart"></i></i>
+                                        {{ $post->userLikes->count() }}</a>
+                                @else
+                                    <a href="{{ route('sign-in') }}"
+                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                            class="bi bi-heart"></i></i>
+                                        {{ $post->userLikes->count() }}</a>
+                                @endif
+                                <a href="{{ route('post-detail', ['post' => $post]) }}"
+                                    class="card-link d-flex justify-content-center gap-1"><i class="bi bi-chat"></i>
+                                    {{ $post->comments->count() }}</a>
+                            </div>
+                            <p class="mt-2">Posted By {{ $post->user->username }}</p>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
             </div>
             <div class="posts-recent-container">

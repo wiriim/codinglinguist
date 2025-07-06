@@ -27,7 +27,7 @@ class Forum extends Model
 
     public function categoryType(): BelongsTo
     {
-        return $this->belongsTo(CategoryType::class, 'category_types');
+        return $this->belongsTo(CategoryType::class);
     }
 
     public function userLikes(): BelongsToMany

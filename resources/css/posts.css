@@ -76,3 +76,11 @@
 .post{
     text-decoration: none;
 }
+
+.post-dropdown:hover{
+    cursor: pointer;
+}
+
+.post-dropdown ~ .dropdown-menu .dropdown-item:hover{
+    color: white;
+}
