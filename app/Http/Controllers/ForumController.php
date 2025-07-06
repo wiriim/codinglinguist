@@ -14,7 +14,7 @@ class ForumController extends Controller
     public function getPostPage(Forum $post)
     {
         $post = Forum::find($post->id);
-        $comments = Comment::where('forum_id', $post->id);
+        $comments = Comment::where('forum_id', $post->id)->get();
         return view("post-detail", ["post"=> $post, "comments" => $comments]);
     }
 

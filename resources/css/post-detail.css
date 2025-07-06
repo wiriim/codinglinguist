@@ -18,7 +18,8 @@ textarea#comment{
     border-radius: 8px;
 }
 
-.comment-container ~ button{
+.comment-container ~ button,
+.comment-container ~ a{
     width: 100px;
     margin-left: auto;
     display: block;

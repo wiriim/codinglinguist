@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,6 @@ Route::get('/create-post', [ForumController::class, 'getCreatePostPage'])->name(
 Route::post('/create-post', [ForumController::class, 'createPost'])->name('create-post');
 
 Route::get('/posts/{post}', [ForumController::class,'getPostPage'])->name('post-detail');
+
+// Posts Comments
+Route::post('/posts/{post}', [CommentController::class,'createComment'])->name('comment');
