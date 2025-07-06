@@ -37,5 +37,9 @@ Route::post('/create-post', [ForumController::class, 'createPost'])->name('creat
 
 Route::get('/posts/{post}', [ForumController::class,'getPostPage'])->name('post-detail');
 
+// Posts Likes
+Route::get('/posts/like/{post}', [ForumController::class,'likePost'])->name('post-like');
+Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->name('post-dislike');
+
 // Posts Comments
-Route::post('/posts/{post}', [CommentController::class,'createComment'])->name('comment');
+Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])->name('comment');

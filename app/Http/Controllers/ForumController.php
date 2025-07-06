@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\CategoryType;
 use App\Models\Comment;
+use App\Models\CommentLike;
 use App\Models\Forum;
+use App\Models\ForumLike;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,5 +54,17 @@ class ForumController extends Controller
         $forum->content = $validated['content'];
         $forum->save();
         return redirect()->route('home')->with('success','Post has been created.');
+    }
+
+    public function likePost(Forum $post){
+        $user = Auth::user();
+        $user->forumLikes()->attach($post);
+        return back()->with('success','Comment Liked');
+    }
+
+    public function dislikePost(Forum $post){
+        $user = Auth::user();
+        $user->forumLikes()->detach($post);
+        return back()->with('success','Comment Disliked');
     }
 }

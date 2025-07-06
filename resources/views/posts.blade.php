@@ -3,7 +3,9 @@
 @section('content')
     <div class="posts pb-4">
         @include('shared.navbar')
+
         <div class="posts-container">
+
             <div class="posts-header-container">
                 <p class="fs-5 mt-3 mb-0">Filter By:</p>
                 <div class="posts-header">
@@ -40,31 +42,45 @@
                         </div>
                     </div>
                     <div class="posts-add d-flex justify-content-end align-items-end">
-                        <a href="{{route('create-post')}}" class="btn btn-post w-50">+ Add New Post</a>
+                        <a href="{{ route('create-post') }}" class="btn btn-post w-50">+ Add New Post</a>
                     </div>
                 </div>
 
             </div>
             <div class="posts-content-container">
+                @if (session('success'))
+                    <div class="alert alert-success mt-2">{{ session('success') }}</div>
+                @endif
                 @foreach ($posts as $post)
-                    <a href="{{route('post-detail', ["post"=> $post])}}" class="text-decoration-none text-dark">
+                    <a href="{{ route('post-detail', ['post' => $post]) }}" class="text-decoration-none text-dark">
                         <div class="card w-100 mt-3 ps-4 posts-content">
-                            <div class="card-body" data-category="{{$post->category->category_name}}">
-                                <h5 class="card-title">{{$post->title}}</h5>
-                                <p class="card-text">{{$post->content}}</p>
+                            <div class="card-body" data-category="{{ $post->category->category_name }}">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <p class="card-text">{{ $post->content }}</p>
                                 <div class="d-flex mt-3">
-                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><img
-                                            src="{{asset('images/heart.svg')}}" alt="heart" width="20">
-                                        {{$post->userLikes->count()}}</a>
-                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><img
-                                            src="{{asset('images/comment.svg')}}" alt="heart" width="20">
-                                        {{$post->comments->count()}}</a>
+                                    @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())
+                                        <a href="{{ route('post-dislike', ['post' => $post]) }}"
+                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                                class="bi bi-heart-fill text-danger"></i>
+                                            {{ $post->userLikes->count() }}</a>
+                                    @elseif (Auth::check())
+                                        <a href="{{ route('post-like', ['post' => $post]) }}"
+                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                                class="bi bi-heart"></i></i>
+                                            {{ $post->userLikes->count() }}</a>
+                                    @else
+                                        <a href="{{ route('sign-in') }}"
+                                            class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                                class="bi bi-heart"></i></i>
+                                            {{ $post->userLikes->count() }}</a>
+                                    @endif
+                                    <a href="#" class="card-link d-flex justify-content-center gap-1"><i class="bi bi-chat"></i>
+                                        {{ $post->comments->count() }}</a>
                                 </div>
-                                <p class="mt-2">Posted By {{$post->user->username}}</p>
+                                <p class="mt-2">Posted By {{ $post->user->username }}</p>
                             </div>
                         </div>
                     </a>
-
                 @endforeach
             </div>
             <div class="posts-recent-container">
