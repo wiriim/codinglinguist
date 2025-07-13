@@ -84,3 +84,11 @@
 .post-dropdown ~ .dropdown-menu .dropdown-item:hover{
     color: white;
 }
+
+.category-container,
+.category-type-container{
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    color: white;
+}

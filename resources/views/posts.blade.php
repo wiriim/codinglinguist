@@ -52,13 +52,24 @@
                     <div class="alert alert-success mt-2">{{ session('success') }}</div>
                 @endif
                 @foreach ($posts as $post)
-                    <div class="card w-100 mt-3 ps-4 posts-content">
+                    <div class="card w-100 mt-3 ps-4 posts-content" data-category="{{$post->category->id}}">
                         <div class="card-body" data-category="{{ $post->category->category_name }}">
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('post-detail', ['post' => $post]) }}"
-                                    class="text-decoration-none text-dark">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
-                                </a>
+                                <div class="d-flex-flex-column mb-3">
+                                    <a href="{{ route('post-detail', ['post' => $post]) }}"
+                                        class="text-decoration-none text-dark">
+                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                    </a>
+                                    <div class="d-flex gap-3">
+                                        <div data-category="{{$post->category->id}}" class="category-container d-flex justify-content-center align-items-center">
+                                            {{ $post->category->category_name }}
+                                        </div>
+                                        <div data-categorytype="{{$post->categoryType->id}}" class="category-type-container d-flex justify-content-center align-items-center">
+                                            {{$post->categoryType->category_type_name}}
+                                        </div>
+                                    </div>
+                                </div>
+
                                 @if (Auth::check() && $post->user->id == Auth::user()->id)
                                     <div class="dropdown">
                                         <i class="bi bi-three-dots-vertical post-dropdown" data-bs-toggle="dropdown"></i>
@@ -66,7 +77,8 @@
                                             <li><a class="dropdown-item" href="{{ route('post-edit', $post) }}"><i
                                                         class="bi bi-pen-fill"></i>
                                                     Update</a></li>
-                                            <li><a class="dropdown-item" href="{{route('post-delete', $post)}}"><i class="bi bi-trash3"></i>
+                                            <li><a class="dropdown-item" href="{{ route('post-delete', $post) }}"><i
+                                                        class="bi bi-trash3"></i>
                                                     Delete</a>
                                             </li>
                                         </ul>
