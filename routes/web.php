@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,10 @@ Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->nam
 
 // Posts Comments
 Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])->name('comment');
+
+
+// Course
+Route::get('/course/{course}', [CourseController::class, 'getCoursePage'])->name('course');
+
+// Level
+Route::get('/course/{course}/level/{level}', [CourseController::class, 'getLevelPage'])->name('level');

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('level_id')->constrained()->cascadeOnDelete();
-            $table->text('content');
-            $table->text('answer');
+            $table->integer('number')->nullable();
+            $table->text('content')->nullable();
+            $table->text('answer')->nullable();
             $table->timestamps();
         });
     }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
-            $table->integer('number');
-            $table->string('title');
-            $table->text('content');
-            $table->integer('point');
+            $table->integer('number')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+            $table->integer('point')->nullable();
             $table->timestamps();
         });
     }
