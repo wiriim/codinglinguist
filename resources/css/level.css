@@ -2,16 +2,73 @@
     max-width: 100vw;
     min-height: 100vh;
     background: linear-gradient(to bottom, #D1C2FF, #ABD4FE);
+    padding: 0 0 40px 0;
+}
+
+.level-question-nav{
+    height: 150px;
+    background-color: #E8EFFF;
+    width: 75%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.level-question-nav .nav-item{
+    background-color: #D1D1D1;
+    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .level-container{
     width: 75%;
     background-color: #E8EFFF;
     border-radius: 20px;
-    height: 600px;
-    padding: 20px;
+    height: 100%;
+    padding: 20px 100px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.level-header{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 50px;
 }
 
 .level-content{
+    font-weight: 400;
     align-self: flex-start;
+}
+
+.level-sub-header{
+    font-size: 1.5rem;
+    font-weight: 600;
+    align-self: flex-start;
+    margin: 20px 0;
+}
+
+.level-code-input{
+    align-self: flex-start;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #272822;
+    color: white;
+}
+
+.level-code-output{
+    align-self: flex-start;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #E0E0E0;
+    color: black;
 }
