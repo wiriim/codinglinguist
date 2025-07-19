@@ -9,6 +9,7 @@
 @import 'posts';
 @import 'post-detail';
 @import 'course';
+@import 'level';
 
 /* Resets */
 *{

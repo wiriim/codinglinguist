@@ -17,7 +17,9 @@
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelBS as $level)
-                    <div class="level" data-number="{{$level->number}}">{{$level->number}}</div>
+                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                        <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                    </a>
                 @endforeach
             </div>
 
@@ -29,20 +31,24 @@
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelCL as $level)
-                    <div class="level" data-number="{{$level->number}}">{{$level->number}}</div>
+                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                        <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                    </a>
                 @endforeach
 
             </div>
 
             <div class="course-functions my-4 d-flex gap-3 justify-content-center align-items-center">
                 <div class="course-line"></div>
-                <h2 class="d-flex justify-content-center"><span>{{$course->course_name}} Functions</span></h2>
+                <h2 class="d-flex justify-content-center"><span>{{ $course->course_name }} Functions</span></h2>
                 <div class="course-line"></div>
             </div>
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelFN as $level)
-                    <div class="level" data-number="{{$level->number}}">{{$level->number}}</div>
+                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                        <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                    </a>
                 @endforeach
 
             </div>

@@ -55,4 +55,4 @@ Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])
 Route::get('/course/{course}', [CourseController::class, 'getCoursePage'])->name('course');
 
 // Level
-Route::get('/course/{course}/level/{level}', [CourseController::class, 'getLevelPage'])->name('level');
+Route::get('/level/{level}', [CourseController::class, 'getLevelPage'])->name('level');

@@ -18,4 +18,9 @@ class CourseController extends Controller
         
         return view('course', ['course'=> $course, 'levelBS'=>$levelsBS, 'levelCL'=>$levelCL, 'levelFN'=>$levelFN]);
     }
+
+    public function getLevelPage(string $level_id){
+        $level = Level::find($level_id);    
+        return view('level', ['level'=> $level]);
+    }
 }

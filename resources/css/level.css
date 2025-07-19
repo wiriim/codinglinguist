@@ -1,0 +1,17 @@
+.level-page{
+    max-width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #D1C2FF, #ABD4FE);
+}
+
+.level-container{
+    width: 75%;
+    background-color: #E8EFFF;
+    border-radius: 20px;
+    height: 600px;
+    padding: 20px;
+}
+
+.level-content{
+    align-self: flex-start;
+}
