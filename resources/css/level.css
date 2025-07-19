@@ -33,19 +33,20 @@
     background-color: #E8EFFF;
     border-radius: 20px;
     height: 100%;
-    padding: 20px 100px;
+    padding: 20px 100px 50px 100px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .level-header{
     font-size: 2.5rem;
     font-weight: 600;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .level-content{
     font-weight: 400;
     align-self: flex-start;
+    margin: 10px 0;
 }
 
 .level-sub-header{
@@ -71,4 +72,17 @@
     border-radius: 5px;
     background-color: #E0E0E0;
     color: black;
+}
+
+.level-table{
+    border-collapse: separate;
+    border-spacing: 50px 0;
+}
+
+.level-table td {
+    padding: 10px 0;
+}
+
+.decimal-list > li {
+    list-style-type: decimal;
 }

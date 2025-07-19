@@ -23,7 +23,7 @@
                             Course
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">C</a></li>
+                            <li><a class="dropdown-item" href="{{route('course', 1)}}">C</a></li>
                             <li><a class="dropdown-item" href="#">Java</a></li>
                             <li><a class="dropdown-item" href="#">Python</a></li>
                         </ul>
