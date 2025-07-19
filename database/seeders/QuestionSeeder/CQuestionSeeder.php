@@ -501,7 +501,22 @@ class CQuestionSeeder extends Seeder
                 </ul>
             </div>'
             ,
-            '<div class="question-sub-header">Answer:</div>
+            '<div class="question-header">
+                Complete the Code
+            </div>
+
+            <div class="question-sub-header">Prompt:</div>
+            <div class="question-content">
+                Fill in the blanks to check if both <code>a</code> is greater than <code>b</code> and <code>a</code> is not equal to <code>b</code>.
+            </div>
+
+            <div class="question-code-input">
+                if (a _____ b _____ a _____ b) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;printf("Condition is true");<br>
+                }
+            </div>
+
+            <div class="question-sub-header">Answer:</div>
             <input type="text" class="question-input" placeholder="x, y, z">'
             ,
             '<div class="question-header">
