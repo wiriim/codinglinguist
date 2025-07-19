@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CategoryTypeSeeder::class,
             \Database\Seeders\LevelSeeder\CLevelSeeder::class,
+            \Database\Seeders\QuestionSeeder\CQuestionSeeder::class,
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Level;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -19,8 +20,13 @@ class CourseController extends Controller
         return view('course', ['course'=> $course, 'levelBS'=>$levelsBS, 'levelCL'=>$levelCL, 'levelFN'=>$levelFN]);
     }
 
-    public function getLevelPage(string $level_id){
-        $level = Level::find($level_id);    
+    public function getLevelPage(string $course_id, string $level_id){
+        $level = Level::find($level_id);
         return view('level', ['level'=> $level]);
+    }
+    public function getQuestionPage(string $course_id, string $level_id, string $question_id){
+        $level = Level::find($level_id);
+        $question = Question::find($question_id);    
+        return view('question', ['level'=> $level, 'question'=> $question]);
     }
 }

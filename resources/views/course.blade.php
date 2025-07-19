@@ -17,7 +17,7 @@
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelBS as $level)
-                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                    <a class="course-level-link" href="{{route('level', ['course' => $level->course->id, 'level'=>$level->id])}}">
                         <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
                     </a>
                 @endforeach
@@ -31,7 +31,7 @@
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelCL as $level)
-                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                    <a class="course-level-link" href="{{route('level', ['course' => $level->course->id, 'level'=>$level->id])}}">
                         <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
                     </a>
                 @endforeach
@@ -46,7 +46,7 @@
 
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelFN as $level)
-                    <a class="course-level-link" href="{{route('level', $level->id)}}">
+                    <a class="course-level-link" href="{{route('level', ['course' => $level->course->id, 'level'=>$level->id])}}">
                         <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
                     </a>
                 @endforeach

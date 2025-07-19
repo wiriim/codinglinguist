@@ -10,6 +10,7 @@
 @import 'post-detail';
 @import 'course';
 @import 'level';
+@import 'question';
 
 /* Resets */
 *{
@@ -41,6 +42,11 @@ textarea{
 }
 
 .card-link{
+    text-decoration: none;
+    color: black;
+}
+
+a{
     text-decoration: none;
     color: black;
 }
