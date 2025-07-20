@@ -189,7 +189,15 @@ class JavaLevelSeeder extends Seeder
             </ul>
             </ul>
             ✅ You may not use loops or methods ✅ You must use Scanner, if/else, ==, >=, nextLine() handling ✅ Stick strictly to concepts from Levels 1–9
-            </div>'
+            </div>
+            <div class="level-sub-header">🧪 Example Input 1:</div>
+            <div class="level-code-input">Amanda Rivera<br>22<br>2</div>
+            <div class="level-sub-header">📤 Output 1:</div>
+            <div class="level-code-input">Welcome, Amanda Rivera!<br>You are allowed to use the gym.<br>Your membership tier: Premium</div>
+            <div class="level-sub-header">🧪 Example Input 2:</div>
+            <div class="level-code-input">Kevin Tran<br>13<br>1</div>
+            <div class="level-sub-header">📤 Output 2:</div>
+            <div class="level-code-input">Welcome, Kevin Tran!<br>You are not allowed to use the gym.</div>'
             ,
             //level 11
             '<div class="level-header">Repeating Tasks with while Loops + Using nextLine() for String Input</div>
@@ -253,7 +261,19 @@ class JavaLevelSeeder extends Seeder
             <li>If “STOP” is entered as a name, break the loop immediately — no more students will be asked.</li>
             <li>At the end, print the total present, absent, and total students checked.</li>
             </ul>
-            </div>'
+            </div>
+            <div class="level-sub-header">🧪 Example Input 1:</div>
+            <div class="level-code-input">How many students?<br>3<br>Student 1 name: Alice<br>Is Alice present? (Y/N): Y<br>Student 2 name: Bob<br>Is Bob present? (Y/N): N<br>Student 3 name: Charlie<br>Is Charlie present? (Y/N): Y</div>
+            <div class="level-sub-header">📤 Output 1:</div>
+            <div class="level-code-input">Attendance Summary:<br>Present: 2<br>Absent: 1<br>Total Checked: 3</div>
+            <div class="level-sub-header">🧪 Example Input 2 (using STOP):</div>
+            <div class="level-code-input">How many students?<br>5<br>Student 1 name: Anna<br>Is Anna present? (Y/N): Y<br>Student 2 name: STOP</div>
+            <div class="level-sub-header">📤 Output 2:</div>
+            <div class="level-code-input">Attendance Summary:<br>Present: 1<br>Absent: 0<br>Total Checked: 1</div>
+            <div class="level-sub-header">🧪 Example Input 3 (invalid input + continue):</div>
+            <div class="level-code-input">How many students?<br>2<br>Student 1 name: David<br>Is David present? (Y/N): Maybe<br>Is David present? (Y/N): Y<br>Student 2 name: Lily<br>Is Lily present? (Y/N): N</div>
+            <div class="level-sub-header">📤 Output 3:</div>
+            <div class="level-code-input">Attendance Summary:<br>Present: 1<br>Absent: 1<br>Total Checked: 2</div>'
             ,
             //level 16
             '<div class="level-header">What is a Method?</div>
@@ -312,7 +332,19 @@ class JavaLevelSeeder extends Seeder
             <li>If the average is 75 or higher: “Congratulations, you passed!”</li>
             <li>If the average is below 75: “You need to improve next time.”</li>
             </ul>
-            </div>'
+            </div>
+            <div class="level-sub-header">🧪 Example Input 1:</div>
+            <div class="level-code-input">Enter student name: Alex<br>Enter number of subjects: 3<br>Enter score for subject 1: 80<br>Enter score for subject 2: 70<br>Enter score for subject 3: 85</div>
+            <div class="level-sub-header">📤 Output 1:</div>
+            <div class="level-code-input">Hello, Alex!<br>Your average score is: 78.33333333333333<br>Congratulations, you passed!</div>
+            <div class="level-sub-header">🧪 Example Input 2:</div>
+            <div class="level-code-input">Enter student name: Bella<br>Enter number of subjects: 2<br>Enter score for subject 1: 60<br>Enter score for subject 2: 70</div>
+            <div class="level-sub-header">📤 Output 2:</div>
+            <div class="level-code-input">Hello, Bella!<br>Your average score is: 65.0<br>You need to improve next time.</div>
+            <div class="level-sub-header">🧪 Example Input 3:</div>
+            <div class="level-code-input">Enter student name: Charlie<br>Enter number of subjects: 1<br>Enter score for subject 1: 75</div>
+            <div class="level-sub-header">📤 Output 3:</div>
+            <div class="level-code-input">Hello, Charlie!<br>Your average score is: 75.0<br>Congratulations, you passed!</div>'
         ];
 
         for ($i = 0; $i < count($titles); $i++) {

@@ -233,14 +233,23 @@ class PythonQuestionSeeder extends Seeder
             // Level 20 has no questions.
         ];
 
+        $number = 1;
         $levelId = 41; // Python levels start from ID 41
-        for ($i = 0; $i < count($contents); $i++) {
+        $index = 0;
+        foreach ($contents as $content) {
             DB::table('questions')->insert([
-                'level_id' => $levelId + floor($i / 4),
-                'number' => ($i % 4) + 1,
-                'content' => $contents[$i],
-                'answer' => $answers[$i],
+                'level_id' => $levelId,
+                'number' => $number,
+                'content' => $content,
+                'answer' => $answers[$index]
             ]);
+            $number++;
+            $index++;
+            if ($number == 5){
+                $number = 1;
+                $levelId++;
+                if ($levelId == 50 || $levelId == 55 || $levelId == 60) $levelId++; // Skip boss levels (50=level 10, 55=level 15, 60=level 20)
+            }
         }
     }
 }

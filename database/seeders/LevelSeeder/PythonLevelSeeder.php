@@ -153,7 +153,15 @@ class PythonLevelSeeder extends Seeder
             <li>apply a 10% discount</li>
             <li>Show the final amount to pay</li>
             </ul>
-            </div>'
+            </div>
+            <div class="level-sub-header">Example Input 1:</div>
+            <div class="level-code-input">Alice<br>35000<br>40000<br>30000</div>
+            <div class="level-sub-header">Expected Output 1:</div>
+            <div class="level-code-input">Final Price: 94500</div>
+            <div class="level-sub-header">Example Input 2:</div>
+            <div class="level-code-input">Bob<br>20000<br>25000<br>30000</div>
+            <div class="level-sub-header">Expected Output 2:</div>
+            <div class="level-code-input">Final Price: 67500</div>'
             ,
             //level 11
             '<div class="level-header">Conditionals (if, elif, else)</div>
@@ -206,7 +214,19 @@ class PythonLevelSeeder extends Seeder
             </ul>
             </li>
             </ul>
-            </div>'
+            </div>
+            <div class="level-sub-header">Example Input 1:</div>
+            <div class="level-code-input">Farah<br>3<br>70<br>65<br>80</div>
+            <div class="level-sub-header">Expected Output 1:</div>
+            <div class="level-code-input">Student Farah: Pass (Average: 71)</div>
+            <div class="level-sub-header">Example Input 2:</div>
+            <div class="level-code-input">Iqbal<br>3<br>60<br>38<br>70</div>
+            <div class="level-sub-header">Expected Output 2:</div>
+            <div class="level-code-input">Student Iqbal must retake the exam.</div>
+            <div class="level-sub-header">Example Input 3:</div>
+            <div class="level-code-input">Nina<br>4<br>50<br>60<br>55<br>58</div>
+            <div class="level-sub-header">Expected Output 3:</div>
+            <div class="level-code-input">Student Nina: Fail (Average: 55)</div>'
             ,
             //level 16
             '<div class="level-header">Introduction to Functions</div>
@@ -260,7 +280,15 @@ class PythonLevelSeeder extends Seeder
             </li>
             <li>After all transactions, display the final balance using another function.</li>
             </ul>
-            </div>'
+            </div>
+            <div class="level-sub-header">Example Input 1:</div>
+            <div class="level-code-input">Ali<br>1000<br>3<br>-200<br>150<br>-100</div>
+            <div class="level-sub-header">Expected Output 1:</div>
+            <div class="level-code-input">Customer: Ali<br>Final balance: 850</div>
+            <div class="level-sub-header">Example Input 2:</div>
+            <div class="level-code-input">Nina<br>500<br>2<br>300<br>-100</div>
+            <div class="level-sub-header">Expected Output 2:</div>
+            <div class="level-code-input">Customer: Nina<br>Final balance: 700</div>'
         ];
 
         for ($i = 0; $i < count($titles); $i++) {

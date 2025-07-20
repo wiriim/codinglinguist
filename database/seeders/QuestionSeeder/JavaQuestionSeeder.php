@@ -234,14 +234,23 @@ class JavaQuestionSeeder extends Seeder
             // Level 20 has no questions.
         ];
 
+        $number = 1;
         $levelId = 21; // Java levels start from ID 21
-        for ($i = 0; $i < count($contents); $i++) {
+        $index = 0;
+        foreach ($contents as $content) {
             DB::table('questions')->insert([
-                'level_id' => $levelId + floor($i / 4),
-                'number' => ($i % 4) + 1,
-                'content' => $contents[$i],
-                'answer' => $answers[$i],
+                'level_id' => $levelId,
+                'number' => $number,
+                'content' => $content,
+                'answer' => $answers[$index]
             ]);
+            $number++;
+            $index++;
+            if ($number == 5){
+                $number = 1;
+                $levelId++;
+                if ($levelId == 30 || $levelId == 35 || $levelId == 40) $levelId++; // Skip boss levels (30=level 10, 35=level 15, 40=level 20)
+            }
         }
     }
 }
