@@ -11,12 +11,23 @@ class CourseController extends Controller
 {
     public function getCoursePage(string $course_id){
         $course = Course::find($course_id);
-        if ($course_id == 1){
-            $levelsBS = Level::where("id", "<", 11)->get();
-            $levelCL = Level::where("id", "<", 16)->where("id", ">", 10)->get();
-            $levelFN = Level::where("id", "<", 21)->where("id", ">", 15)->get();
-        }
-        
+
+        // Get levels for the specific course, organized by sections
+        $levelsBS = Level::where('course_id', $course_id)
+                        ->where('number', '>=', 1)
+                        ->where('number', '<=', 10)
+                        ->get();
+
+        $levelCL = Level::where('course_id', $course_id)
+                        ->where('number', '>=', 11)
+                        ->where('number', '<=', 15)
+                        ->get();
+
+        $levelFN = Level::where('course_id', $course_id)
+                        ->where('number', '>=', 16)
+                        ->where('number', '<=', 20)
+                        ->get();
+
         return view('course', ['course'=> $course, 'levelBS'=>$levelsBS, 'levelCL'=>$levelCL, 'levelFN'=>$levelFN]);
     }
 
