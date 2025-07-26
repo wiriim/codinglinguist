@@ -5,29 +5,6 @@
     padding: 0 0 40px 0;
 }
 
-.level-question-nav{
-    height: 150px;
-    background-color: #E8EFFF;
-    width: 75%;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.level-question-nav .nav-item{
-    background-color: #D1D1D1;
-    border-radius: 15px;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 .level-container{
     width: 75%;
     background-color: #E8EFFF;

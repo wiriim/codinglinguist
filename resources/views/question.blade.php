@@ -1,9 +1,13 @@
 @extends('shared.layout')
 
 @section('content')
-    <div class="question-page">
+    <div class="question-page d-flex flex-column">
         @include('shared.navbar')
-        <div class="d-flex flex-column w-100 align-items-center">
+
+        <input type="text" hidden id="courseId" value="{{$level->course->id}}">
+        <input type="text" hidden id="levelId" value="{{$level->id}}">
+        <input type="text" hidden id="questionId" value="{{$question->id}}">
+        <div class="d-flex flex-column w-100 flex-grow-1 align-items-center">
             <div class="level-question-nav my-4">
                 <a
                     href="{{ route('level', ['course' => $level->course->id, 'level' => $level->id]) }}">
@@ -20,8 +24,13 @@
                     </a>
                 @endforeach
             </div>
-            <div class="level-container d-flex flex-column align-items-center">
+            <div class="question-container d-flex flex-column align-items-center">
                 @include('question-content')
+                <div class="alert alert-success mt-2 w-100 d-none" id="successAlert">Success</div>
+                <div class="alert alert-danger mt-2 w-100 d-none" id="dangerAlert">Incorrect, please check your code and try again</div>
+                
+                <button class="btn-post question-submit" id="btnQuestionSubmit">Submit</button>
+                <a class="btn-success question-submit d-none" id="btnQuestionContinue">Continue</a>
             </div>
         </div>
     </div>

@@ -59,3 +59,4 @@ Route::get('/course/{course}/level/{level}', [CourseController::class, 'getLevel
 
 // Question
 Route::get('/course/{course}/level/{level}/question/{question}', [CourseController::class, 'getQuestionPage'])->name('question');
+Route::post('/course/{course}/level/{level}/question/{question}', [CourseController::class, 'submitAnswer'])->name('question');

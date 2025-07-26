@@ -46,11 +46,6 @@ textarea{
     color: black;
 }
 
-a{
-    text-decoration: none;
-    color: black;
-}
-
 /* Layouts */
 .navbar{
     width: 80%;
@@ -75,6 +70,12 @@ a{
     color: #4992FD;
 }
 
+.btn-success{
+    border: 1px solid #3CD76B;
+    color: #3CD76B;
+    text-decoration: none;
+}
+
 .btn-cancel{
     border: 1px solid #E04E5C;
     color: #E04E5C;
@@ -88,4 +89,34 @@ a{
 .btn-cancel:hover{
     background-color: #E04E5C;
     color: white;
+}
+
+
+
+.level-question-nav{
+    height: 100px;
+    background-color: #E8EFFF;
+    width: 75%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.level-question-nav .nav-item{
+    background-color: #D1D1D1;
+    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.level-question-nav a{
+    text-decoration: none;
+    color: black;
 }
