@@ -12,12 +12,22 @@ class CourseController extends Controller
     public function getCoursePage(string $course_id){
         $course = $this->getCourse($course_id);
         if ($course_id == 1){
-            $levelsBS = Level::where("id", "<", 11)->get();
+            $levelBS = Level::where("id", "<", 11)->get();
             $levelCL = Level::where("id", "<", 16)->where("id", ">", 10)->get();
             $levelFN = Level::where("id", "<", 21)->where("id", ">", 15)->get();
         }
+        else if ($course_id == 2){
+            $levelBS = Level::where("id", "<", 51)->where("id", ">", 40)->get();
+            $levelCL = Level::where("id", "<", 56)->where("id", ">", 50)->get();
+            $levelFN = Level::where("id", ">", 55)->get();
+        }
+        else if ($course_id == 3){
+            $levelBS = Level::where("id", "<", 31)->where("id", ">", 20)->get();
+            $levelCL = Level::where("id", "<", 36)->where("id", ">", 30)->get();
+            $levelFN = Level::where("id", "<", 41)->where("id", ">", 35)->get();
+        }
         
-        return view('course', ['course'=> $course, 'levelBS'=>$levelsBS, 'levelCL'=>$levelCL, 'levelFN'=>$levelFN]);
+        return view('course', ['course'=> $course, 'levelBS'=>$levelBS, 'levelCL'=>$levelCL, 'levelFN'=>$levelFN]);
     }
 
     public function getLevelPage(string $course_id, string $level_id){
