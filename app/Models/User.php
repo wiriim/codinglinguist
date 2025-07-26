@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -64,7 +65,7 @@ class User extends Authenticatable
 
     public function levels(): BelongsToMany
     {
-        return $this->belongsToMany(Level::class, 'user_level');
+        return $this->belongsToMany(Level::class, 'user_level')->withPivot(columns: 'status');
     }
 
     public function questions(): BelongsToMany
@@ -85,5 +86,25 @@ class User extends Authenticatable
     public function replyLikes(): BelongsToMany
     {
         return $this->belongsToMany(Reply::class, 'user_reply');
+    }
+
+    public function allowLevel(string $id){
+        $allow = false;
+        $allowUserLevel = UserLevel::where('user_id', Auth::id())->where('level_id', $id)->exists();
+        if ($allowUserLevel){
+            $allow = true;
+        }
+
+        return $allow;
+    }
+
+    public function questionFinished(string $id){
+        $finished = false;
+        $questionFinished = UserQuestion::where('user_id', Auth::id())->where('question_id', $id)->exists();
+        if ($questionFinished){
+            $finished = true;
+        }
+
+        return $finished;
     }
 }

@@ -62,6 +62,9 @@
 .question-choice.selected{
     border: 2px solid blue;
 }
+.question-choice.correct{
+    border: 2px solid green;
+}
 
 .question-input{
     border-radius: 5px;

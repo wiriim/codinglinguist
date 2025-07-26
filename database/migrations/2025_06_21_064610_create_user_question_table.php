@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_question', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('level_id')->constrained()->cascadeOnDelete();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
             $table->integer('status');
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserLevel;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class AuthController extends Controller
     public function signUp(Request $request){
         $credentials = $request->validate([
             'username' => ['required'],
-            'email' => ['required'],
+            'email' => ['required', 'unique:users,email'],
             'password' => ['required'],
             'confPassword' => ['required'],
         ]);
@@ -49,6 +50,11 @@ class AuthController extends Controller
         $user->point = 0;
         $user->role = "user";
         $user->save();
+
+        $levelIds = [1, 21, 41];
+        foreach($levelIds as $levelId){
+            $user->levels()->attach($levelId, ['status' => 0]);
+        }
         return redirect()->route('sign-in')->with('success', 'Account successfully registered.');
     }
 }

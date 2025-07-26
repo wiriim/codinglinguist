@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Level;
 use App\Models\Question;
+use App\Models\User;
+use App\Models\UserLevel;
+use App\Models\UserQuestion;
+use Auth;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -32,7 +36,7 @@ class CourseController extends Controller
 
     public function getLevelPage(string $course_id, string $level_id){
         $level = $this->getLevel($level_id);
-        return view('level', ['level'=> $level]);
+        return view('level',  ['level'=> $level]);
     }
 
     public function getQuestionPage(string $course_id, string $level_id, string $question_id){
@@ -45,15 +49,44 @@ class CourseController extends Controller
         $userAnswer = $request->answer;
         $question = $this->getQuestion($question_id);
         $success = false;
-
         if ($userAnswer == $question->answer){
+            if(Auth::check()){
+                $userQuestion = new UserQuestion();
+                $userQuestion->user_id = Auth::id();
+                $userQuestion->level_id = $level_id;
+                $userQuestion->question_id = $question_id;
+                $userQuestion->status = 1;
+                $userQuestion->save();
+            }
             $success = true;
         }
+
+        if (Auth::check() && UserQuestion::where('level_id', $level_id)->count() == 4){
+            $this->saveProgress($level_id);
+        }
+
         return response()->json([
             'success' => $success
         ]);
     }
 
+    function saveProgress(string $level_id){
+        $nextLevelId = $level_id + 1;
+
+        if ($nextLevelId == 61){ // Update last level
+            Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
+        }
+        else{
+            $userLevel = new UserLevel();
+            $userLevel->user_id = Auth::id();
+            $userLevel->level_id = $nextLevelId;
+            $userLevel->status = 0;
+            $userLevel->save();
+            
+            // Update current level
+            Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
+        }
+    }
     // Private Functions
     private function getCourse(string $course_id){
         $course = Course::find($course_id);

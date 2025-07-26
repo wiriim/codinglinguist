@@ -23,6 +23,6 @@ class Level extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_level');
+        return $this->belongsToMany(User::class, 'user_level')->withPivot(columns: 'status');
     }
 }

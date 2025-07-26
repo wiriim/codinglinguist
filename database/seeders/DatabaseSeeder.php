@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class,
             CourseSeeder::class,
             CategorySeeder::class,
             CategoryTypeSeeder::class,
@@ -24,6 +23,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\QuestionSeeder\JavaQuestionSeeder::class,
             \Database\Seeders\LevelSeeder\PythonLevelSeeder::class,
             \Database\Seeders\QuestionSeeder\PythonQuestionSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

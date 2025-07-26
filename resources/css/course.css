@@ -29,6 +29,9 @@
     align-items: center;
     font-weight: 600;
 }
+.course .level.lock{
+    background-color: #939393;
+}
 
 .level-boss{
     background: url('../../public/images/Boss.png');

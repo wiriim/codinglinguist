@@ -12,12 +12,18 @@
                         i
                     </div>
                 </a>
-                @foreach ($level->questions as $question)
+                @foreach ($level->questions as $qst)
                     <a
-                        href="{{ route('question', ['course' => $level->course->id, 'level' => $level->id, 'question' => $question->id]) }}">
-                        <div class="nav-item">
-                            {{ $question->number }}
-                        </div>
+                        href="{{ route('question', ['course' => $level->course->id, 'level' => $level->id, 'question' => $qst->id]) }}">
+                        @if (Auth::check() && Auth::user()->questionFinished($qst->id))
+                            <div class="nav-item bg-success text-white">
+                                {{ $qst->number }}
+                            </div>
+                        @else
+                            <div class="nav-item">
+                                {{ $qst->number }}
+                            </div>
+                        @endif
                     </a>
                 @endforeach
             </div>
