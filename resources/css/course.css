@@ -39,6 +39,13 @@
     background-position: center;
     background-size: 100%;
 }
+.level-boss.lock{
+    background: url('../../public/images/Boss.png');
+    opacity: .5;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
 
 .course-level-link{
     text-decoration: none;

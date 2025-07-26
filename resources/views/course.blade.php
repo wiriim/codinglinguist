@@ -61,7 +61,14 @@
                     @if (Auth::check() && Auth::user()->allowLevel($level->id))
                         <a class="course-level-link"
                             href="{{ route('level', ['course' => $level->course->id, 'level' => $level->id]) }}">
-                            <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                            @foreach ($level->users as $user)
+                                @if ($user->pivot->status == 1)
+                                    <div class="level" data-number="{{ $level->number }}"><img
+                                            src="{{ asset('images/check.png') }}" alt="check" width="20"></div>
+                                @elseif (Auth::check() == false || $user->id == Auth::id())
+                                    <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                                @endif
+                            @endforeach
                         </a>
                     @else
                         <span class="course-level-link">
@@ -84,7 +91,14 @@
                     @if (Auth::check() && Auth::user()->allowLevel($level->id))
                         <a class="course-level-link"
                             href="{{ route('level', ['course' => $level->course->id, 'level' => $level->id]) }}">
-                            <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                            @foreach ($level->users as $user)
+                                @if ($user->pivot->status == 1)
+                                    <div class="level" data-number="{{ $level->number }}"><img
+                                            src="{{ asset('images/check.png') }}" alt="check" width="20"></div>
+                                @elseif (Auth::check() == false || $user->id == Auth::id())
+                                    <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
+                                @endif
+                            @endforeach
                         </a>
                     @else
                         <span class="course-level-link">
