@@ -25,17 +25,17 @@
                 <div class="material">
                     <img class="material-image-home" src="{{asset('images/C_Programming_Language.png')}}" alt="C_Programming_Language">
                     <span>C</span>
-                    <a class="btn btn-primary px-4 fw-light" href="#">Start</a>
+                    <a class="btn btn-primary px-4 fw-light" href="{{route('course', 1)}}">Start</a>
                 </div>
                 <div class="material">
                     <img class="material-image-home" src="{{asset('images/Java.png')}}" alt="Java_programming_language_logo">
                     <span>Java</span>
-                    <a class="btn btn-primary px-4 fw-light" href="#">Start</a>
+                    <a class="btn btn-primary px-4 fw-light" href="{{route('course', 3)}}">Start</a>
                 </div>
                 <div class="material">
                     <img class="material-image-home" src="{{asset('images/Python.png')}}" alt="Python">
                     <span>Python</span>
-                    <a class="btn btn-primary px-4 fw-light" href="#">Start</a>
+                    <a class="btn btn-primary px-4 fw-light" href="{{route('course', 2)}}">Start</a>
                 </div>
             </div>
         </div>

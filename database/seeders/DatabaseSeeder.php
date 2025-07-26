@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
             CategoryTypeSeeder::class,
             \Database\Seeders\LevelSeeder\CLevelSeeder::class,
             \Database\Seeders\QuestionSeeder\CQuestionSeeder::class,
+            \Database\Seeders\LevelSeeder\JavaLevelSeeder::class,
+            \Database\Seeders\QuestionSeeder\JavaQuestionSeeder::class,
+            \Database\Seeders\LevelSeeder\PythonLevelSeeder::class,
+            \Database\Seeders\QuestionSeeder\PythonQuestionSeeder::class,
         ]);
     }
 }

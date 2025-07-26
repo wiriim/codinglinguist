@@ -6,8 +6,13 @@
 
         <div class="d-flex flex-column align-items-center mt-3">
             <div class="course-logo">
-                <img src="{{ asset('images/C_Programming_Language.png') }}" alt="C_Programming_Language" width="80"
-                    height="95">
+                @if($course->course_name == 'C')
+                    <img src="{{ asset('images/C_Programming_Language.png') }}" alt="C_Programming_Language" width="80" height="95">
+                @elseif($course->course_name == 'Java')
+                    <img src="{{ asset('images/Java.png') }}" alt="Java_Programming_Language" width="80" height="95">
+                @elseif($course->course_name == 'Python')
+                    <img src="{{ asset('images/Python.png') }}" alt="Python_Programming_Language" width="80" height="95">
+                @endif
             </div>
             <div class="course-basic-syntax my-4 d-flex gap-3 justify-content-center align-items-center">
                 <div class="course-line"></div>
