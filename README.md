@@ -68,7 +68,3 @@ CodingLLinguist is a web-based interactive programming language learning applica
     ```
 
 ---
-
-## License
-
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
