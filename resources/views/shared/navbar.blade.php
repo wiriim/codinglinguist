@@ -38,7 +38,7 @@
                         @if (!Auth::check())
                             <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="{{route('sign-in')}}">Sign In</a>
                         @else
-                            <a class="nav-link {{Route::is('profile') ? "active" : ""}}" href="#">{{Auth::user()->username}}</a>
+                            <a class="nav-link {{Route::is('profile') ? "active" : ""}}" href="{{route('profile')}}">{{Auth::user()->username}}</a>
                         @endif
                         
                     </li>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,8 @@ Route::redirect('/', '/home');
 Route::view('/home', 'home')->name('home');
 
 Route::view('/user-dashboard', 'user-dashboard')->name('user-dashboard');
+
+Route::get('/profile', [UserController::class, 'getProfilePage'])->name('profile');
 
 // Auth
 Route::get('/sign-in', [AuthController::class, 'getSignInPage'])->name('sign-in');

@@ -4,6 +4,7 @@
     <div class="question-page d-flex flex-column">
         @include('shared.navbar')
 
+        <input type="text" hidden id="questionPage" value="question">
         <input type="text" hidden id="courseId" value="{{$level->course->id}}">
         <input type="text" hidden id="levelId" value="{{$level->id}}">
         <input type="text" hidden id="questionId" value="{{$question->id}}">
