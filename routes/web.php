@@ -14,7 +14,10 @@ Route::view('/home', 'home')->name('home');
 
 Route::view('/user-dashboard', 'user-dashboard')->name('user-dashboard');
 
+// Profile
 Route::get('/profile', [UserController::class, 'getProfilePage'])->name('profile');
+Route::get('/edit-profile', [UserController::class, 'getEditProfilePage'])->name('edit-profile');
+Route::post('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
 
 // Auth
 Route::get('/sign-in', [AuthController::class, 'getSignInPage'])->name('sign-in');

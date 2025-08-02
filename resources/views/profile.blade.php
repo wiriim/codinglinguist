@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="profile-button d-flex align-items-end h-75 gap-3">
-                    <a href="" class="btn btn-primary btn-edit-profile">Edit</a>
+                    <a href="{{route(name: 'edit-profile' )}}" class="btn btn-primary btn-edit-profile">Edit</a>
                     <a href="{{route('logout')}}" class="btn btn-danger btn-logout-profile">Logout</a>
                 </div>
             </div>
