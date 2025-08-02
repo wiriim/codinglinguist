@@ -23,15 +23,7 @@ Route::post('/sign-in', [AuthController::class, 'signIn'])->name('sign-up');
 Route::get('/sign-up', [AuthController::class, 'getSignUpPage'])->name('sign-up');
 Route::post('/sign-up', [AuthController::class, 'signUp'])->name('sign-up');
 
-Route::get('/logout', function(Request $request) {
-    Auth::logout();
- 
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
-    return redirect('/');
-});
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Posts
 Route::get('/posts', [ForumController::class,'getAllPostPage'])->name('posts');

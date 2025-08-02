@@ -52,9 +52,20 @@ class AuthController extends Controller
         $user->save();
 
         $levelIds = [1, 21, 41];
+        $courseId = 1;
         foreach($levelIds as $levelId){
-            $user->levels()->attach($levelId, ['status' => 0]);
+            $user->levels()->attach($levelId, ['status' => 0, 'course_id' => $courseId++]);
         }
         return redirect()->route('sign-in')->with('success', 'Account successfully registered.');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
     }
 }

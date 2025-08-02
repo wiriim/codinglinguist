@@ -19,7 +19,7 @@
                 </div>
                 <div class="profile-button d-flex align-items-end h-75 gap-3">
                     <a href="" class="btn btn-primary btn-edit-profile">Edit</a>
-                    <a href="" class="btn btn-danger btn-logout-profile">Logout</a>
+                    <a href="{{route('logout')}}" class="btn btn-danger btn-logout-profile">Logout</a>
                 </div>
             </div>
 
@@ -31,21 +31,12 @@
                 </div>
             </div>
 
-            <div class="posts-container">
-                @foreach ($posts as $post)
-                    <div class="post-container">
-                        <div class="d-flex gap-3">
-                            <img src="{{asset('images/Python.png')}}" alt="C_Programming_Language" width="45" height="45">
-                            <div class="post-title">{{$post->title}}</div>
-                        </div>
-                        
-                        <div class="post-content mt-1">{{$post->content}}</div>
-                    </div>
-                @endforeach
+            <div class="profile-posts-container ">
+                @include('profile-posts')
             </div>
 
             <div class="progress-container d-none">
-                progress
+                @include('profile-progress')
             </div>
         </div>
     </div>

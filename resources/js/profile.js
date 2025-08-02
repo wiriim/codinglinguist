@@ -1,6 +1,6 @@
 let postsBtn = document.querySelector('#posts-btn');
 let progressBtn = document.querySelector('#progress-btn');
-let postsContainer = document.querySelector('.posts-container');
+let postsContainer = document.querySelector('.profile-posts-container');
 let progressContainer = document.querySelector('.progress-container');
 
 export function loadProfilePage(){

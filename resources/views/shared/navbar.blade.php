@@ -24,8 +24,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{route('course', 1)}}">C</a></li>
-                            <li><a class="dropdown-item" href="{{route('course', 3)}}">Java</a></li>
                             <li><a class="dropdown-item" href="{{route('course', 2)}}">Python</a></li>
+                            <li><a class="dropdown-item" href="{{route('course', 3)}}">Java</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

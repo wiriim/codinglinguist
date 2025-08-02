@@ -51,6 +51,7 @@
 }
 
 .profile-nav-link{
+    background-color: #E8EFFF;
     text-decoration: none;
     color: #A9AFBC;
     font-weight: 600;
@@ -89,13 +90,14 @@
 }
 
 /* Posts */
-.posts-container{
+.profile-posts-container{
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 77%;
 }
 
-.post-container{
+.profile-post-container{
     width: 100%;
     min-height: 150px;
     background-color: #C4DBFA;
@@ -103,13 +105,31 @@
     padding: 1rem 5rem;
 }
 
-.post-title{
+.profile-post-title{
     font-size: 2rem;
     font-weight: 600;
 }
-.post-content{
+.profile-post-content{
     color: #413C3C;
     font-size: 1.5rem;
 }
 
 /* Progress */
+.progress-container > div{
+    margin: 4rem 0;
+    height: 90px;
+}
+.progress-bar{
+    width: 1000px;
+    height: 60px;
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.progress-block{
+    width: 50px;
+    background-color: #C3DFFF;
+}

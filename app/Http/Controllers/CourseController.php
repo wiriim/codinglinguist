@@ -62,7 +62,7 @@ class CourseController extends Controller
         }
 
         if (Auth::check() && UserQuestion::where('level_id', $level_id)->count() == 4){
-            $this->saveProgress($level_id);
+            $this->saveProgress($level_id, $course_id);
         }
 
         return response()->json([
@@ -70,7 +70,7 @@ class CourseController extends Controller
         ]);
     }
 
-    function saveProgress(string $level_id){
+    function saveProgress(string $level_id, string $course_id){
         $nextLevelId = $level_id + 1;
 
         if ($nextLevelId == 61){ // Update last level
@@ -80,6 +80,7 @@ class CourseController extends Controller
             $userLevel = new UserLevel();
             $userLevel->user_id = Auth::id();
             $userLevel->level_id = $nextLevelId;
+            $userLevel->course_id = $course_id;
             $userLevel->status = 0;
             $userLevel->save();
             
