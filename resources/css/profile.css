@@ -108,6 +108,12 @@
 .profile-post-title{
     font-size: 2rem;
     font-weight: 600;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+.profile-post-title:hover{
+    text-decoration: underline;
 }
 .profile-post-content{
     color: #413C3C;

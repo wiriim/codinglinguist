@@ -42,5 +42,4 @@ categoryTypes.forEach(e =>{
     else if(e.dataset.categorytype == 5){
         e.style.backgroundColor = "#000000";
     }
-    console.log(e.dataset.category);
 });

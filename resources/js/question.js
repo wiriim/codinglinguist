@@ -70,7 +70,6 @@ export function loadQuestionPage(){
     
     async function submitAnswer(answer) {
         const url = `/course/${courseId}/level/${levelId}/question/${questionId}`;
-        console.log(url)
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -87,7 +86,6 @@ export function loadQuestionPage(){
             }
     
             const result = await response.json();
-            console.log(result)
             if (result.success) {
                 showSuccess();
             } else {
