@@ -52,7 +52,7 @@
                     <div class="alert alert-success mt-2">{{ session('success') }}</div>
                 @endif
                 @foreach ($posts as $post)
-                    <div class="card w-100 mt-3 ps-4 posts-content" data-category="{{$post->category->id}}">
+                    <div class="card w-100 mt-3 ps-4 posts-content" data-category="{{ $post->category->id }}">
                         <div class="card-body" data-category="{{ $post->category->category_name }}">
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex-flex-column mb-3">
@@ -61,11 +61,13 @@
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                     </a>
                                     <div class="d-flex gap-3">
-                                        <div data-category="{{$post->category->id}}" class="category-container d-flex justify-content-center align-items-center">
+                                        <div data-category="{{ $post->category->id }}"
+                                            class="category-container d-flex justify-content-center align-items-center">
                                             {{ $post->category->category_name }}
                                         </div>
-                                        <div data-categorytype="{{$post->categoryType->id}}" class="category-type-container d-flex justify-content-center align-items-center">
-                                            {{$post->categoryType->category_type_name}}
+                                        <div data-categorytype="{{ $post->categoryType->id }}"
+                                            class="category-type-container d-flex justify-content-center align-items-center">
+                                            {{ $post->categoryType->category_type_name }}
                                         </div>
                                     </div>
                                 </div>
@@ -90,20 +92,18 @@
                             <p class="card-text">{{ $post->content }}</p>
                             <div class="d-flex mt-3">
                                 @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())
-                                    <a href="{{ route('post-dislike', ['post' => $post]) }}"
-                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                            class="bi bi-heart-fill text-danger"></i>
-                                        {{ $post->userLikes->count() }}</a>
+                                    <a class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                            class="bi bi-heart-fill text-danger post-dislike-btn" data-post-id="{{ $post->id }}"></i>
+                                        <span class="like-count">{{ $post->userLikes()->count() }}</span></a>
                                 @elseif (Auth::check())
-                                    <a href="{{ route('post-like', ['post' => $post]) }}"
-                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                            class="bi bi-heart"></i></i>
-                                        {{ $post->userLikes->count() }}</a>
+                                    <a class="card-link d-flex justify-content-center gap-1 post-like"><i
+                                            class="bi bi-heart post-like-btn" data-post-id="{{ $post->id }}"></i>
+                                        <span class="like-count">{{ $post->userLikes()->count() }}</span></a>
                                 @else
                                     <a href="{{ route('sign-in') }}"
-                                        class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                            class="bi bi-heart"></i></i>
-                                        {{ $post->userLikes->count() }}</a>
+                                        class="card-link d-flex justify-content-center gap-1"><i
+                                            class="bi bi-heart post-like-btn"></i>
+                                        <span class="like-count">{{ $post->userLikes()->count() }}</span></a>
                                 @endif
                                 <a href="{{ route('post-detail', ['post' => $post]) }}"
                                     class="card-link d-flex justify-content-center gap-1"><i class="bi bi-chat"></i>

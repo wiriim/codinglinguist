@@ -96,17 +96,29 @@ class ForumController extends Controller
             ->with('success', 'Post has been created.');
     }
 
-    public function likePost(Forum $post)
+    public function likePost(string $post_id)
     {
+        $post = Forum::find($post_id);
         $user = Auth::user();
         $user->forumLikes()->attach($post);
-        return back()->with('success', 'Comment Liked');
+        $likes = $post->userLikes()->count();
+
+        return response()->json([
+            'success' => true,
+            'likes' => $likes
+        ]);
     }
 
-    public function dislikePost(Forum $post)
+    public function dislikePost(string $post_id)
     {
+        $post = Forum::find($post_id);
         $user = Auth::user();
         $user->forumLikes()->detach($post);
-        return back()->with('success', 'Comment Disliked');
+        $likes = $post->userLikes()->count();
+
+        return response()->json([
+            'success' => true,
+            'likes' => $likes
+        ]);
     }
 }

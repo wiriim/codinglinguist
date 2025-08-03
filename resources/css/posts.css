@@ -92,3 +92,8 @@
     height: 30px;
     color: white;
 }
+
+.post-like-btn,
+.post-dislike-btn{
+    cursor: pointer;
+}
