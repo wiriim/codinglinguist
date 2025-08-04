@@ -30,8 +30,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Posts
 Route::get('/posts', [ForumController::class,'getAllPostPage'])->name('posts');
-Route::get('/posts/search', [ForumController::class,'searchPosts'])->name('posts-search');
 Route::get('/posts/filter/{programmingLanguage}/{postType}/{sortBy}', [ForumController::class,'filterPosts'])->name('posts-filter');
+Route::get('/posts/filter/{programmingLanguage}/{postType}/{sortBy}/{search}', [ForumController::class,'filterPosts'])->name('posts-filter');
 
 Route::get('/create-post', [ForumController::class, 'getCreatePostPage'])->name('post-create');
 Route::post('/create-post', [ForumController::class, 'createPost'])->name('post-create');

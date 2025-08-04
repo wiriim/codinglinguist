@@ -6,21 +6,28 @@ let postDislikeBtns = document.querySelectorAll(".post-dislike-btn");
 let programmingLanguage;
 let postType;
 let sortBy;
+let postSearchTitle;
+let postSearchBtn;
 
 export function loadPostsPage(){
     document.addEventListener('DOMContentLoaded', ()=>{
         programmingLanguage = document.querySelector('#programming-language');
         postType = document.querySelector('#post-type');
         sortBy = document.querySelector('#sort-by');
+        postSearchTitle = document.querySelector('#posts-search-title');
+        postSearchBtn = document.querySelector('#posts-search-btn');
         
         programmingLanguage.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${e.target.value}/${postType.value}/${sortBy.value}`;
+            window.location.href = `/posts/filter/${e.target.value}/${postType.value}/${sortBy.value}/${postSearchTitle.value}`;
         });
         postType.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${programmingLanguage.value}/${e.target.value}/${sortBy.value}`;
+            window.location.href = `/posts/filter/${programmingLanguage.value}/${e.target.value}/${sortBy.value}/${postSearchTitle.value}`;
         });
         sortBy.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${programmingLanguage.value }/${postType.value}/${e.target.value}`;
+            window.location.href = `/posts/filter/${programmingLanguage.value }/${postType.value}/${e.target.value}/${postSearchTitle.value}`;
+        });
+        postSearchBtn.addEventListener('click', ()=>{
+            window.location.href = `/posts/filter/${programmingLanguage.value }/${postType.value}/${sortBy.value}/${postSearchTitle.value}`;
         });
     });
     

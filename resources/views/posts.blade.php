@@ -15,7 +15,6 @@
                             <select id="programming-language">
                                 <option value="All" {{$programmingLanguage == "All" ? "selected" : ""}}>All</option>
                                 <option value="C" {{$programmingLanguage == "C" ? "selected" : ""}}>C</option>
-                                {{-- <a href="{{route('posts-filter', ['programmingLanguage' => 'C', 'postType' => 'All', 'sortBy' => 'New'])}}"></a> --}}
                                 <option value="Python" {{$programmingLanguage == "Python" ? "selected" : ""}}>Python</option>
                                 <option value="Java" {{$programmingLanguage == "Java" ? "selected" : ""}}>Java</option>
                             </select>
@@ -33,12 +32,11 @@
                         </div>
                     </div>
                     <div class="posts-search d-flex justify-content-end align-items-end">
-                        <form class="d-flex align-items-center w-50 gap-2" action="{{route('posts-search')}}">
-                            @csrf
+                        <div class="d-flex align-items-center w-50 gap-2">
                             <input class="form-control w-100 border border-black rounded-pill" placeholder="Search Something"
-                            name="postTitle"></input>
-                            <button type="submit" class="posts-search-btn"><i class="bi bi-search fs-4"></i></button>
-                        </form>
+                            name="postTitle" id="posts-search-title" value="{{$search}}"></input>
+                            <button type="button" class="posts-search-btn" id="posts-search-btn"><i class="bi bi-search fs-4"></i></button>
+                        </div>
                     </div>
                     <div class="posts-sort mt-1">
                         <div class="posts-select">
