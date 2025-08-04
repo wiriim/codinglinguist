@@ -29,10 +29,10 @@
                             href="{{ route('level', ['course' => $level->course->id, 'level' => $level->id]) }}">
                             @if (Auth::check())
                                 @foreach ($level->users as $user)
-                                    @if ($user->pivot->status == 1)
+                                    @if ($user->pivot->status == 1 && Auth::user()->username == $user->username)
                                         <div class="level" data-number="{{ $level->number }}"><img
                                                 src="{{ asset('images/check.png') }}" alt="check" width="20"></div>
-                                    @elseif (Auth::check() == false || $user->id == Auth::id())
+                                    @elseif ($user->pivot->status == 0 && Auth::user()->username == $user->username)
                                         <div class="level" data-number="{{ $level->number }}">{{ $level->number }}</div>
                                     @endif
                                 @endforeach

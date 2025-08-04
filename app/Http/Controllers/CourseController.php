@@ -61,7 +61,7 @@ class CourseController extends Controller
             $success = true;
         }
 
-        if (Auth::check() && UserQuestion::where('level_id', $level_id)->count() == 4){
+        if (Auth::check() && UserQuestion::where('level_id', $level_id)->where('user_id', Auth::id())->count() == 4){
             $this->saveProgress($level_id, $course_id);
         }
 

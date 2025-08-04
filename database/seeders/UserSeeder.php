@@ -31,13 +31,13 @@ class UserSeeder extends Seeder
         ]);
         DB::table('user_level')->insert([
             'user_id' => '1',
-            'course_id' => '2',
+            'course_id' => '3',
             'level_id' => '21',
             'status' => 0
         ]);
         DB::table('user_level')->insert([
             'user_id' => '1',
-            'course_id' => '3',
+            'course_id' => '2',
             'level_id' => '41',
             'status' => 0
         ]);

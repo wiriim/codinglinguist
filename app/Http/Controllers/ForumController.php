@@ -59,7 +59,7 @@ class ForumController extends Controller
 
     public function getAllPostPage()
     {
-        $posts = Forum::all();
+        $posts = Forum::orderby('created_at', 'desc')->get();
         return view('posts', ['posts' => $posts,'programmingLanguage' => "All", 'postType' => "All", 'sortBy' => "New"]);
     }
 

@@ -51,7 +51,7 @@ class AuthController extends Controller
         $user->role = "user";
         $user->save();
 
-        $levelIds = [1, 21, 41];
+        $levelIds = [1, 41, 21];
         $courseId = 1;
         foreach($levelIds as $levelId){
             $user->levels()->attach($levelId, ['status' => 0, 'course_id' => $courseId++]);
