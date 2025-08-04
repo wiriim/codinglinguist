@@ -4,40 +4,50 @@
     <div class="posts pb-4">
         @include('shared.navbar')
 
+        <input type="text" hidden id="postsPage" value="posts">
         <div class="posts-container">
-
             <div class="posts-header-container">
                 <p class="fs-5 mt-3 mb-0">Filter By:</p>
                 <div class="posts-header">
                     <div class="posts-filter d-flex gap-4">
                         <div class="posts-select">
                             <span class="fs-6">Programming Language</span>
-                            <select>
-                                <option value="1">All</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id="programming-language">
+                                <option value="All" {{$programmingLanguage == "All" ? "selected" : ""}}>All</option>
+                                <option value="C" {{$programmingLanguage == "C" ? "selected" : ""}}>C</option>
+                                {{-- <a href="{{route('posts-filter', ['programmingLanguage' => 'C', 'postType' => 'All', 'sortBy' => 'New'])}}"></a> --}}
+                                <option value="Python" {{$programmingLanguage == "Python" ? "selected" : ""}}>Python</option>
+                                <option value="Java" {{$programmingLanguage == "Java" ? "selected" : ""}}>Java</option>
                             </select>
                         </div>
                         <div class="posts-select">
                             <span class="fs-6">Post Type</span>
-                            <select>
-                                <option value="1">All</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id="post-type">
+                                <option value="All" {{$postType == "All" ? "selected" : ""}}>All</option>
+                                <option value="Error" {{$postType == "Error" ? "selected" : ""}}>Error</option>
+                                <option value="Question" {{$postType == "Question" ? "selected" : ""}}>Question</option>
+                                <option value="Discussion" {{$postType == "Discussion" ? "selected" : ""}}>Discussion</option>
+                                <option value="Guide" {{$postType == "Guide" ? "selected" : ""}}>Guide</option>
+                                <option value="Other" {{$postType == "Other" ? "selected" : ""}}>Other</option>
                             </select>
                         </div>
                     </div>
                     <div class="posts-search d-flex justify-content-end align-items-end">
-                        <input class="form-control w-50 border border-black rounded-pill" placeholder="Search Something"
-                            href=""></input>
+                        <form class="d-flex align-items-center w-50 gap-2" action="{{route('posts-search')}}">
+                            @csrf
+                            <input class="form-control w-100 border border-black rounded-pill" placeholder="Search Something"
+                            name="postTitle"></input>
+                            <button type="submit" class="posts-search-btn"><i class="bi bi-search fs-4"></i></button>
+                        </form>
                     </div>
                     <div class="posts-sort mt-1">
                         <div class="posts-select">
                             <span class="fs-5">Sort By:</span>
-                            <select>
-                                <option value="1">Popularity</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select id="sort-by">
+                                <option value="New" {{$sortBy == "New" ? "selected" : ""}}>New</option>
+                                <option value="Old" {{$sortBy == "Old" ? "selected" : ""}}>Old</option>
+                                <option value="Most Popular" {{$sortBy == "Most Popular" ? "selected" : ""}}>Most Popular</option>
+                                <option value="Least Popular" {{$sortBy == "Least Popular" ? "selected" : ""}}>Least Popular</option>
                             </select>
                         </div>
                     </div>
@@ -116,7 +126,7 @@
             </div>
             <div class="posts-recent-container">
                 <div class="posts-recent w-100 bg-white">
-                    test
+                    Recent Accessed Post
                 </div>
             </div>
         </div>

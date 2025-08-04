@@ -97,3 +97,7 @@
 .post-dislike-btn{
     cursor: pointer;
 }
+
+.posts-search-btn{
+    border: none;
+}

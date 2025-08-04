@@ -10,6 +10,7 @@ use App\Models\Forum;
 use App\Models\ForumLike;
 use Auth;
 use Illuminate\Http\Request;
+use Str;
 
 class ForumController extends Controller
 {
@@ -59,7 +60,7 @@ class ForumController extends Controller
     public function getAllPostPage()
     {
         $posts = Forum::all();
-        return view('posts', ['posts' => $posts]);
+        return view('posts', ['posts' => $posts,'programmingLanguage' => "All", 'postType' => "All", 'sortBy' => "New"]);
     }
 
     public function getCreatePostPage()
@@ -120,5 +121,40 @@ class ForumController extends Controller
             'success' => true,
             'likes' => $likes
         ]);
+    }
+
+    public function searchPosts(Request $request){
+        $posts = Forum::where('title', 'LIKE', '%'. $request->postTitle.'%')->get();
+        return view('posts', ['posts' => $posts]);
+    }
+
+    public function filterPosts(string $programmingLanguage, string $postType, string $sortBy){
+
+        if (Str::upper($sortBy) === "NEW"){
+            $posts = Forum::orderby('created_at', 'desc')->get();
+        }
+        else if (Str::upper($sortBy) === "OLD"){
+            $posts = Forum::orderby('created_at', 'asc')->get();
+        }
+        else if (Str::upper($sortBy) === "MOST POPULAR"){
+            $posts = Forum::withCount('userLikes')->orderby('user_likes_count', 'desc')->get();
+        }
+        else if (Str::upper($sortBy) === "LEAST POPULAR"){
+            $posts = Forum::withCount('userLikes')->orderby('user_likes_count', 'asc')->get();
+        }
+        
+        if (Str::upper($programmingLanguage) !== "ALL"){
+            $posts = $posts->filter(function($post) use($programmingLanguage) {
+                return $post->category->category_name == $programmingLanguage;
+            });
+        }
+
+        if (Str::upper($postType) !== "ALL"){
+            $posts = $posts->filter(function ($post) use($postType) {
+                return $post->categoryType->category_type_name == $postType;
+            });
+        }
+
+        return view('posts', ['posts' => $posts ,'programmingLanguage' => $programmingLanguage, 'postType' => $postType, 'sortBy' => $sortBy]);
     }
 }
