@@ -347,13 +347,39 @@ class JavaLevelSeeder extends Seeder
             <div class="level-code-input">Hello, Charlie!<br>Your average score is: 75.0<br>Congratulations, you passed!</div>'
         ];
 
+        $answers = [
+            'Welcome, Amanda Rivera!\nYou are allowed to use the gym.\nYour membership tier: Premium',
+            'Attendance Summary:\nPresent: 2\nAbsent: 1\nTotal Checked: 3',
+            '=== Report Card ===\nName   : Dino\nAverage: 61.00\nGrade  : C\n'
+        ];
+        $inputs = [
+            'Amanda Rivera\n22\n2\n', 
+            '3\nAlice\nY\n Bob\n N\nCharlie\nY\n',
+            'Enter student name: Alex\nEnter number of subjects: 3\nEnter score for subject 1: 80\nEnter score for subject 2: 70\nEnter score for subject 3: 85\n'
+        ];
+        $bossIndex = 0;
         for ($i = 0; $i < count($titles); $i++) {
-            DB::table('levels')->insert([
-                'course_id' => 3, // Java course_id is 3
-                'number' => $i + 1,
-                'title' => $titles[$i],
-                'content' => $contents[$i],
-            ]);
+            if($i + 1 == 10 || $i + 1 == 15 || $i + 1 ==20){
+                DB::table('levels')->insert([
+                    'course_id' => 3, // Java course_id is 3
+                    'number' => $i + 1,
+                    'title' => $titles[$i],
+                    'content' => $contents[$i],
+                    'answer' => $answers[$bossIndex],
+                    'input' => $inputs[$bossIndex],
+                    'point' => 100
+                ]);
+                $bossIndex++;
+            }
+            else{
+                DB::table('levels')->insert([
+                    'course_id' => 3, // Java course_id is 3
+                    'number' => $i + 1,
+                    'title' => $titles[$i],
+                    'content' => $contents[$i],
+                    'point' => 25
+                ]);
+            }
         }
     }
 }

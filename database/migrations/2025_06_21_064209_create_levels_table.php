@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('number')->nullable();
             $table->string('title')->nullable();
             $table->text('content')->nullable();
+            $table->text('input')->nullable();
+            $table->text('answer')->nullable();
             $table->integer('point')->nullable();
             $table->timestamps();
         });

@@ -72,7 +72,6 @@ class CourseController extends Controller
 
     function saveProgress(string $level_id, string $course_id){
         $nextLevelId = $level_id + 1;
-
         if ($nextLevelId == 61){ // Update last level
             Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
         }
@@ -87,6 +86,16 @@ class CourseController extends Controller
             // Update current level
             Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
         }
+    }
+
+    public function getBossAnswerInput(string $level_id){
+        $level = $this->getLevel($level_id);
+        $answer = $level->answer;
+        $input = $level->input;
+        return response()->json([
+            'answer' => $answer,
+            'input' => $input
+        ]);
     }
     // Private Functions
     private function getCourse(string $course_id){

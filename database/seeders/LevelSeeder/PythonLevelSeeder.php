@@ -291,13 +291,41 @@ class PythonLevelSeeder extends Seeder
             <div class="level-code-input">Customer: Nina<br>Final balance: 700</div>'
         ];
 
+        $answers = [
+            'Final Price: 94500',
+            'Student Farah: Pass (Average: 71)',
+            'Customer: Ali\nFinal balance: 850'
+        ];
+        $inputs = [
+            'Alice\n35000\n40000\n30000\n', 
+            'Farah\n3\n70\n65\n80\n',
+            'Ali\n1000\n3\n-200\n150\n-100\n'
+        ];
+        
+        $bossIndex = 0;
         for ($i = 0; $i < count($titles); $i++) {
-            DB::table('levels')->insert([
-                'course_id' => 2, // Python course_id is 2
-                'number' => $i + 1,
-                'title' => $titles[$i],
-                'content' => $contents[$i],
-            ]);
+            
+            if($i + 1 == 10 || $i + 1 == 15 || $i + 1 ==20){
+                DB::table('levels')->insert([
+                    'course_id' => 2, // Python course_id is 2
+                    'number' => $i + 1,
+                    'title' => $titles[$i],
+                    'content' => $contents[$i],
+                    'answer' => $answers[$bossIndex],
+                    'input' => $inputs[$bossIndex],
+                    'point' => 100
+                ]);
+                $bossIndex++;
+            }
+            else{
+                DB::table('levels')->insert([
+                    'course_id' => 2, // Python course_id is 2
+                    'number' => $i + 1,
+                    'title' => $titles[$i],
+                    'content' => $contents[$i],
+                    'point' => 25
+                ]);
+            }
         }
     }
 }

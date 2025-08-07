@@ -54,3 +54,46 @@
 .decimal-list > li {
     list-style-type: decimal;
 }
+
+/* Compiler */
+.compiler-container{
+    color: white;
+    background-color: #272822;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.note-button{
+    cursor: pointer;
+}
+
+#level-boss-input{
+    color: white;
+    background-color: #272822;
+    min-height: 500px;
+    padding: 5px;
+    resize: vertical;
+}
+
+#level-boss-output{
+    color: white;
+    background-color: #272822;
+    min-height: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    resize: vertical;
+}
+#level-boss-input:focus,
+#level-boss-output:focus{
+    outline: none;
+}
+
+.level-boss-run-btn{
+    background-color: rgb(3, 146, 3);
+    color: white;
+    width: 100px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+}

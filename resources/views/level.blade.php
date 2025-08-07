@@ -4,6 +4,10 @@
     <div class="level-page">
         @include('shared.navbar')
 
+        <input type="text" hidden id="levelPage" value="level">
+        <input type="text" hidden id="levelId" value="{{$level->id}}">
+        <input type="text" hidden id="courseId" value="{{$level->course->id}}">
+        <input type="text" hidden id="levelLanguage" value="{{$level->course->course_name}}">
         <div class="d-flex flex-column w-100 align-items-center">
             <div class="level-question-nav my-4">
                 <a
@@ -29,6 +33,13 @@
             </div>
             <div class="level-container d-flex flex-column align-items-center">
                 @include('level-content')
+
+                @if ($level->number == 10 || $level->number == 15 || $level->number == 20)
+                    @include('level-compiler')
+                @endif
+                <div class="alert alert-success mt-2 w-100 d-none" id="successAlert">Success</div>
+                <div class="alert alert-danger mt-2 w-100 d-none" id="dangerAlert">Incorrect, please check your code and try again</div>
+                <a class="btn-success question-submit d-none" id="btn-level-boss-continue">Continue</a>
             </div>
         </div>
     </div>

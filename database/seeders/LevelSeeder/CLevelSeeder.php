@@ -1363,14 +1363,41 @@ class CLevelSeeder extends Seeder
                     Student Maya must retake the course.
                 </div>',
         ];
+        $answers = [
+            'Item 1: 10000\nItem 2: 15000\nItem 3: 20000\nTotal after 25% discount: 33750',
+            'Enter student name: Enter number of scores: \nEnter score 1: Enter score 2: Enter score 3: \nStudent Aria: Pass (Average: 70)',
+            'Enter student name: Enter number of tests: \nEnter score 1: \nEnter score 2: \nEnter score 3: \n\n=== Report Card ===\nName   : Rafi\nAverage: 85.00\nGrade  : A'
+        ];
+        $inputs = [
+            '10000\n15000\n20000\n', 
+            'Aria\n3\n70\n80\n60\n',
+            'Rafi\n3\n80\n90\n85\n'
+        ];
+
         $number = 1;
+        $bossIndex = 0;
         foreach ($titles as $title) {
-            DB::table('levels')->insert([
-                'course_id' => 1,
-                'number' => $number,
-                'title' => $title,
-                'content' => $contents[$number-1],
-            ]);
+            if($number == 10 || $number == 15 || $number ==20){
+                DB::table('levels')->insert([
+                    'course_id' => 1,
+                    'number' => $number,
+                    'title' => $title,
+                    'content' => $contents[$number-1],
+                    'answer' => $answers[$bossIndex],
+                    'input' => $inputs[$bossIndex],
+                    'point' => 100
+                ]);
+                $bossIndex++;
+            }
+            else{
+                DB::table('levels')->insert([
+                    'course_id' => 1,
+                    'number' => $number,
+                    'title' => $title,
+                    'content' => $contents[$number-1],
+                    'point' => 25
+                ]);
+            }
             $number++;
         }
     }
