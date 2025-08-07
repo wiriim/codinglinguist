@@ -35,6 +35,9 @@
                         <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('leaderboard')}}">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
                         @if (!Auth::check())
                             <a class="nav-link {{Route::is('sign-up') || Route::is('sign-in') ? "active" : ""}}" href="{{route('sign-in')}}">Sign In</a>
                         @else

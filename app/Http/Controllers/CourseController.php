@@ -86,6 +86,12 @@ class CourseController extends Controller
             // Update current level
             Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
         }
+
+        $level = $this->getLevel($level_id);
+        $point = $level->point;
+        $user = Auth::user();
+        $user->point = $user->point + $point;
+        $user->save();  
     }
 
     public function getBossAnswerInput(string $level_id){

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function getUserDashboardPage(){
+        return view('user-dashboard');
+    }
+
     public function getProfilePage(){
         $posts = Auth::user()->forums;
         $cProgress = Auth::user()->levels()->where('user_level.course_id', 1)->where('status', 1)->count();

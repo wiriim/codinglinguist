@@ -12,7 +12,7 @@
                         <img src="{{asset('images/cat.jpg')}}" alt="cat" width="180" height="180">
                     </div>
                     <div class="profile-info d-flex flex-column justify-content-between">
-                        <h3 class="profile-name fw-bold">{{Auth::user()->username}}</h3>
+                        <h3 class="profile-name fw-bold">{{Auth::user()->username}} | {{Auth::user()->point}} Points</h3>
                         <h5 class="profile-name">{{Auth::user()->email}}</h5>
                         <img src="{{asset('images/medalGold.png')}}" alt="goldmedal" width="40">
                     </div>

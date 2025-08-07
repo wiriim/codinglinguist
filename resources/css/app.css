@@ -12,6 +12,7 @@
 @import 'level';
 @import 'question';
 @import 'profile';
+@import 'leaderboard';
 
 /* Resets */
 *{

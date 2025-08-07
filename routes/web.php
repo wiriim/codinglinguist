@@ -4,20 +4,22 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 
-Route::view('/home', 'home')->name('home');
+//Home stuff
+Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
+Route::get('/leaderboard', [HomeController::class, 'getLeaderboardPage'])->name('leaderboard');
 
-Route::view('/user-dashboard', 'user-dashboard')->name('user-dashboard');
-
-// Profile
+// Profile / User
 Route::get('/profile', [UserController::class, 'getProfilePage'])->name('profile');
 Route::get('/edit-profile', [UserController::class, 'getEditProfilePage'])->name('edit-profile');
 Route::post('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
+Route::get('/user-dashboard', [UserController::class, 'getUserDashboardPage'])->name('user-dashboard');
 
 // Auth
 Route::get('/sign-in', [AuthController::class, 'getSignInPage'])->name('sign-in');

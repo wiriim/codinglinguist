@@ -5,6 +5,7 @@ import {loadQuestionPage} from './question.js';
 import {loadProfilePage} from './profile.js';
 import {loadPostsPage} from './posts.js';
 import {loadLevelPage} from './level.js';
+import {loadLeaderboardPage} from './leaderboard.js';
 
 let questionPage = document.querySelector('#questionPage');
 if (questionPage != null) loadQuestionPage();
@@ -17,3 +18,6 @@ if (postsPage != null) loadPostsPage();
 
 let levelPage = document.querySelector('#levelPage');
 if (levelPage != null) loadLevelPage();
+
+let leaderboardPage = document.querySelector('#leaderboardPage');
+if (leaderboardPage != null) loadLeaderboardPage();
