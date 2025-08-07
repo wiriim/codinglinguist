@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\LevelSeeder\PythonLevelSeeder::class,
             \Database\Seeders\QuestionSeeder\PythonQuestionSeeder::class,
             UserSeeder::class,
+            ForumSeeder::class
         ]);
     }
 }

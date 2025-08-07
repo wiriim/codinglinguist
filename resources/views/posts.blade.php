@@ -121,6 +121,7 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="d-flex justify-content-end mt-4">{{ $posts->links() }}</div>
             </div>
             <div class="posts-recent-container">
                 <div class="posts-recent w-100 bg-white">

@@ -59,7 +59,7 @@ class ForumController extends Controller
 
     public function getAllPostPage()
     {
-        $posts = Forum::orderby('created_at', 'desc')->get();
+        $posts = Forum::orderby('created_at', 'desc')->paginate(10);
         return view('posts', ['posts' => $posts,'programmingLanguage' => "All", 'postType' => "All", 'sortBy' => "New", 'search' => ""]);
     }
 
@@ -125,18 +125,7 @@ class ForumController extends Controller
 
     public function filterPosts(string $programmingLanguage, string $postType, string $sortBy, string $search = ""){
 
-        if (Str::upper($sortBy) === "NEW"){
-            $posts = Forum::orderby('created_at', 'desc')->where('title', 'LIKE', '%'. $search.'%')->get();
-        }
-        else if (Str::upper($sortBy) === "OLD"){
-            $posts = Forum::orderby('created_at', 'asc')->where('title', 'LIKE', '%'. $search.'%')->get();
-        }
-        else if (Str::upper($sortBy) === "MOST POPULAR"){
-            $posts = Forum::withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'desc')->get();
-        }
-        else if (Str::upper($sortBy) === "LEAST POPULAR"){
-            $posts = Forum::withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'asc')->get();
-        }
+        $posts = Forum::all();
         
         if (Str::upper($programmingLanguage) !== "ALL"){
             $posts = $posts->filter(function($post) use($programmingLanguage) {
@@ -148,6 +137,24 @@ class ForumController extends Controller
             $posts = $posts->filter(function ($post) use($postType) {
                 return $post->categoryType->category_type_name == $postType;
             });
+        }
+
+        $ids = [];
+        foreach($posts as $post){
+            array_push($ids, $post->id);
+        }
+        
+        if (Str::upper($sortBy) === "NEW"){
+            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'desc')->where('title', 'LIKE', '%'. $search.'%')->paginate(6);
+        }
+        else if (Str::upper($sortBy) === "OLD"){
+            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'asc')->where('title', 'LIKE', '%'. $search.'%')->paginate(6);
+        }
+        else if (Str::upper($sortBy) === "MOST POPULAR"){
+            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'desc')->paginate(6);
+        }
+        else if (Str::upper($sortBy) === "LEAST POPULAR"){
+            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'asc')->paginate(6);
         }
 
         return view('posts', ['posts' => $posts ,'programmingLanguage' => $programmingLanguage, 'postType' => $postType, 'sortBy' => $sortBy, 'search' => $search]);
