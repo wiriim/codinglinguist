@@ -14,7 +14,8 @@
     background-color: black;
 }
 
-textarea#comment{
+textarea#comment,
+textarea.reply{
     border-radius: 8px;
 }
 
@@ -33,6 +34,7 @@ textarea#comment{
 }
 
 .comment-like-btn,
-.comment-dislike-btn{
+.comment-dislike-btn,
+.comment-reply-btn{
     cursor: pointer;
 }
