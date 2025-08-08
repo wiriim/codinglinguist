@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Forum;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -15,5 +16,37 @@ class CommentController extends Controller
         $comment->content = $request['comment'];
         $comment->save();
         return back()->with('success','Comment Added');
+    }
+
+    public function deleteComment(Comment $comment){
+        $comment = Comment::find($comment->id);
+        $comment->delete();
+        return back()->with('success','Comment Deleted');
+    }
+
+    public function likeComment(string $comment)
+    {
+        $comment = Comment::find($comment);
+        $user = Auth::user();
+        $user->commentLikes()->attach($comment);
+        $likes = $comment->userLikes()->count();
+
+        return response()->json([
+            'success' => true,
+            'likes' => $likes
+        ]);
+    }
+
+    public function dislikeComment(string $comment)
+    {
+        $comment = Comment::find($comment);
+        $user = Auth::user();
+        $user->commentLikes()->detach($comment);
+        $likes = $comment->userLikes()->count();
+
+        return response()->json([
+            'success' => true,
+            'likes' => $likes
+        ]);
     }
 }

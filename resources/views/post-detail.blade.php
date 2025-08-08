@@ -3,7 +3,8 @@
 @section('content')
     <div class="post-detail d-flex flex-column">
         @include('shared.navbar')
-        
+
+        <input type="text" hidden id="postDetailPage" value="postDetail">
         <div class="post flex-grow-1 mt-3 align-self-center">
             @if (session('success'))
                 <div class="alert alert-success mt-2">{{ session('success') }}</div>
@@ -27,9 +28,9 @@
                 @endif
 
                 <div class="d-flex gap-2">
-                    @if (Auth::check() && $post->user->id == Auth::user()->id )
-                        <a href="{{route('post-edit', $post)}}" class="card-link"><i class="bi bi-pencil-square"></i></a>
-                        <a href="{{route('post-delete', $post)}}" class="card-link"><i class="bi bi-trash"></i></a>
+                    @if (Auth::check() && $post->user->id == Auth::user()->id)
+                        <a href="{{ route('post-edit', $post) }}" class="card-link"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ route('post-delete', $post) }}" class="card-link"><i class="bi bi-trash"></i></a>
                     @endif
                 </div>
             </div>
@@ -60,13 +61,31 @@
                 <option value="3">Three</option>
             </select>
             @foreach ($comments as $comment)
-                <p class="fs-5">{{ $comment->user->username }}</p>
+                <div class="d-flex gap-2 align-items-center justify-content-between">
+                    @if (Auth::check() && $comment->user->id == Auth::user()->id)
+                        <p class="fs-5">{{ $comment->user->username }}</p>
+                        <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
+                    @else
+                        <p class="fs-5">{{ $comment->user->username }}</p>
+                    @endif
+                </div>
+
                 <p>{{ $comment->content }}</p>
                 <div class="d-flex mt-3 gap-3">
-                    <a href="#" class="card-link d-flex justify-content-center gap-1"><i class="bi bi-heart"></i>
-                        {{ $comment->userLikes->count() }}</a>
-                    <a href="#" class="card-link d-flex justify-content-center gap-1"><i class="bi bi-chat"></i>
-                        {{ $comment->replies->count() }}</a>
+                    @if (Auth::check() && Auth::user()->commentLikes()->where('comment_id', $comment->id)->exists())
+                        <a class="card-link d-flex justify-content-center gap-1 comment-like"><i
+                                class="bi bi-heart-fill text-danger comment-dislike-btn"
+                                data-comment-id="{{ $comment->id }}"></i>
+                            <span class="like-count">{{ $comment->userLikes->count() }}</span></a>
+                    @elseif (Auth::check())
+                        <a class="card-link d-flex justify-content-center gap-1 comment-like"><i
+                                class="bi bi-heart comment-like-btn" data-comment-id="{{ $comment->id }}"></i>
+                            <span class="like-count">{{ $comment->userLikes->count() }}</span></a>
+                    @else
+                        <a href="{{ route('sign-in') }}" class="card-link d-flex justify-content-center gap-1"><i
+                                class="bi bi-heart comment-like-btn"></i>
+                            <span class="like-count">{{ $comment->userLikes->count() }}</span></a>
+                    @endif
                     <p>{{ $comment->created_at->format('d/m/Y') }}</p>
                 </div>
 

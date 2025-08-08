@@ -51,7 +51,10 @@ Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->nam
 
 // Posts Comments
 Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])->name('comment');
+Route::get('/posts/comment/delete/{comment}', [CommentController::class,'deleteComment'])->name('comment-delete');
 
+Route::get('/posts/comment/like/{comment}', [CommentController::class,'likeComment'])->name('comment-like');
+Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislikeComment'])->name('comment-dislike');
 
 // Course
 Route::get('/course/{course}', [CourseController::class, 'getCoursePage'])->name('course');

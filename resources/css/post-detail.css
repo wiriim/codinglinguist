@@ -31,3 +31,8 @@ textarea#comment{
     padding: 5px;
     margin-left: 10px;
 }
+
+.comment-like-btn,
+.comment-dislike-btn{
+    cursor: pointer;
+}
