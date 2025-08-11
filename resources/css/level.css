@@ -97,3 +97,7 @@
     padding: 5px;
     border-radius: 5px;
 }
+
+#btn-level-boss-continue{
+    cursor: pointer;
+}

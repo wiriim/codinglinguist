@@ -107,4 +107,17 @@ class User extends Authenticatable
 
         return $finished;
     }
+
+    public function levelFinished(string $levelId, string $courseId){
+        $finished = false;
+        // dd(UserLevel::where('user_id', Auth::id())->where('level_id', $levelId)
+        // ->where('course_id', $courseId)->first()->status);
+        $levelFinished = UserLevel::where('user_id', Auth::id())->where('level_id', $levelId)
+        ->where('course_id', $courseId)->first()->status == 1;
+        if ($levelFinished){
+            $finished = true;
+        }
+
+        return $finished;
+    }
 }

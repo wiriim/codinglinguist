@@ -39,7 +39,13 @@
                 @endif
                 <div class="alert alert-success mt-2 w-100 d-none" id="successAlert">Success</div>
                 <div class="alert alert-danger mt-2 w-100 d-none" id="dangerAlert">Incorrect, please check your code and try again</div>
+                @if (Auth::check() && Auth::user()->levelFinished($level->id, $level->course->id))
+                    <div class="alert alert-success mt-2 w-100" id="successAlert">Success</div>
+                    <a href="{{route('course', $level->course->id)}}" class="btn-success question-submit" id="btn-level-boss-continue">Continue</a>
+                @else
                 <a class="btn-success question-submit d-none" id="btn-level-boss-continue">Continue</a>
+                @endif
+                
             </div>
         </div>
     </div>

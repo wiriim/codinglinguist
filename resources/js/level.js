@@ -1,7 +1,7 @@
 const PROXY = "https://cors-anywhere.herokuapp.com/";
 const API_URL = "https://api.jdoodle.com/v1/execute";
-const CLIENT_ID = "5d28d7a04f92108e233e58c22fec614"; // Perlu di hide nnti
-const CLIENT_SECRET = "7747510df5bda3846707c8e95b1d231372f10aaec4e2be4d724348b1e80ec462"; // Perlu di hide nnti
+const CLIENT_ID = "5d28d7a04f92108e233e58c22fec614"; 
+const CLIENT_SECRET = "7747510df5bda3846707c8e95b1d231372f10aaec4e2be4d724348b1e80ec462";
 const API_VERSION = "3";
 const X_CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 let inputContainer;
@@ -30,10 +30,12 @@ export function loadLevelPage(){
     successAlert = document.querySelector('#successAlert');
     dangerAlert = document.querySelector('#dangerAlert');
     continueBtn = document.querySelector('#btn-level-boss-continue');
-
-    noteBtn.addEventListener('click', ()=>{
-        noteList.classList.toggle('d-none');
-    });
+    continueBtn.href = `/course/${courseId}`;
+    if (noteBtn != null){
+        noteBtn.addEventListener('click', ()=>{
+            noteList.classList.toggle('d-none');
+        });
+    }
 
     inputContainer = document.querySelector('#level-boss-input');
     outputContainer = document.querySelector('#level-boss-output');
@@ -41,28 +43,33 @@ export function loadLevelPage(){
     runBtn = document.querySelector('.level-boss-run-btn');
     setLanguage(levelLanguage);
 
-    inputContainer.addEventListener('keydown', function (e){
-        if (e.key == 'Tab') {
-            e.preventDefault();
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-            this.value = this.value.substring(0, start) +
-            "\t" + this.value.substring(end);
-            this.selectionStart = 
-            this.selectionEnd = start + 1;
-        }
-    });
-    inputContainer.addEventListener('keyup', function (e){
-        code = e.target.value;
-    });
-
-    runBtn.addEventListener('click', async ()=>{
-        await getAnswerInput();
-
-        await execute();
-        outputContainer.textContent = output;
-        showResult();
-    }); 
+    if (inputContainer != null){
+        inputContainer.addEventListener('keydown', function (e){
+            if (e.key == 'Tab') {
+                e.preventDefault();
+                var start = this.selectionStart;
+                var end = this.selectionEnd;
+                this.value = this.value.substring(0, start) +
+                "\t" + this.value.substring(end);
+                this.selectionStart = 
+                this.selectionEnd = start + 1;
+            }
+        });
+        inputContainer.addEventListener('keyup', function (e){
+            code = e.target.value;
+        });
+    }
+    
+    if (runBtn != null){
+        runBtn.addEventListener('click', async ()=>{
+            await getAnswerInput();
+    
+            await execute();
+            outputContainer.textContent = output;
+            showResult();
+        }); 
+    }
+    
 }
 
 function showResult(){
@@ -70,7 +77,10 @@ function showResult(){
         successAlert.classList.remove('d-none');
         continueBtn.classList.remove('d-none');
         dangerAlert.classList.add('d-none');
-        // saveProgress(); [WIP] tunggu flow ke dia biar ga rusak
+        runBtn.remove();
+        
+        //[WIP] tunggu flow ke dia biar ga rusak
+        saveProgress(); 
     }
     else{
         successAlert.classList.add('d-none');

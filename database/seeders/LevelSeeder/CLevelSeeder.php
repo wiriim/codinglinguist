@@ -966,8 +966,11 @@ class CLevelSeeder extends Seeder
 
             <div class="level-content">✅ Expected Output 1:</div>
             <div class="level-code-input">
-                Enter student name: Enter number of scores: <br>
-                Enter score 1: Enter score 2: Enter score 3: <br>
+                Enter student name: Aria<br>
+                Enter number of scores: 3<br>
+                Enter score 1: 70<br>
+                Enter score 2: 80<br>
+                Enter score 3: 60<br>
                 Student Aria: Pass (Average: 70)
             </div>
 
@@ -982,8 +985,11 @@ class CLevelSeeder extends Seeder
 
             <div class="level-content">✅ Expected Output 2:</div>
             <div class="level-code-input">
-                Enter student name: Enter number of scores: <br>
-                Enter score 1: Enter score 2: Enter score 3: <br>
+                Enter student name: Ben<br>
+                Enter number of scores: 3<br>
+                Enter score 1: 50<br>
+                Enter score 2: 35<br>
+                Enter score 3: 90<br>
                 Student Ben must retake the exam.
             </div>
             ',
@@ -1337,8 +1343,11 @@ class CLevelSeeder extends Seeder
 
                 <div class="level-content">✅ Expected Output 1:</div>
                 <div class="level-code-input">
-                    Enter student name: Enter number of tests: <br>
-                    Enter score 1: Enter score 2: Enter score 3: <br><br>
+                    Enter student name: Rafi<br>
+                    Enter number of tests: 3<br>
+                    Enter score 1: 80<br>
+                    Enter score 2: 90<br>
+                    Enter score 3: 85<br><br>
 
                     === Report Card ===<br>
                     Name   : Rafi<br>
@@ -1358,15 +1367,20 @@ class CLevelSeeder extends Seeder
 
                 <div class="level-content">✅ Expected Output 2:</div>
                 <div class="level-code-input">
-                    Enter student name: Enter number of tests: <br>
-                    Enter score 1: Enter score 2: Enter score 3: Enter score 4: <br>
+                    Enter student name: Maya<br>
+                    Enter number of tests: 4<br>
+                    Enter score 1: 70<br>
+                    Enter score 2: 30<br>
+                    Enter score 3: 80<br>
+                    Enter score 4: 75<br>
                     Student Maya must retake the course.
-                </div>',
+                </div>
+                ',
         ];
         $answers = [
             'Item 1: 10000\nItem 2: 15000\nItem 3: 20000\nTotal after 25% discount: 33750',
-            'Enter student name: Enter number of scores: \nEnter score 1: Enter score 2: Enter score 3: \nStudent Aria: Pass (Average: 70)',
-            'Enter student name: Enter number of tests: \nEnter score 1: \nEnter score 2: \nEnter score 3: \n\n=== Report Card ===\nName   : Rafi\nAverage: 85.00\nGrade  : A'
+            'Enter student name: Aria\nEnter number of scores: 3\nEnter score 1: 70\nEnter score 2: 80\nEnter score 3: 60\nStudent Aria: Pass (Average: 70)',
+            'Enter student name: Rafi\nEnter number of tests: 3\nEnter score 1: 80\nEnter score 2: 90\nEnter score 3: 85\n\n=== Report Card ===\nName   : Rafi\nAverage: 85.00\nGrade  : A'
         ];
         $inputs = [
             '10000\n15000\n20000\n', 

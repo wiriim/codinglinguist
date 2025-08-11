@@ -76,12 +76,14 @@ class CourseController extends Controller
             Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
         }
         else{
-            $userLevel = new UserLevel();
-            $userLevel->user_id = Auth::id();
-            $userLevel->level_id = $nextLevelId;
-            $userLevel->course_id = $course_id;
-            $userLevel->status = 0;
-            $userLevel->save();
+            if ($nextLevelId != 21 && $nextLevelId != 41){
+                $userLevel = new UserLevel();
+                $userLevel->user_id = Auth::id();
+                $userLevel->level_id = $nextLevelId;
+                $userLevel->course_id = $course_id;
+                $userLevel->status = 0;
+                $userLevel->save();
+            }
             
             // Update current level
             Auth::user()->levels()->updateExistingPivot($level_id, ['status' => 1]);
