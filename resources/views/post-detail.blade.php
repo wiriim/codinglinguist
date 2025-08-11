@@ -58,10 +58,11 @@
             <div class="seperation my-3"></div>
 
             <span class="fs-5 comment-sort ">Sort By:</span>
-            <select class="mb-3">
-                <option value="1">Newest</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="mb-3 comment-filter" data-post-id="{{$post->id}}">
+                <option value="Newest" {{$filter == "Newest" ? "selected" : ""}}>Newest</option>
+                <option value="Oldest" {{$filter == "Oldest" ? "selected" : ""}}>Oldest</option>
+                <option value="Most Popular" {{$filter == "Most Popular" ? "selected" : ""}}>Most Popular</option>
+                <option value="Least Popular" {{$filter == "Least Popular" ? "selected" : ""}}>Least Popular</option>
             </select>
             @foreach ($comments as $comment)
                 @include('comment')

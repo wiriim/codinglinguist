@@ -29,7 +29,6 @@ textarea.reply{
 
 .comment-sort  ~ select{
     border-radius: 8px;
-    width: 100px;
     padding: 5px;
     margin-left: 10px;
 }

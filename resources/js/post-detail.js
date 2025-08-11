@@ -15,9 +15,15 @@ let newCreatedAt;
 let username;
 let replyLikeBtns = document.querySelectorAll(".reply-like-btn");
 let replyDislikeBtns = document.querySelectorAll(".reply-dislike-btn");
+let commentFilterSelect = document.querySelector('.comment-filter');
 
 export function loadPostDetailPage(){
     username = document.querySelector('#username').value;
+
+    commentFilterSelect.addEventListener('change', (e)=>{
+        window.location.href = `/posts/${commentFilterSelect.dataset.postId}/comment/${e.target.value}`;
+    });
+
     // Comment & Reply- Like dislike stuff
     commentLikeBtns.forEach((element) => {
         element.addEventListener("click", async function eventHandler() {

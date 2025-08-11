@@ -17,10 +17,28 @@ class ForumController extends Controller
     public function getPostPage(Forum $post)
     {
         $post = Forum::find($post->id);
-        $comments = Comment::where('forum_id', $post->id)->get();
-        return view('post-detail', ['post' => $post, 'comments' => $comments]);
+        $comments = Comment::where('forum_id', $post->id)->orderBy('created_at', 'desc')->get();
+        return view('post-detail', ['post' => $post, 'comments' => $comments, 'filter'=> "Newest"]);
     }
 
+    public function getPostPageCommentFilter(Forum $post, string $filter)
+    {
+        $post = Forum::find($post->id);
+        if(Str::upper($filter) === "NEWEST"){
+            $comments = Comment::where('forum_id', $post->id)->orderBy('created_at', 'desc')->get();
+        }
+        else if(Str::upper($filter) === "OLDEST"){
+            $comments = Comment::where('forum_id', $post->id)->orderBy('created_at', 'asc')->get();
+        }
+        else if(Str::upper($filter) === "MOST POPULAR"){
+            $comments = Comment::where('forum_id', $post->id)->withCount('userLikes')->orderBy('user_likes_count', 'desc')->get();
+        }
+        else if(Str::upper($filter) === "LEAST POPULAR"){
+            $comments = Comment::where('forum_id', $post->id)->withCount('userLikes')->orderBy('user_likes_count', 'asc')->get();
+        }
+        return view('post-detail', ['post' => $post, 'comments' => $comments, 'filter'=>$filter]);
+    }
+    
     public function getEditPostPage(Forum $post)
     {
         $post = Forum::find($post->id);
