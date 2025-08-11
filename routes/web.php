@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,13 @@ Route::get('/posts/comment/delete/{comment}', [CommentController::class,'deleteC
 
 Route::get('/posts/comment/like/{comment}', [CommentController::class,'likeComment'])->name('comment-like');
 Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislikeComment'])->name('comment-dislike');
+
+// Posts Replies
+Route::post('/posts/reply/{comment}', [ReplyController::class,'createReply'])->name('reply-create');
+Route::get('/posts/reply/delete/{reply}', [ReplyController::class,'deleteReply'])->name('reply-delete');
+
+Route::get('/posts/reply/like/{reply}', [ReplyController::class,'likeReply'])->name('reply-like');
+Route::get('/posts/reply/dislike/{reply}', [ReplyController::class,'dislikeReply'])->name('reply-dislike');
 
 // Course
 Route::get('/course/{course}', [CourseController::class, 'getCoursePage'])->name('course');

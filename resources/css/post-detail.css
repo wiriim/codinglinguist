@@ -19,6 +19,7 @@ textarea.reply{
     border-radius: 8px;
 }
 
+/* Comments */
 .comment-container ~ button,
 .comment-container ~ a{
     width: 100px;
@@ -37,4 +38,24 @@ textarea.reply{
 .comment-dislike-btn,
 .comment-reply-btn{
     cursor: pointer;
+}
+
+/* Replies */
+.view-reply{
+    cursor: pointer;
+}
+ 
+.reply-like-btn,
+.reply-dislike-btn,
+.reply-reply-btn{
+    cursor: pointer;
+}
+
+.comment-reply-content{
+    appearance: none;
+    border: none;
+    background: none;
+    height: 20px;
+    color: black;
+    width: 100%;
 }
