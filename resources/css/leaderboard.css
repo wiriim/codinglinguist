@@ -35,3 +35,13 @@
     font-size: 1.1rem;
     margin: 2.5rem 0;
 }
+.leaderboard-image{
+    border-radius: 50px;
+}
+.leaderboard-name{
+    text-decoration: none;
+    color: inherit;
+}
+.leaderboard-name:hover{
+    text-decoration: underline;
+}

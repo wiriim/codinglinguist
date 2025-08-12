@@ -50,7 +50,7 @@
                     
 
                     <div class="d-flex gap-3 justify-content-end">
-                        <a href="{{route('profile')}}" class="btn btn-cancel">Cancel</a>
+                        <a href="{{route('profile', Auth::id())}}" class="btn btn-cancel">Cancel</a>
                         <button type="submit" class="btn btn-post">Edit</button>
                     </div>
                 </form>

@@ -33,13 +33,13 @@ export function loadProfilePage(){
 
     profilePosts.forEach(e => {
         if (e.dataset.category == 1){
-            e.src = "images/C_Programming_Language.png";
+            e.src = "/images/C_Programming_Language.png";
             e.width = 55;
         } 
         else if (e.dataset.category == 2){
-            e.src = "images/Java_Programming_Language_logo.png";
+            e.src = "/images/Java_Programming_Language_logo.png";
             e.width = 38;
         } 
-        else if (e.dataset.category == 3) e.src = "images/Python.png";
+        else if (e.dataset.category == 3) e.src = "/images/Python.png";
     });
 }

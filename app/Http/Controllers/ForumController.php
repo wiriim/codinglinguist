@@ -10,6 +10,7 @@ use App\Models\Forum;
 use App\Models\ForumLike;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Str;
 
 class ForumController extends Controller
@@ -71,6 +72,9 @@ class ForumController extends Controller
 
     public function deletePost(Forum $post){
         $post = Forum::find($post->id);
+        if ($post->image !== null){
+            Storage::disk('public')->delete($post->image);
+        }
         $post->delete();
         return redirect()->route('posts')->with('success','Post has been deleted.');
     }
@@ -107,6 +111,11 @@ class ForumController extends Controller
         $post->category_type_id = $validated['postType'];
         $post->title = $validated['postTitle'];
         $post->content = $validated['content'];
+        if ($request->has('image')){
+            $path = $request->file('image')->store('images', 'public');
+            $validated['image'] = $path;
+            $post->image = $validated['image'];
+        }
         $post->save();
 
         $comments = Comment::where('forum_id', $post->id)->get();

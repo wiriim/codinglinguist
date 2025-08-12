@@ -17,7 +17,7 @@ Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
 Route::get('/leaderboard', [HomeController::class, 'getLeaderboardPage'])->name('leaderboard');
 
 // Profile / User
-Route::get('/profile', [UserController::class, 'getProfilePage'])->name('profile');
+Route::get('/profile/{user}', [UserController::class, 'getProfilePage'])->name('profile');
 Route::get('/edit-profile', [UserController::class, 'getEditProfilePage'])->name('edit-profile');
 Route::post('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
 Route::get('/user-dashboard', [UserController::class, 'getUserDashboardPage'])->name('user-dashboard');

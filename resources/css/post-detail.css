@@ -8,6 +8,10 @@
     width: 75%;
 }
 
+.post-image{
+    max-height: 300px;
+}
+
 .seperation{
     width: 100%;
     height: 1.5px;

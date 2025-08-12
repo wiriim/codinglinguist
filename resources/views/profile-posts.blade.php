@@ -1,7 +1,7 @@
 @foreach ($posts as $post)
     <div class="profile-post-container">
         <div class="d-flex gap-3">
-            <img data-category="{{$post->category_id}}" width="60" height="60" class="profile-post-img">
+            <img src="" data-category="{{$post->category_id}}" width="60" height="60" class="profile-post-img">
             <a href="{{route('post-detail', $post)}}" class="profile-post-title">{{ $post->title }}</a>
         </div>
 

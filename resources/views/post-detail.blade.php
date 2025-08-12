@@ -14,6 +14,9 @@
             @endif
             <p>Posted By {{ $post->user->username }}</p>
             <h1>{{ $post->title }}</h1>
+            @if ($post->image != null)
+                <div class="post-image-container d-flex justify-content-center"><img src="/storage/{{$post->image}}" alt="image" class="post-image "></div>
+            @endif
             <p>{{ $post->content }}</p>
             <div class="post-links d-flex  align-items-center mt-3 justify-content-between">
                 @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())

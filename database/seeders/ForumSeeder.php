@@ -21,7 +21,7 @@ class ForumSeeder extends Seeder
                 'category_type_id' => $i % 5 + 1,
                 'title' => $title[$i%3] . $i,
                 'content' => fake()->paragraph(6),
-                'created_at' => now()->addDays($i)
+                'created_at' => now()->subDay()
             ]);
         }
     }
