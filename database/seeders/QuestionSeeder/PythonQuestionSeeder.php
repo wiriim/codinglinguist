@@ -22,7 +22,7 @@ class PythonQuestionSeeder extends Seeder
 
             // Level 2: Comments & Variables
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">Which of the following is a valid Python comment?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. // This is a comment</li><li class="question-choice">B. # This is a comment</li><li class="question-choice">C. -- This is a comment</li><li class="question-choice">D. /* This is a comment */</li></ul></div>',
-            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Complete this code to print the color blue.</div><div class="level-code-input">color = __________<br>print(color)</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
+            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Complete this code to print the color Blue.</div><div class="level-code-input">color = __________<br>print(color)</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">What will be the output of the following code?</div><div class="level-code-input">x = "Python"<br>print(x)</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. Python</li><li class="question-choice">B. x</li><li class="question-choice">C. print(x)</li><li class="question-choice">D. Syntax Error</li></ul></div>',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Complete the code to declare a variable age with value 25</div><div class="level-code-input">___________<br>print(age)</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
 
@@ -67,7 +67,7 @@ class PythonQuestionSeeder extends Seeder
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Complete this code to Print She said: "Hi".</div><div class="level-code-input">print("She said: ________")</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">What will print("A\\tB") print?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. A\tB</li><li class="question-choice">B. AB</li><li class="question-choice">C. A      B</li><li class="question-choice">D. Error</li></ul></div>',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Complete this code to print with a tab space in between</div><div class="level-code-input">print("Day:___Monday")</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
-            
+
             // Level 10 is a boss level and has no questions in the document.
 
             // Level 11: Conditionals (if, elif, else)
@@ -177,7 +177,7 @@ class PythonQuestionSeeder extends Seeder
             '\\"Hi\\"',
             'C. A      B',
             '\\t',
-            
+
             // Level 10 has no questions.
 
             // Level 11
