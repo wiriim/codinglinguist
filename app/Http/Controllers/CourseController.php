@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserLevel;
 use App\Models\UserQuestion;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -36,12 +37,20 @@ class CourseController extends Controller
 
     public function getLevelPage(string $course_id, string $level_id){
         $level = $this->getLevel($level_id);
+        if (! Gate::allows('access-level', $level)) {
+            abort(403);
+        }
         return view('level',  ['level'=> $level]);
     }
 
     public function getQuestionPage(string $course_id, string $level_id, string $question_id){
         $level = $this->getLevel($level_id);
-        $question = $this->getQuestion($question_id);    
+        $question = $this->getQuestion($question_id);   
+        
+        $course = $this->getCourse($course_id);
+        if (! Gate::allows('access-question', [$question, $level])) {
+            abort(403);
+        } 
         return view('question', ['level'=> $level, 'question'=> $question]);
     }
 

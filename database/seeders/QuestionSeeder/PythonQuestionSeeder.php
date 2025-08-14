@@ -132,7 +132,7 @@ class PythonQuestionSeeder extends Seeder
 
             // Level 2
             'B. # This is a comment',
-            '“Blue”',
+            '"Blue"',
             'A. Python',
             'age = 25',
 
