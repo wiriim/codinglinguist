@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\QuestionSeeder\JavaQuestionSeeder::class,
             \Database\Seeders\LevelSeeder\PythonLevelSeeder::class,
             \Database\Seeders\QuestionSeeder\PythonQuestionSeeder::class,
+            \Database\Seeders\BadgeSeeder::class,
             UserSeeder::class,
             ForumSeeder::class
         ]);

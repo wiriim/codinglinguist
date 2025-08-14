@@ -118,6 +118,10 @@ class ForumController extends Controller
         }
         $post->save();
 
+        // Badges
+        $badgeController = new BadgeController();
+        $badgeController->addBadge('create_forum');
+
         $comments = Comment::where('forum_id', $post->id)->get();
         return redirect()
             ->route('post-detail', ['post' => $post, 'comments' => $comments])

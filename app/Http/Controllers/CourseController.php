@@ -46,6 +46,12 @@ class CourseController extends Controller
     }
 
     public function submitAnswer(string $course_id, string $level_id, string $question_id, Request $request){
+        // Badges
+        $badgeController = new BadgeController();
+        $completeLevel = UserLevel::where('user_id', Auth::user()->id)->where('level_id', 1)->where('status', 1)->exists();
+        if ($completeLevel){
+            $badgeController->addBadge('complete_level');
+        }
         $userAnswer = $request->answer;
         $question = $this->getQuestion($question_id);
         $success = false;
@@ -94,6 +100,54 @@ class CourseController extends Controller
         $user = Auth::user();
         $user->point = $user->point + $point;
         $user->save();  
+
+        // Badges
+        $badgeController = new BadgeController();
+        $homeController = new HomeController();
+
+        $completeLevel = UserLevel::where('user_id', $user->id)->where('level_id', 1)->where('status', 1)->exists();
+        if ($completeLevel){
+            $badgeController->addBadge('complete_level');
+        }
+        $cClear = UserLevel::where('user_id', $user->id)->where('level_id', 20)->where('status', 1)->exists();
+        if ($cClear){
+            $badgeController->addBadge('c_clear');
+        }
+        $pythonClear = UserLevel::where('user_id', $user->id)->where('level_id', 60)->where('status', 1)->exists();
+        if ($pythonClear){
+            $badgeController->addBadge('python_clear');
+        }
+        $javaClear = UserLevel::where('user_id', $user->id)->where('level_id', 40)->where('status', 1)->exists();
+        if ($javaClear){
+            $badgeController->addBadge('java_clear');
+        }
+        $hundredPoints = $user->point >= 100;
+        if  ($hundredPoints){
+            $badgeController->addBadge('100_point');
+        }
+        $threeHundredPoints = $user->point >= 300;
+        if  ($threeHundredPoints){
+            $badgeController->addBadge('300_point');
+        }
+        $fiveHundredPoints = $user->point >= 500;
+        if  ($fiveHundredPoints){
+            $badgeController->addBadge('500_point');
+        }
+        $allClear = UserLevel::where('user_id', $user->id)->where('status', 1)->count() == 60;
+        if  ($allClear){
+            $badgeController->addBadge('all_clear');
+        }
+
+        $users = $homeController->getLeaderboard();
+        if ($users[0]->point > 0){
+            $badgeController->addBadge('first_place');
+        }
+        if ($users[1]->point > 0){
+            $badgeController->addBadge('second_place');
+        }
+        if ($users[2]->point > 0){
+            $badgeController->addBadge('third_place');
+        }
     }
 
     public function getBossAnswerInput(string $level_id){
