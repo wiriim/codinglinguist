@@ -13,39 +13,45 @@
                         <div class="posts-select">
                             <span class="fs-6">Programming Language</span>
                             <select id="programming-language">
-                                <option value="All" {{$programmingLanguage == "All" ? "selected" : ""}}>All</option>
-                                <option value="C" {{$programmingLanguage == "C" ? "selected" : ""}}>C</option>
-                                <option value="Python" {{$programmingLanguage == "Python" ? "selected" : ""}}>Python</option>
-                                <option value="Java" {{$programmingLanguage == "Java" ? "selected" : ""}}>Java</option>
+                                <option value="All" {{ $programmingLanguage == 'All' ? 'selected' : '' }}>All</option>
+                                <option value="C" {{ $programmingLanguage == 'C' ? 'selected' : '' }}>C</option>
+                                <option value="Python" {{ $programmingLanguage == 'Python' ? 'selected' : '' }}>Python
+                                </option>
+                                <option value="Java" {{ $programmingLanguage == 'Java' ? 'selected' : '' }}>Java</option>
                             </select>
                         </div>
                         <div class="posts-select">
                             <span class="fs-6">Post Type</span>
                             <select id="post-type">
-                                <option value="All" {{$postType == "All" ? "selected" : ""}}>All</option>
-                                <option value="Error" {{$postType == "Error" ? "selected" : ""}}>Error</option>
-                                <option value="Question" {{$postType == "Question" ? "selected" : ""}}>Question</option>
-                                <option value="Discussion" {{$postType == "Discussion" ? "selected" : ""}}>Discussion</option>
-                                <option value="Guide" {{$postType == "Guide" ? "selected" : ""}}>Guide</option>
-                                <option value="Other" {{$postType == "Other" ? "selected" : ""}}>Other</option>
+                                <option value="All" {{ $postType == 'All' ? 'selected' : '' }}>All</option>
+                                <option value="Error" {{ $postType == 'Error' ? 'selected' : '' }}>Error</option>
+                                <option value="Question" {{ $postType == 'Question' ? 'selected' : '' }}>Question</option>
+                                <option value="Discussion" {{ $postType == 'Discussion' ? 'selected' : '' }}>Discussion
+                                </option>
+                                <option value="Guide" {{ $postType == 'Guide' ? 'selected' : '' }}>Guide</option>
+                                <option value="Other" {{ $postType == 'Other' ? 'selected' : '' }}>Other</option>
                             </select>
                         </div>
                     </div>
                     <div class="posts-search d-flex justify-content-end align-items-end">
                         <div class="d-flex align-items-center w-50 gap-2">
-                            <input class="form-control w-100 border border-black rounded-pill" placeholder="Search Something"
-                            name="postTitle" id="posts-search-title" value="{{$search}}"></input>
-                            <button type="button" class="posts-search-btn" id="posts-search-btn"><i class="bi bi-search fs-4"></i></button>
+                            <input class="form-control w-100 border border-black rounded-pill"
+                                placeholder="Search Something" name="postTitle" id="posts-search-title"
+                                value="{{ $search }}"></input>
+                            <button type="button" class="posts-search-btn" id="posts-search-btn"><i
+                                    class="bi bi-search fs-4"></i></button>
                         </div>
                     </div>
                     <div class="posts-sort mt-1">
                         <div class="posts-select">
                             <span class="fs-5">Sort By:</span>
                             <select id="sort-by">
-                                <option value="New" {{$sortBy == "New" ? "selected" : ""}}>New</option>
-                                <option value="Old" {{$sortBy == "Old" ? "selected" : ""}}>Old</option>
-                                <option value="Most Popular" {{$sortBy == "Most Popular" ? "selected" : ""}}>Most Popular</option>
-                                <option value="Least Popular" {{$sortBy == "Least Popular" ? "selected" : ""}}>Least Popular</option>
+                                <option value="New" {{ $sortBy == 'New' ? 'selected' : '' }}>New</option>
+                                <option value="Old" {{ $sortBy == 'Old' ? 'selected' : '' }}>Old</option>
+                                <option value="Most Popular" {{ $sortBy == 'Most Popular' ? 'selected' : '' }}>Most Popular
+                                </option>
+                                <option value="Least Popular" {{ $sortBy == 'Least Popular' ? 'selected' : '' }}>Least
+                                    Popular</option>
                             </select>
                         </div>
                     </div>
@@ -101,7 +107,8 @@
                             <div class="d-flex mt-3">
                                 @if (Auth::check() && Auth::user()->forumLikes()->where('forum_id', $post->id)->exists())
                                     <a class="card-link d-flex justify-content-center gap-1 post-like"><i
-                                            class="bi bi-heart-fill text-danger post-dislike-btn" data-post-id="{{ $post->id }}"></i>
+                                            class="bi bi-heart-fill text-danger post-dislike-btn"
+                                            data-post-id="{{ $post->id }}"></i>
                                         <span class="like-count">{{ $post->userLikes()->count() }}</span></a>
                                 @elseif (Auth::check())
                                     <a class="card-link d-flex justify-content-center gap-1 post-like"><i
@@ -124,9 +131,36 @@
                 <div class="d-flex justify-content-end mt-4">{{ $posts->links() }}</div>
             </div>
             <div class="posts-recent-container">
-                <div class="posts-recent w-100 bg-white">
-                    Recent Accessed Post
+                <div class="d-flex justify-content-between">
+                    <p class="mb-3">RECENT POSTS</p>
+                    @if (Auth::check() && $logs->count() > 0)
+                        <a href="{{route('clear-logs')}}" class="text-decoration-none">Clear</a>
+                    @endif
                 </div>
+                <div class=" d-flex flex-column gap-3">
+                    @if (Auth::check())
+                        @foreach ($logs as $log)
+                            <div class="posts-recent w-100 bg-white">
+                                <a href="{{ route('post-detail', ['post' => $log->id]) }}"
+                                    class="text-decoration-none text-dark">
+                                    <h5 class="card-title log-title">{{ $log->title }}</h5>
+                                </a>
+                                <div class="d-flex gap-3">
+                                    <div data-category="{{ $log->category->id }}"
+                                        class="category-container d-flex justify-content-center align-items-center log-category">
+                                        {{ $log->category->category_name }}
+                                    </div>
+                                    <div data-categorytype="{{ $log->categoryType->id }}"
+                                        class="category-type-container d-flex justify-content-center align-items-center log-category">
+                                        {{ $log->categoryType->category_type_name }}
+                                    </div>
+                                </div>
+                                <p class="card-text log-content">{{ $log->content }}</p>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+
             </div>
         </div>
 

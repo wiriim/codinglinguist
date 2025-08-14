@@ -88,6 +88,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Reply::class, 'user_reply');
     }
 
+    public function viewLogs(): BelongsToMany
+    {
+        return $this->belongsToMany(Forum::class, 'view_logs');
+    }
+
     public function allowLevel(string $id){
         $allow = false;
         $allowUserLevel = UserLevel::where('user_id', Auth::id())->where('level_id', $id)->exists();

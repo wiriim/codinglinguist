@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\CommentLike;
 use App\Models\Forum;
 use App\Models\ForumLike;
+use App\Models\ViewLog;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,16 @@ class ForumController extends Controller
     {
         $post = Forum::find($post->id);
         $comments = Comment::where('forum_id', $post->id)->orderBy('created_at', 'desc')->get();
+
+        // View Log
+        if (Auth::check()){
+            $user = Auth::user();
+            $log = ViewLog::where('user_id', $user->id)->where('forum_id', $post->id)->first();
+            if ($log != null){
+                $user->viewLogs()->detach($post);
+            }
+            $user->viewLogs()->attach($post, ['created_at' => now()]);
+        }
         return view('post-detail', ['post' => $post, 'comments' => $comments, 'filter'=> "Newest"]);
     }
 
@@ -82,7 +93,17 @@ class ForumController extends Controller
     public function getAllPostPage()
     {
         $posts = Forum::orderby('created_at', 'desc')->paginate(10);
-        return view('posts', ['posts' => $posts,'programmingLanguage' => "All", 'postType' => "All", 'sortBy' => "New", 'search' => ""]);
+        
+        $logs = collect();
+        if (Auth::check()){
+            $user = Auth::user();
+            $listPosts = ViewLog::where('user_id', $user->id)->orderBy('created_at', 'desc')->take(10)->get('forum_id');
+            foreach($listPosts as $postId){
+                $post = Forum::find($postId)->first();
+                $logs->push($post);
+            }
+        }
+        return view('posts', ['posts' => $posts,'programmingLanguage' => "All", 'postType' => "All", 'sortBy' => "New", 'search' => "", 'logs' => $logs]);
     }
 
     public function getCreatePostPage()
@@ -188,6 +209,21 @@ class ForumController extends Controller
             $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'asc')->paginate(6);
         }
 
-        return view('posts', ['posts' => $posts ,'programmingLanguage' => $programmingLanguage, 'postType' => $postType, 'sortBy' => $sortBy, 'search' => $search]);
+        $logs = collect();
+        if (Auth::check()){
+            $user = Auth::user();
+            $listPosts = ViewLog::where('user_id', $user->id)->orderBy('created_at', 'desc')->take(10)->get('forum_id');
+            foreach($listPosts as $postId){
+                $post = Forum::find($postId)->first();
+                $logs->push($post);
+            }
+        }
+        return view('posts', ['posts' => $posts ,'programmingLanguage' => $programmingLanguage, 'postType' => $postType, 'sortBy' => $sortBy, 'search' => $search, 'logs'=> $logs]);
+    }
+
+    public function clearLogs(){
+        $user = Auth::user();
+        ViewLog::where('user_id', $user->id)->delete();
+        return redirect()->route('posts');
     }
 }

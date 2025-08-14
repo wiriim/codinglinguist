@@ -47,6 +47,8 @@ Route::get('/delete-posts/{post}', [ForumController::class,'deletePost'])->name(
 Route::get('/posts/{post}', [ForumController::class,'getPostPage'])->name('post-detail');
 Route::get('/posts/{post}/comment/{filter}', [ForumController::class,'getPostPageCommentFilter'])->name('post-detail-comment-filter');
 
+Route::get('/clearLog', [ForumController::class,'clearLogs'])->name('clear-logs');
+
 // Posts Likes
 Route::get('/posts/like/{post}', [ForumController::class,'likePost'])->name('post-like');
 Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->name('post-dislike');
