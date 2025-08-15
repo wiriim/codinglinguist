@@ -16,6 +16,10 @@ class HomeController extends Controller
         return view('leaderboard',['users'=>$users]);
     }
 
+    public function getAboutUsPage(){
+        return view('about-us');
+    }
+
     public function getLeaderboard(){
         $users = User::orderBy('point', 'desc')->paginate(10);
         return $users;

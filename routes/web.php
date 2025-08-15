@@ -14,6 +14,7 @@ Route::redirect('/', '/home');
 
 //Home stuff
 Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
+Route::get('/about-us', [HomeController::class, 'getAboutUsPage'])->name('about-us');
 Route::get('/leaderboard', [HomeController::class, 'getLeaderboardPage'])->name('leaderboard');
 
 // Profile / User
