@@ -1,5 +1,5 @@
 <div class="d-flex gap-2 align-items-center justify-content-between">
-    @if (Auth::check() && $comment->user->id == Auth::user()->id)
+    @if (Auth::check() && ($comment->user->id == Auth::user()->id || Auth::id() == 1))
         <p class="fs-5">{{ $comment->user->username }}</p>
         <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
     @else

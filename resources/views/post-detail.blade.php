@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="post-detail d-flex flex-column">
-        @include('shared.navbar')
+        @if (Auth::check() && Auth::id() == 1)
+            @include('shared.navbar-admin')
+        @else
+            @include('shared.navbar')
+        @endif
 
         <input type="text" hidden id="postDetailPage" value="postDetail">
         @if (Auth::check())
@@ -34,7 +38,7 @@
                 @endif
 
                 <div class="d-flex gap-2">
-                    @if (Auth::check() && $post->user->id == Auth::user()->id)
+                    @if (Auth::check() && ($post->user->id == Auth::user()->id || Auth::id() == 1))
                         <a href="{{ route('post-edit', $post) }}" class="card-link"><i class="bi bi-pencil-square"></i></a>
                         <a href="{{ route('post-delete', $post) }}" class="card-link"><i class="bi bi-trash"></i></a>
                     @endif

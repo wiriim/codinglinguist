@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="posts pb-4">
-        @include('shared.navbar')
+        @if (Auth::check() && Auth::id() == 1)
+            @include('shared.navbar-admin')
+        @else
+            @include('shared.navbar')
+        @endif
 
         <input type="text" hidden id="postsPage" value="posts">
         <div class="posts-container">
@@ -86,7 +90,7 @@
                                     </div>
                                 </div>
 
-                                @if (Auth::check() && $post->user->id == Auth::user()->id)
+                                @if (Auth::check() && ($post->user->id == Auth::user()->id || Auth::id() == 1))
                                     <div class="dropdown">
                                         <i class="bi bi-three-dots-vertical post-dropdown" data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu bg-white">

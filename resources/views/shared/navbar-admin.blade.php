@@ -15,7 +15,7 @@
                         <a class="nav-link {{Route::is('admin-unban') ? "active" : ""}}" href="{{route('admin-unban')}}">Unban</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Forum</a>
+                        <a class="nav-link {{Route::is('posts') ? "active" : ""}}" href="{{route('posts')}}">Forum</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}">Sign Out</a>

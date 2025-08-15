@@ -1,6 +1,6 @@
 <div class="reply-wrapper">
     <div class="d-flex gap-2 align-items-center justify-content-between mt-2">
-        @if (Auth::check() && $reply->user->id == Auth::user()->id)
+        @if (Auth::check() && ($reply->user->id == Auth::user()->id || Auth::id() == 1))
             <p class="fs-5">{{ $reply->user->username }}</p>
             <a href="{{route('reply-delete', $reply->id)}}" class="card-link"><i class="bi bi-trash"></i></a>
         @else
