@@ -98,6 +98,14 @@
     border-radius: 5px;
 }
 
-#btn-level-boss-continue{
+#btn-level-boss-continue,
+#btn-start-level-continue{
     cursor: pointer;
+}
+
+#btn-start-level-continue{
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    align-self: flex-end;
 }
