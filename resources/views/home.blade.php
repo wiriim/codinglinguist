@@ -14,7 +14,12 @@
                         <span>Learn how to code from the basic</span>
                         <span>with our materials and quizzes</span>
                     </div>
-                    <a class="btn btn-primary align-self-end px-4 fw-light" href="#">Sign In</a>
+                    @if (Auth::check())
+                        <a class="btn btn-primary align-self-end px-4 fw-light" href="{{route('user-dashboard')}}">Let's Start</a>
+                    @else
+                        <a class="btn btn-primary align-self-end px-4 fw-light" href="{{route('sign-in')}}">Sign In</a>
+                    @endif
+                    
                 </div>
                 <img class="coding-image-home" src="{{asset('images/CodingImageHome.png')}}" alt="CodingImageHome">
             </div>

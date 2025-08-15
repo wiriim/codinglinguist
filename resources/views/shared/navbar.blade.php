@@ -14,7 +14,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link {{Route::is('dashboard') ? "active" : ""}}" aria-current="page" href="{{route('user-dashboard')}}">Dashboard</a>
+                            <a class="nav-link {{Route::is('user-dashboard') ? "active" : ""}}" aria-current="page" href="{{route('user-dashboard')}}">Dashboard</a>
                         </li>
                     @endif
                     <li class="nav-item dropdown">
