@@ -189,7 +189,7 @@ class PythonQuestionSeeder extends Seeder
             // Level 12
             'A. Wear sunglasses',
             'if time >= 9 and time <= 17',
-            'D. if level == "admin":<br>&nbsp;&nbsp;&nbsp;&nbsp;if password == "1234":<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Access granted")',
+            'D. if level == "admin":    if password == "1234":        print("Access granted")',
             'if has_id == "yes"',
 
             // Level 13
@@ -199,9 +199,9 @@ class PythonQuestionSeeder extends Seeder
             'break',
 
             // Level 14
-            'A. Hi<br>Hi<br>Hi',
+            'A. HiHiHi',
             'for i in range(5, 8)',
-            'D. 0<br>2<br>4',
+            'D. 024',
             'range(1, 5)',
 
             // Level 15 has no questions.
@@ -227,7 +227,7 @@ class PythonQuestionSeeder extends Seeder
             // Level 19
             'D. 8',
             'return price * quantity',
-            'B. def add(a, b):<br>return a + b',
+            'B. def add(a, b):return a + b',
             'return "Pass"',
 
             // Level 20 has no questions.
