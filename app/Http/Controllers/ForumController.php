@@ -10,6 +10,7 @@ use App\Models\Forum;
 use App\Models\ForumLike;
 use App\Models\ViewLog;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -54,6 +55,9 @@ class ForumController extends Controller
     public function getEditPostPage(Forum $post)
     {
         $post = Forum::find($post->id);
+        if (! Gate::allows('admin-access') && $post->user->id != Auth::id()) {
+            abort(403);
+        } 
         $categories = Category::all();
         $categoryTypes = CategoryType::all();
         return view('edit-post', ['post' => $post, 'categories' => $categories, 'categoryTypes' => $categoryTypes]);
@@ -83,6 +87,9 @@ class ForumController extends Controller
 
     public function deletePost(Forum $post){
         $post = Forum::find($post->id);
+        if (! Gate::allows('admin-access') && $post->user->id != Auth::id()) {
+            abort(403);
+        } 
         if ($post->image !== null){
             Storage::disk('public')->delete($post->image);
         }

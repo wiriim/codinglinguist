@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Forum;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -20,6 +21,9 @@ class CommentController extends Controller
 
     public function deleteComment(Comment $comment){
         $comment = Comment::find($comment->id);
+        if (! Gate::allows('admin-access') && $comment->user->id != Auth::id()) {
+            abort(403);
+        }
         $comment->delete();
         return back()->with('success','Comment Deleted');
     }

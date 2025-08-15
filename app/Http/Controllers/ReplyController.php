@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reply;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -23,6 +24,9 @@ class ReplyController extends Controller
 
     public function deleteReply(string $replyId){
         $reply = Reply::find($replyId);
+        if (! Gate::allows('admin-access') && $reply->user->id != Auth::id()) {
+            abort(403);
+        }
         $reply->delete();
         return back()->with('success','Reply Deleted');
     }
