@@ -33,16 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('access-level', function (User $user, Level $level) {
             $userLevelExist = UserLevel::where('user_id', $user->id)->where('level_id', $level->id)->exists();
-            if ($level->id == 1 || $level->id == 21 || $level->id == 41) return true;
             if (!Auth::check() || !$userLevelExist) return false;
             return true;
         });
-        Gate::define('access-question', function (User $user, Question $question, Level $level) {
-            $levelOneQuestions = $question->id == 1 || $question->id == 2 || $question->id == 3 || $question->id == 4
-            || $question->id == 69 || $question->id == 70 || $question->id == 71 || $question->id == 72
-            || $question->id == 137 || $question->id == 138 || $question->id == 139 || $question->id == 140;
-            if ($levelOneQuestions) return true;
-            
+        Gate::define('access-question', function (User $user, Question $question, Level $level) {            
             if ($level->id == 11 || $level->id == 16 
             || $level->id == 31 || $level->id == 36 
             || $level->id == 51 || $level->id == 56 

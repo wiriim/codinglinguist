@@ -37,7 +37,7 @@ class CourseController extends Controller
 
     public function getLevelPage(string $course_id, string $level_id){
         $level = $this->getLevel($level_id);
-        if (! Gate::allows('access-level', $level)) {
+        if (! Gate::allows('access-level', $level) && $level->id != 1 && $level->id != 21 && $level->id != 41) {
             abort(403);
         }
         return view('level',  ['level'=> $level]);
@@ -48,7 +48,9 @@ class CourseController extends Controller
         $question = $this->getQuestion($question_id);   
         
         $course = $this->getCourse($course_id);
-        if (! Gate::allows('access-question', [$question, $level])) {
+        if (! Gate::allows('access-question', [$question, $level]) && $question->id != 1 && $question->id != 2 && $question->id != 3 
+        && $question->id != 4 && $question->id != 69 && $question->id != 70 && $question->id != 71 && $question->id != 72
+        && $question->id != 137 && $question->id != 138 && $question->id != 139 && $question->id != 140) {
             abort(403);
         } 
         return view('question', ['level'=> $level, 'question'=> $question]);

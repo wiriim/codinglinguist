@@ -350,12 +350,12 @@ class JavaLevelSeeder extends Seeder
         $answers = [
             'Welcome, Amanda Rivera!\nYou are allowed to use the gym.\nYour membership tier: Premium',
             'Attendance Summary:\nPresent: 2\nAbsent: 1\nTotal Checked: 3',
-            '=== Report Card ===\nName   : Dino\nAverage: 61.00\nGrade  : C\n'
+            'Enter student name: Alex\nEnter number of subjects: 3\nHello, Alex!\nEnter score for subject 1: 80\nEnter score for subject 2: 70\nEnter score for subject 3: 85\nYour average score is: 78.33333333333333\nCongratulations, you passed!'
         ];
         $inputs = [
             'Amanda Rivera\n22\n2\n', 
             '3\nAlice\nY\n Bob\n N\nCharlie\nY\n',
-            'Enter student name: Alex\nEnter number of subjects: 3\nEnter score for subject 1: 80\nEnter score for subject 2: 70\nEnter score for subject 3: 85\n'
+            'Alex\n3\n80\n70\n85\n'
         ];
         $bossIndex = 0;
         for ($i = 0; $i < count($titles); $i++) {
