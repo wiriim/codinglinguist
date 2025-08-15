@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserLevel;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -25,6 +26,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            if (Gate::allows('user-banned')) {
+                return back()->withErrors(['credential' => 'You are banned.']);
+            } 
             if($credentials['username'] == 'admin'){
                 return redirect()->route('admin-ban');
             }

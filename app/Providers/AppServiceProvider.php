@@ -71,5 +71,11 @@ class AppServiceProvider extends ServiceProvider
             if (!Auth::check() ) return false;
             return false;
         });
+
+        Gate::define('user-banned', function (User $user) {
+            $user = User::find($user->id);
+            if ($user->status == 1) return true;
+            return false;
+        });
     }
 }
