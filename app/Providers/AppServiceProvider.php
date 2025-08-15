@@ -77,5 +77,10 @@ class AppServiceProvider extends ServiceProvider
             if ($user->status == 1) return true;
             return false;
         });
+
+        Gate::define('admin-access', function (User $user) {
+            if ($user->id != 1) return false;
+            return true;
+        });
     }
 }
