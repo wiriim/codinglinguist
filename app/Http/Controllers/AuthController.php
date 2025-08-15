@@ -25,6 +25,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            if($credentials['username'] == 'admin'){
+                return redirect()->route('admin-ban');
+            }
             return redirect()->route('user-dashboard');
         }
         return back()->withErrors(['credential' => 'The provided credentials do not match our records.']);

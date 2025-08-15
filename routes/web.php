@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
@@ -16,6 +17,13 @@ Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
 Route::get('/about-us', [HomeController::class, 'getAboutUsPage'])->name('about-us');
 Route::get('/leaderboard', [HomeController::class, 'getLeaderboardPage'])->name('leaderboard');
+
+// Admin
+Route::get('/admin-ban', [AdminController::class, 'getAdminBanPage'])->name('admin-ban');
+Route::get('/admin-unban', [AdminController::class, 'getAdminUnbanPage'])->name('admin-unban');
+
+Route::get('/ban/{user}', [AdminController::class, 'ban'])->name('ban');
+Route::get('/unban/{user}', [AdminController::class, 'unban'])->name('unban');
 
 // Profile / User
 Route::get('/profile/{user}', [UserController::class, 'getProfilePage'])->name('profile');
