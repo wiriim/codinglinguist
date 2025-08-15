@@ -16,6 +16,8 @@ let username;
 let replyLikeBtns = document.querySelectorAll(".reply-like-btn");
 let replyDislikeBtns = document.querySelectorAll(".reply-dislike-btn");
 let commentFilterSelect = document.querySelector('.comment-filter');
+let postLikeBtns = document.querySelectorAll(".post-like-btn");
+let postDislikeBtns = document.querySelectorAll(".post-dislike-btn");
 
 export function loadPostDetailPage(){
     username = document.querySelector('#username').value;
@@ -23,6 +25,89 @@ export function loadPostDetailPage(){
     commentFilterSelect.addEventListener('change', (e)=>{
         window.location.href = `/posts/${commentFilterSelect.dataset.postId}/comment/${e.target.value}`;
     });
+
+    postLikeBtns.forEach((element) => {
+        element.addEventListener("click", async function eventHandler() {
+            let likes = await likePost(element.dataset.postId);
+            toggleDislike(element, likes);
+            element.removeEventListener("click", eventHandler);
+        });
+    });
+    postDislikeBtns.forEach((element) => {
+        element.addEventListener("click", async function eventHandler() {
+            let likes = await dislikePost(element.dataset.postId);
+            toggleLike(element, likes);
+            element.removeEventListener("click", eventHandler);
+        });
+    });
+
+    async function likePost(postId) {
+        const url = `/posts/like/${postId}`;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+            return result.likes;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    function toggleDislike(element, likes) {
+        toggleHeart(element);
+        element.nextElementSibling.textContent = likes;
+        element.addEventListener("click", async function eventHandler() {
+            let likes = await dislikePost(element.dataset.postId);
+            toggleLike(element, likes);
+            element.removeEventListener("click", eventHandler);
+        });
+    }
+    
+    async function dislikePost(postId) {
+        const url = `/posts/dislike/${postId}`;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+            if (result.success) {
+            } else {
+                console.error("Problem with the server");
+            }
+            return result.likes;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    function toggleLike(element, likes) {
+        toggleHeart(element);
+        element.nextElementSibling.textContent = likes;
+        element.addEventListener("click", async function eventHandler() {
+            let likes = await likePost(element.dataset.postId);
+            toggleDislike(element, likes);
+            element.removeEventListener("click", eventHandler);
+        });
+    }
 
     // Comment & Reply- Like dislike stuff
     commentLikeBtns.forEach((element) => {
