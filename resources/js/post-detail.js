@@ -113,14 +113,14 @@ export function loadPostDetailPage(){
     commentLikeBtns.forEach((element) => {
         element.addEventListener("click", async function eventHandler() {
             let likes = await likeComment(element.dataset.commentId);
-            toggleDislike(element, likes);
+            toggleDislikeComment(element, likes);
             element.removeEventListener("click", eventHandler);
         });
     });
     commentDislikeBtns.forEach((element) => {
         element.addEventListener("click", async function eventHandler() {
             let likes = await dislikeComment(element.dataset.commentId);
-            toggleLike(element, likes);
+            toggleLikeComment(element, likes);
             element.removeEventListener("click", eventHandler);
         });
     });
@@ -395,12 +395,12 @@ async function likeComment(commentId) {
     }
 }
 
-function toggleDislike(element, likes) {
+function toggleDislikeComment(element, likes) {
     toggleHeart(element);
     element.nextElementSibling.textContent = likes;
     element.addEventListener("click", async function eventHandler() {
         let likes = await dislikeComment(element.dataset.commentId);
-        toggleLike(element, likes);
+        toggleLikeComment(element, likes);
         element.removeEventListener("click", eventHandler);
     });
 }
@@ -431,12 +431,12 @@ async function dislikeComment(commentId) {
     }
 }
 
-function toggleLike(element, likes) {
+function toggleLikeComment(element, likes) {
     toggleHeart(element);
     element.nextElementSibling.textContent = likes;
     element.addEventListener("click", async function eventHandler() {
         let likes = await likeComment(element.dataset.commentId);
-        toggleDislike(element, likes);
+        toggleDislikeComment(element, likes);
         element.removeEventListener("click", eventHandler);
     });
 }
@@ -481,7 +481,7 @@ async function likeReply(replyId) {
 }
 
 function toggleDislikeReply(element, likes) {
-    toggleHeart(element);
+    toggleHeartReply(element);
     element.nextElementSibling.textContent = likes;
     element.addEventListener("click", async function eventHandler() {
         let likes = await dislikeReply(element.dataset.replyId);
@@ -517,7 +517,7 @@ async function dislikeReply(replyId) {
 }
 
 function toggleLikeReply(element, likes) {
-    toggleHeart(element);
+    toggleHeartReply(element);
     element.nextElementSibling.textContent = likes;
     element.addEventListener("click", async function eventHandler() {
         let likes = await likeReply(element.dataset.replyId);
