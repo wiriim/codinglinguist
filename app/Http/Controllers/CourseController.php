@@ -59,10 +59,13 @@ class CourseController extends Controller
     public function submitAnswer(string $course_id, string $level_id, string $question_id, Request $request){
         // Badges
         $badgeController = new BadgeController();
-        $completeLevel = UserLevel::where('user_id', Auth::user()->id)->where('level_id', 1)->where('status', 1)->exists();
-        if ($completeLevel){
-            $badgeController->addBadge('complete_level');
+        if(Auth::check()){
+            $completeLevel = UserLevel::where('user_id', Auth::user()->id)->where('level_id', 1)->where('status', 1)->exists();
+            if ($completeLevel){
+                $badgeController->addBadge('complete_level');
+            }
         }
+        
         $userAnswer = $request->answer;
         $question = $this->getQuestion($question_id);
         $success = false;
