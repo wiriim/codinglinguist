@@ -7,7 +7,7 @@
             <p class="fs-5">{{ $reply->user->username }}</p>
         @endif
     </div>
-    
+
     <textarea class="mt-1 comment-reply-content" disabled>{{ $reply->content }}</textarea>
     <div class="d-flex mt-2 flex-column">
         @if (Auth::check() && Auth::user()->replyLikes()->where('reply_id', $reply->id)->exists())
@@ -16,14 +16,14 @@
                         class="bi bi-heart-fill text-danger reply-dislike-btn"
                         data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}"></i>
                     <span class="like-count">{{ $reply->userLikes->count() }}</span></a>
-    
-    
+
+
                 <a class="card-link d-flex justify-content-center gap-1"><i
                         class="bi bi-chat reply-reply-btn" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}"></i></a>
                 <p>{{ $reply->created_at->format('d/m/Y') }}</p>
             </div>
             <div class="reply-container d-flex flex-column mt-2 d-none" data-comment-id="{{ $comment->id }}" data-reply-id="{{$reply->id}}">
-                <textarea rows="5" name="reply" class="reply p-2" data-comment-id="{{ $comment->id }}" data-reply-id="{{$reply->id}}"></textarea>
+                <textarea rows="5" name="reply" class="reply p-2" data-comment-id="{{ $comment->id }}" data-reply-id="{{$reply->id}}" maxlength="100"></textarea>
                 <div class="d-flex gap-3 justify-content-end mt-2">
                     <button type="button" class="btn btn-cancel reply-cancel">Cancel</button>
                     <button type="button" class="btn btn-post reply-save" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}">Save</button>
@@ -34,14 +34,14 @@
                 <a class="card-link d-flex justify-content-center gap-1 reply-like"><i
                         class="bi bi-heart reply-like-btn" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}"></i>
                     <span class="like-count">{{ $reply->userLikes->count() }}</span></a>
-    
-    
+
+
                 <a class="card-link d-flex justify-content-center gap-1"><i
                         class="bi bi-chat reply-reply-btn" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}"></i></a>
                 <p>{{ $reply->created_at->format('d/m/Y') }}</p>
             </div>
             <div class="reply-container d-flex flex-column mt-2 d-none" data-comment-id="{{ $comment->id }}" data-reply-id="{{$reply->id}}">
-                <textarea rows="5" name="reply" class="p-2 reply" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}"></textarea>
+                <textarea rows="5" name="reply" class="p-2 reply" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}" maxlength="100"></textarea>
                 <div class="d-flex gap-3 justify-content-end mt-2">
                     <button type="button" class="btn btn-cancel reply-cancel">Cancel</button>
                     <button type="button" class="btn btn-post reply-save" data-comment-id="{{ $comment->id }}"  data-reply-id="{{$reply->id}}">Save</button>

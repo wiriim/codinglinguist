@@ -18,7 +18,7 @@ class AuthController extends Controller
         return view('sign-up');
     }
 
-    public function signIn(Request $request){  
+    public function signIn(Request $request){
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
@@ -28,7 +28,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             if (Gate::allows('user-banned')) {
                 return back()->withErrors(['credential' => 'You are banned.']);
-            } 
+            }
             if($credentials['username'] == 'admin'){
                 return redirect()->route('admin-ban');
             }
@@ -39,9 +39,9 @@ class AuthController extends Controller
 
     public function signUp(Request $request){
         $credentials = $request->validate([
-            'username' => ['required'],
+            'username' => 'required|min:5',
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required'],
+            'password' => 'required|min:8',
             'confPassword' => ['required'],
         ]);
 
@@ -68,11 +68,11 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
- 
+
         $request->session()->invalidate();
-    
+
         $request->session()->regenerateToken();
-    
+
         return redirect('/');
     }
 }

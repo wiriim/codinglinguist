@@ -23,7 +23,7 @@
             <p>{{ $comment->created_at->format('d/m/Y') }}</p>
         </div>
         <div class="reply-container d-flex flex-column mt-2 d-none" data-comment-id="{{ $comment->id }}">
-            <textarea rows="5" name="reply" class="reply p-2" data-comment-id="{{ $comment->id }}"></textarea>
+            <textarea rows="5" name="reply" class="reply p-2" data-comment-id="{{ $comment->id }}" maxlength="100"></textarea>
             <div class="d-flex gap-3 justify-content-end mt-2">
                 <button type="button" class="btn btn-cancel reply-cancel">Cancel</button>
                 <button type="button" class="btn btn-post reply-save" data-comment-id="{{ $comment->id }}">Save</button>
@@ -42,7 +42,7 @@
             <p>{{ $comment->created_at->format('d/m/Y') }}</p>
         </div>
         <div class="reply-container d-flex flex-column mt-2 d-none" data-comment-id="{{ $comment->id }}">
-            <textarea rows="5" name="reply" class="p-2 reply" data-comment-id="{{ $comment->id }}"></textarea>
+            <textarea rows="5" name="reply" class="p-2 reply" data-comment-id="{{ $comment->id }}" maxlength="100"></textarea>
             <div class="d-flex gap-3 justify-content-end mt-2">
                 <button type="button" class="btn btn-cancel reply-cancel">Cancel</button>
                 <button type="button" class="btn btn-post reply-save" data-comment-id="{{ $comment->id }}">Save</button>
