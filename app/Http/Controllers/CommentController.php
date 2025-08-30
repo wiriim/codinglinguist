@@ -11,10 +11,13 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function createComment(Forum $post, Request $request){
+        $validated = $request->validate([
+            'comment' => 'required|max:200',
+        ]);
         $comment = new Comment();
         $comment->user_id = auth()->user()->id;
         $comment->forum_id = $post->id;
-        $comment->content = $request['comment'];
+        $comment->content = $validated['comment'];
         $comment->save();
         return back()->with('success','Comment Added');
     }

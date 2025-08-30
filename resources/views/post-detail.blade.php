@@ -52,14 +52,16 @@
                 @csrf
                 <div class="comment-container d-flex flex-column">
                     <label for="comment" class="form-label">Comment</label>
-                    <textarea name="comment" id="comment" rows="5" name="comment" class="p-2" required></textarea>
+                    <textarea name="comment" id="comment" rows="5" class="p-2" required>{{ old('comment') }}</textarea>
+                    @error('comment')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 @if (Auth::check())
                     <button type="submit" class="btn btn-post mt-2">Post</button>
                 @else
                     <a href="{{ route('sign-in') }}" class="btn btn-post mt-2">Comment</a>
                 @endif
-
             </form>
 
 

@@ -51,13 +51,13 @@ class ForumController extends Controller
         }
         return view('post-detail', ['post' => $post, 'comments' => $comments, 'filter'=>$filter]);
     }
-    
+
     public function getEditPostPage(Forum $post)
     {
         $post = Forum::find($post->id);
         if (! Gate::allows('admin-access') && $post->user->id != Auth::id()) {
             abort(403);
-        } 
+        }
         $categories = Category::all();
         $categoryTypes = CategoryType::all();
         return view('edit-post', ['post' => $post, 'categories' => $categories, 'categoryTypes' => $categoryTypes]);
@@ -66,11 +66,11 @@ class ForumController extends Controller
     public function editPost(Request $request, Forum $post)
     {
         $validated = $request->validate([
-            'postTitle' => 'required',
+            'postTitle' => 'required|min:5',
             'programmingLanguage' => 'required',
             'postType' => 'required',
             'image' => 'image|nullable',
-            'content' => 'required',
+            'content' => 'required|min:5|max:1000',
         ]);
         $post = Forum::find($post->id);
         $post->title = $validated["postTitle"];
@@ -89,7 +89,7 @@ class ForumController extends Controller
         $post = Forum::find($post->id);
         if (! Gate::allows('admin-access') && $post->user->id != Auth::id()) {
             abort(403);
-        } 
+        }
         if ($post->image !== null){
             Storage::disk('public')->delete($post->image);
         }
@@ -100,7 +100,7 @@ class ForumController extends Controller
     public function getAllPostPage()
     {
         $posts = Forum::orderby('created_at', 'desc')->paginate(10);
-        
+
         $logs = collect();
         if (Auth::check()){
             $user = Auth::user();
@@ -126,11 +126,11 @@ class ForumController extends Controller
     public function createPost(Request $request)
     {
         $validated = $request->validate([
-            'postTitle' => 'required',
+            'postTitle' => 'required|min:5',
             'programmingLanguage' => 'required',
             'postType' => 'required',
             'image' => 'image|nullable',
-            'content' => 'required',
+            'content' => 'required|min:5|max:1000',
         ]);
 
         $post = new Forum();
@@ -185,7 +185,7 @@ class ForumController extends Controller
     public function filterPosts(string $programmingLanguage, string $postType, string $sortBy, string $search = ""){
 
         $posts = Forum::all();
-        
+
         if (Str::upper($programmingLanguage) !== "ALL"){
             $posts = $posts->filter(function($post) use($programmingLanguage) {
                 return $post->category->category_name == $programmingLanguage;
@@ -202,7 +202,7 @@ class ForumController extends Controller
         foreach($posts as $post){
             array_push($ids, $post->id);
         }
-        
+
         if (Str::upper($sortBy) === "NEW"){
             $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'desc')->where('title', 'LIKE', '%'. $search.'%')->paginate(6);
         }

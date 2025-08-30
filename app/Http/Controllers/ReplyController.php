@@ -10,10 +10,13 @@ use Illuminate\Http\Request;
 class ReplyController extends Controller
 {
     public function createReply(string $commentId, Request $request){
+        $validated = $request->validate([
+            'content' => 'required|max:100',
+        ]);
         $reply = new Reply();
         $reply->user_id = auth()->user()->id;
         $reply->comment_id = $commentId;
-        $reply->content = $request['content'];
+        $reply->content = $validated['content'];
         $reply->save();
         return response()->json([
             'success' => true,
