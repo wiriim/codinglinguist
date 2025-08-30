@@ -77,6 +77,14 @@ class ForumController extends Controller
         $post->content = $validated["content"];
         $post->category_id = $validated['programmingLanguage'];
         $post->category_type_id = $validated['postType'];
+        if ($request->has('image')){
+            $path = $request->file('image')->store('images', 'public');
+            $validated['image'] = $path;
+            if ($post->image !== null){
+                Storage::disk('public')->delete($post->image);
+            }
+            $post->image = $validated['image'];
+        }
         $post->save();
 
         $comments = Comment::where('forum_id', $post->id)->get();
@@ -132,7 +140,6 @@ class ForumController extends Controller
             'image' => 'image|nullable',
             'content' => 'required|min:5|max:1000',
         ]);
-
         $post = new Forum();
         $post->user_id = Auth::user()->id;
         $post->category_id = $validated['programmingLanguage'];
