@@ -50,6 +50,7 @@ class UserController extends Controller
             }
             $user->image = $validate['profilePicture'];
         }
+        $user->password = $credentials['newPassword'];
         $user->save();
         return redirect()->route('profile', Auth::id());
 
