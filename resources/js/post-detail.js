@@ -18,6 +18,8 @@ let replyDislikeBtns = document.querySelectorAll(".reply-dislike-btn");
 let commentFilterSelect = document.querySelector('.comment-filter');
 let postLikeBtns = document.querySelectorAll(".post-like-btn");
 let postDislikeBtns = document.querySelectorAll(".post-dislike-btn");
+let commentEditBtns = document.querySelectorAll('.comment-edit-btn');
+let replyEditBtns = document.querySelectorAll('.reply-edit-btn');
 
 export function loadPostDetailPage(){
     username = document.querySelector('#username').value;
@@ -221,7 +223,146 @@ function refreshReplyBtns(){
             }
         }
     });
+
+    // Comment Edit
+    commentEditBtns.forEach((element) => {
+        element.addEventListener('click', function eventHandler1(e){
+            let elementTA = e.target.parentElement.parentElement.nextElementSibling;
+            if (elementTA.disabled){
+                elementTA.disabled = false;
+                elementTA.style.background = "white";
+                elementTA.style.border = "1px solid black";
+                elementTA.style.borderRadius = "8px";
+                elementTA.style.padding = "0.5rem";
+                elementTA.style.height = "";
+                elementTA.style.height = elementTA.scrollHeight + 10 + "px";
+                let editCommentBtn = document.createElement('button');
+                editCommentBtn.textContent = 'Edit';
+                editCommentBtn.classList.add('btn', 'btn-post');
+                let cancelEditCommentBtn = document.createElement('button');
+                cancelEditCommentBtn.textContent = 'Cancel';
+                cancelEditCommentBtn.classList.add('btn', 'btn-cancel', 'me-3');
+                cancelEditCommentBtn.addEventListener('click', ()=>{
+                    editCommentBtn.remove();
+                    elementTA.disabled = true;
+                    elementTA.style.background = "none";
+                    elementTA.style.padding = "0";
+                    elementTA.style.border = "none";
+                    elementTA.style.borderRadius = "0";
+                    elementTA.style.height = "";
+                    elementTA.style.height = elementTA.scrollHeight + "px";
+                    cancelEditCommentBtn.remove();
+                });
+                editCommentBtn.addEventListener('click', async ()=>{
+                    let result = await editComment(elementTA.dataset.commentId, elementTA.value);
+                    if (result){
+                        cancelEditCommentBtn.dispatchEvent(new Event('click'));
+                    }
+                    else{
+                        elementTA.style.border = "1px solid red";
+                        editCommentBtn.textContent += " MAX: 200 CHAR"
+                    }
+                });
+    
+                elementTA.insertAdjacentElement('afterend', editCommentBtn);
+                elementTA.insertAdjacentElement('afterend', cancelEditCommentBtn);
+            }
+        });
+    });
+
+    // Reply Edit
+    replyEditBtns.forEach((element) => {
+        element.addEventListener('click', function eventHandler1(e){
+            let elementTA = e.target.parentElement.parentElement.nextElementSibling;
+            if (elementTA.disabled){
+                elementTA.disabled = false;
+                elementTA.style.background = "white";
+                elementTA.style.border = "1px solid black";
+                elementTA.style.borderRadius = "8px";
+                elementTA.style.padding = "0.5rem";
+                elementTA.style.height = "";
+                elementTA.style.height = elementTA.scrollHeight + 10 + "px";
+                let editReplyBtn = document.createElement('button');
+                editReplyBtn.textContent = 'Edit';
+                editReplyBtn.classList.add('btn', 'btn-post');
+                let cancelEditReplyBtn = document.createElement('button');
+                cancelEditReplyBtn.textContent = 'Cancel';
+                cancelEditReplyBtn.classList.add('btn', 'btn-cancel', 'me-3');
+                cancelEditReplyBtn.addEventListener('click', ()=>{
+                    editReplyBtn.remove();
+                    elementTA.disabled = true;
+                    elementTA.style.background = "none";
+                    elementTA.style.padding = "0";
+                    elementTA.style.border = "none";
+                    elementTA.style.borderRadius = "0";
+                    elementTA.style.height = "";
+                    elementTA.style.height = elementTA.scrollHeight + "px";
+                    cancelEditReplyBtn.remove();
+                });
+                editReplyBtn.addEventListener('click', async ()=>{
+                    let result = await editReply(elementTA.dataset.replyId, elementTA.value);
+                    if (result){
+                        cancelEditReplyBtn.dispatchEvent(new Event('click'));
+                    }
+                    else{
+                        elementTA.style.border = "1px solid red";
+                        editReplyBtn.textContent += " MAX: 200 CHAR"
+                    }
+                });
+    
+                elementTA.insertAdjacentElement('afterend', editReplyBtn);
+                elementTA.insertAdjacentElement('afterend', cancelEditReplyBtn);
+            }
+        });
+    });
 }
+//Edit Comment
+async function editComment(commentId, content){
+    try{
+        const response = await fetch(`/posts/comment/edit/${commentId}`, {
+            method: 'POST',
+            body: JSON.stringify({content: content}),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
+            }
+        });
+        if (!response.ok){
+            throw new Error (`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        return result.success;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+//Edit Reply
+async function editReply(replyId, content){
+    try{
+        const response = await fetch(`/posts/reply/edit/${replyId}`, {
+            method: 'POST',
+            body: JSON.stringify({content: content}),
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
+            }
+        });
+        if (!response.ok){
+            throw new Error (`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        return result.success;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
 
 // Reply - Reply stuff
 async function saveReply(commentId, replyId){

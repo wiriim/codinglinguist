@@ -59,4 +59,20 @@ class ReplyController extends Controller
             'likes' => $likes
         ]);
     }
+
+    public function editReply(string $reply, Request $request)
+    {
+        $validated = $request->validate([
+            'content' => 'max:200',
+        ]);
+        $reply = Reply::find($reply);
+        $reply->content = $validated['content'];
+        $reply->updated_at = now();
+        $reply->save();
+        
+        return response()->json([
+            'success' => true,
+            'replyId' => $reply->id
+        ]);
+    }
 }

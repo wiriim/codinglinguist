@@ -65,6 +65,7 @@ Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->nam
 // Posts Comments
 Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])->name('comment');
 Route::get('/posts/comment/delete/{comment}', [CommentController::class,'deleteComment'])->name('comment-delete');
+Route::post('/posts/comment/edit/{comment}', [CommentController::class,'editComment'])->name('comment-edit');
 
 Route::get('/posts/comment/like/{comment}', [CommentController::class,'likeComment'])->name('comment-like');
 Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislikeComment'])->name('comment-dislike');
@@ -72,6 +73,7 @@ Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislik
 // Posts Replies
 Route::post('/posts/reply/{comment}', [ReplyController::class,'createReply'])->name('reply-create');
 Route::get('/posts/reply/delete/{reply}', [ReplyController::class,'deleteReply'])->name('reply-delete');
+Route::post('/posts/reply/edit/{reply}', [ReplyController::class,'editReply'])->name('reply-edit');
 
 Route::get('/posts/reply/like/{reply}', [ReplyController::class,'likeReply'])->name('reply-like');
 Route::get('/posts/reply/dislike/{reply}', [ReplyController::class,'dislikeReply'])->name('reply-dislike');

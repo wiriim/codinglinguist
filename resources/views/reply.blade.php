@@ -2,13 +2,16 @@
     <div class="d-flex gap-2 align-items-center justify-content-between mt-2">
         @if (Auth::check() && ($reply->user->id == Auth::user()->id || Auth::id() == 1))
             <p class="fs-5">{{ $reply->user->username }}</p>
-            <a href="{{route('reply-delete', $reply->id)}}" class="card-link"><i class="bi bi-trash"></i></a>
+            <div class="d-flex gap-3">
+                <i class="bi bi-pencil-square reply-edit-btn"></i>
+                <a href="{{route('reply-delete', $reply->id)}}" class="card-link"><i class="bi bi-trash"></i></a>
+            </div>
         @else
             <p class="fs-5">{{ $reply->user->username }}</p>
         @endif
     </div>
 
-    <textarea class="mt-1 comment-reply-content" disabled>{{ $reply->content }}</textarea>
+    <textarea class="mt-1 comment-reply-content" disabled data-reply-id="{{$reply->id}}">{{ $reply->content }}</textarea>
     <div class="d-flex mt-2 flex-column">
         @if (Auth::check() && Auth::user()->replyLikes()->where('reply_id', $reply->id)->exists())
             <div class="reply-btn-container d-flex gap-3">

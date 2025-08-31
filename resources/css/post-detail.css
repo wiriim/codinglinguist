@@ -39,7 +39,8 @@ textarea.reply{
 
 .comment-like-btn,
 .comment-dislike-btn,
-.comment-reply-btn{
+.comment-reply-btn,
+.comment-edit-btn{
     cursor: pointer;
 }
 
@@ -50,7 +51,8 @@ textarea.reply{
  
 .reply-like-btn,
 .reply-dislike-btn,
-.reply-reply-btn{
+.reply-reply-btn,
+.reply-edit-btn{
     cursor: pointer;
 }
 

@@ -1,13 +1,16 @@
 <div class="d-flex gap-2 align-items-center justify-content-between">
     @if (Auth::check() && ($comment->user->id == Auth::user()->id || Auth::id() == 1))
         <p class="fs-5">{{ $comment->user->username }}</p>
-        <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
+        <div class="d-flex gap-3">
+            <i class="bi bi-pencil-square comment-edit-btn"></i>
+            <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
+        </div>
     @else
         <p class="fs-5">{{ $comment->user->username }}</p>
     @endif
 </div>
 
-<textarea class="mt-1 comment-reply-content" disabled>{{ $comment->content }}</textarea>
+<textarea class="mt-1 comment-reply-content" disabled data-comment-id="{{ $comment->id }}">{{ $comment->content }}</textarea>
 <div class="d-flex mt-2 flex-column">
     @if (Auth::check() && Auth::user()->commentLikes()->where('comment_id', $comment->id)->exists())
         <div class="comment-btn-container d-flex gap-3">

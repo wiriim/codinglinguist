@@ -56,4 +56,20 @@ class CommentController extends Controller
             'likes' => $likes
         ]);
     }
+
+    public function editComment(string $comment, Request $request)
+    {
+        $validated = $request->validate([
+            'content' => 'max:200',
+        ]);
+        $comment = Comment::find($comment);
+        $comment->content = $validated['content'];
+        $comment->updated_at = now();
+        $comment->save();
+        
+        return response()->json([
+            'success' => true,
+            'commentId' => $comment->id
+        ]);
+    }
 }
