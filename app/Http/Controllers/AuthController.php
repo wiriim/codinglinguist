@@ -27,6 +27,9 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Gate::allows('user-banned')) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
                 return back()->withErrors(['credential' => 'You are banned.']);
             }
             if($credentials['username'] == 'admin'){
