@@ -229,7 +229,7 @@ class JavaQuestionSeeder extends Seeder
             'B. To organize related tasks',
             'B. Yes',
             'showMenu',
-            "Hello\nBye",
+            "Hello\\nBye",
             
             // Level 20 has no questions.
         ];

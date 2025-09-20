@@ -36,6 +36,11 @@
 
                 @if ($level->number == 10 || $level->number == 15 || $level->number == 20)
                     @include('level-compiler')
+                @else
+                    @foreach ($level->questions as $qst)
+                        <a href="{{ route('question', ['course' => $level->course->id, 'level' => $level->id, 'question' => $qst->id]) }}" class="btn-success start-level" id="btn-start-level-continue">Continue</a>    
+                        @break
+                    @endforeach 
                 @endif
                 <div class="alert alert-success mt-2 w-100 d-none" id="successAlert">Success</div>
                 <div class="alert alert-danger mt-2 w-100 d-none" id="dangerAlert">Incorrect, please check your code and try again</div>

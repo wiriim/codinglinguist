@@ -1,0 +1,28 @@
+.admin-unban-page,
+.admin-ban-page{
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color: #E8EFFF;
+}
+
+.admin-unban-page table th,
+.admin-ban-container table th{
+    text-align: center;
+    border-bottom: 1px solid black;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+.admin-unban-container table td,
+.admin-ban-container table td{
+    text-align: center;
+    border-bottom: 1px solid black;
+    height: 60px;
+}
+
+.admin-action-btn{
+    background-color: red;
+    border-radius: 10px;
+    height: 50px;
+    color: white;
+    padding: 0 1rem;
+}

@@ -14,7 +14,11 @@
                     <div class="profile-info d-flex flex-column justify-content-between">
                         <h3 class="profile-name fw-bold">{{$user->username}} | {{$user->point}} Points</h3>
                         <h5 class="profile-name">{{$user->email}}</h5>
-                        <img src="{{asset('images/medalGold.png')}}" alt="goldmedal" width="40">
+                        <div class="profile-badges">
+                            @foreach ($user->badges as $badge)
+                                <img data-badge-name="{{$badge->badge_name}}" class="profile-badge" alt="{{$badge->badge_name}}" width="40">
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 @if (Auth::id() == $user->id)

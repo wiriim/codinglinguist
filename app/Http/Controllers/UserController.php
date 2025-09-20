@@ -28,11 +28,11 @@ class UserController extends Controller
 
     public function editProfile(Request $request){
         $credentials = $request->validate([
-            'username' => ['required'],
+            'username' => 'required|min:5',
             'email' => ['required', 'email'],
             'profilePicture' => ['image', 'nullable'],
             'oldPassword' => ['required'],
-            'newPassword' => ['required'],
+            'newPassword' => 'required|min:8',
         ]);
 
         if (!password_verify($credentials['oldPassword'],Auth::user()->password)){
@@ -50,6 +50,7 @@ class UserController extends Controller
             }
             $user->image = $validate['profilePicture'];
         }
+        $user->password = $credentials['newPassword'];
         $user->save();
         return redirect()->route('profile', Auth::id());
 

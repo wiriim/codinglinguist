@@ -13,6 +13,8 @@
 @import 'question';
 @import 'profile';
 @import 'leaderboard';
+@import 'about-us';
+@import 'admin';
 
 /* Resets */
 *{

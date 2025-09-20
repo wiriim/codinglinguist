@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
@@ -14,7 +15,15 @@ Route::redirect('/', '/home');
 
 //Home stuff
 Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
+Route::get('/about-us', [HomeController::class, 'getAboutUsPage'])->name('about-us');
 Route::get('/leaderboard', [HomeController::class, 'getLeaderboardPage'])->name('leaderboard');
+
+// Admin
+Route::get('/admin-ban', [AdminController::class, 'getAdminBanPage'])->name('admin-ban');
+Route::get('/admin-unban', [AdminController::class, 'getAdminUnbanPage'])->name('admin-unban');
+
+Route::get('/ban/{user}', [AdminController::class, 'ban'])->name('ban');
+Route::get('/unban/{user}', [AdminController::class, 'unban'])->name('unban');
 
 // Profile / User
 Route::get('/profile/{user}', [UserController::class, 'getProfilePage'])->name('profile');
@@ -47,6 +56,8 @@ Route::get('/delete-posts/{post}', [ForumController::class,'deletePost'])->name(
 Route::get('/posts/{post}', [ForumController::class,'getPostPage'])->name('post-detail');
 Route::get('/posts/{post}/comment/{filter}', [ForumController::class,'getPostPageCommentFilter'])->name('post-detail-comment-filter');
 
+Route::get('/clearLog', [ForumController::class,'clearLogs'])->name('clear-logs');
+
 // Posts Likes
 Route::get('/posts/like/{post}', [ForumController::class,'likePost'])->name('post-like');
 Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->name('post-dislike');
@@ -54,6 +65,7 @@ Route::get('/posts/dislike/{post}', [ForumController::class,'dislikePost'])->nam
 // Posts Comments
 Route::post('/posts/comment/{post}', [CommentController::class,'createComment'])->name('comment');
 Route::get('/posts/comment/delete/{comment}', [CommentController::class,'deleteComment'])->name('comment-delete');
+Route::post('/posts/comment/edit/{comment}', [CommentController::class,'editComment'])->name('comment-edit');
 
 Route::get('/posts/comment/like/{comment}', [CommentController::class,'likeComment'])->name('comment-like');
 Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislikeComment'])->name('comment-dislike');
@@ -61,6 +73,7 @@ Route::get('/posts/comment/dislike/{comment}', [CommentController::class,'dislik
 // Posts Replies
 Route::post('/posts/reply/{comment}', [ReplyController::class,'createReply'])->name('reply-create');
 Route::get('/posts/reply/delete/{reply}', [ReplyController::class,'deleteReply'])->name('reply-delete');
+Route::post('/posts/reply/edit/{reply}', [ReplyController::class,'editReply'])->name('reply-edit');
 
 Route::get('/posts/reply/like/{reply}', [ReplyController::class,'likeReply'])->name('reply-like');
 Route::get('/posts/reply/dislike/{reply}', [ReplyController::class,'dislikeReply'])->name('reply-dislike');

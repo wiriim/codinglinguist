@@ -64,7 +64,7 @@
     background-color: #D2E1F2;
     border-radius: 8px;
     padding: 20px 10px;
-    height: 700px;
+    height: 1520px;
 }
 
 .posts-recent{
@@ -100,4 +100,19 @@
 
 .posts-search-btn{
     border: none;
+}
+
+.log-title{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.log-category{
+    height: 15px;
+    font-size: 10px;
+    margin: 5px 0;
+}
+.log-content{
+    font-size: .7rem;
+    max-height: 70px;
+    overflow: hidden;
 }

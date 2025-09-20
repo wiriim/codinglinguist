@@ -5,21 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Forum;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
     public function createComment(Forum $post, Request $request){
+        $validated = $request->validate([
+            'comment' => 'required|max:200',
+        ]);
         $comment = new Comment();
         $comment->user_id = auth()->user()->id;
         $comment->forum_id = $post->id;
-        $comment->content = $request['comment'];
+        $comment->content = $validated['comment'];
         $comment->save();
         return back()->with('success','Comment Added');
     }
 
     public function deleteComment(Comment $comment){
         $comment = Comment::find($comment->id);
+        if (! Gate::allows('admin-access') && $comment->user->id != Auth::id()) {
+            abort(403);
+        }
         $comment->delete();
         return back()->with('success','Comment Deleted');
     }
@@ -47,6 +54,22 @@ class CommentController extends Controller
         return response()->json([
             'success' => true,
             'likes' => $likes
+        ]);
+    }
+
+    public function editComment(string $comment, Request $request)
+    {
+        $validated = $request->validate([
+            'content' => 'max:200',
+        ]);
+        $comment = Comment::find($comment);
+        $comment->content = $validated['content'];
+        $comment->updated_at = now();
+        $comment->save();
+        
+        return response()->json([
+            'success' => true,
+            'commentId' => $comment->id
         ]);
     }
 }
