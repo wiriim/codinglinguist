@@ -21,7 +21,7 @@ class HomeController extends Controller
     }
 
     public function getLeaderboard(){
-        $users = User::orderBy('point', 'desc')->paginate(10);
+        $users = User::orderBy('point', 'desc')->where('point', '>', 0)->paginate(10);
         return $users;
     }
 }
