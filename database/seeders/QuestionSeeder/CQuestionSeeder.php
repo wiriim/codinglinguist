@@ -1374,11 +1374,11 @@ class CQuestionSeeder extends Seeder
             <input type="text" class="question-input">'
         ];
 
-        $answers = ['C. printf("Hello, World!");', 'printf', 'B. ;', '<stdio.h>', 
-        'B. float pi = 3.14;', 'char', 'C. int', '6.1', 
+        $answers = ['C. printf("Hello, World!");', 'printf', 'B. ;', '<stdio.h>',
+        'B. float pi = 3.14;', 'char', 'C. int', '6.1',
         'C. scanf("%f", &temperature);', 'scanf, &age', 'B. It stores input into variables using pointers', '&gender',
-        'B. #define PI 3.14', 'C. They cannot be modified once assigned.', 'const, 50', 'MAX', 
-        'B. 3', 'B. *', '/', '3',
+        'B. #define PI 3.14', 'C. They cannot be modified once assigned.', 'const, 50', 'MAX',
+        'B. 2', 'B. *', '/', '3',
         'C. 0', 'B. ==', '!=', '1',
         'B. &&', 'A. 1', '>, &&, !=', '0',
         'A. 12', 'B. x %= 5;', '-=', '5',
