@@ -1,8 +1,13 @@
 <div class="d-flex gap-2 align-items-center justify-content-between">
-    @if (Auth::check() && ($comment->user->id == Auth::user()->id || Auth::id() == 1))
+    @if (Auth::check() && $comment->user->id == Auth::user()->id)
         <p class="fs-5">{{ $comment->user->username }}</p>
         <div class="d-flex gap-3">
             <i class="bi bi-pencil-square comment-edit-btn"></i>
+            <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
+        </div>
+    @elseif (Auth::check() && Auth::id() == 1)
+        <p class="fs-5">{{ $comment->user->username }}</p>
+        <div class="d-flex gap-3">
             <a href="{{ route('comment-delete', $comment) }}" class="card-link"><i class="bi bi-trash"></i></a>
         </div>
     @else

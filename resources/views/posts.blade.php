@@ -90,13 +90,23 @@
                                     </div>
                                 </div>
 
-                                @if (Auth::check() && ($post->user->id == Auth::user()->id || Auth::id() == 1))
+                                @if (Auth::check() && $post->user->id == Auth::user()->id)
                                     <div class="dropdown">
                                         <i class="bi bi-three-dots-vertical post-dropdown" data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu bg-white">
                                             <li><a class="dropdown-item" href="{{ route('post-edit', $post) }}"><i
                                                         class="bi bi-pen-fill"></i>
                                                     Update</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('post-delete', $post) }}"><i
+                                                        class="bi bi-trash3"></i>
+                                                    Delete</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @elseif (Auth::check() && Auth::id() == 1)
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical post-dropdown" data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu bg-white">
                                             <li><a class="dropdown-item" href="{{ route('post-delete', $post) }}"><i
                                                         class="bi bi-trash3"></i>
                                                     Delete</a>

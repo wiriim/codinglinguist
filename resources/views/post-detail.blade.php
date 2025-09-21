@@ -39,8 +39,10 @@
                 @endif
 
                 <div class="d-flex gap-2">
-                    @if (Auth::check() && ($post->user->id == Auth::user()->id || Auth::id() == 1))
+                    @if (Auth::check() && $post->user->id == Auth::user()->id)
                         <a href="{{ route('post-edit', $post) }}" class="card-link"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ route('post-delete', $post) }}" class="card-link"><i class="bi bi-trash"></i></a>
+                    @elseif (Auth::check() && Auth::id() == 1)
                         <a href="{{ route('post-delete', $post) }}" class="card-link"><i class="bi bi-trash"></i></a>
                     @endif
                 </div>
