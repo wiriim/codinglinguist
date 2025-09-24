@@ -18,7 +18,7 @@ class JavaQuestionSeeder extends Seeder
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">What is the correct method to print something in Java?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. echo "Hello"</li><li class="question-choice">B. print("Hello");</li><li class="question-choice">C. System.out.println("Hello");</li><li class="question-choice">D. cout << "Hello";</li></ul></div>',
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">Which part of this Java program is the entry point?</div><div class="level-code-input">public static void main(String[] args)</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. System.out.println</li><li class="question-choice">B. main</li><li class="question-choice">C. public class</li><li class="question-choice">D. args</li></ul></div>',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fill in the missing line to print "Java is fun!"</div><div class="level-code-input">public class Main {<br>&nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________________________<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
-            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fix the error in this code:</div><div class="level-code-input">public class Main {<br>&nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello world")<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
+            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fix the error line in this code (example: `age = 21` fixed to `age = 21;`):</div><div class="level-code-input">public class Main {<br>&nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello world")<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
 
             // Level 2: Variables and Data Types
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">Which is the correct way to declare an integer variable in Java?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. int x = 5;</li><li class="question-choice">B. integer x = 5;</li><li class="question-choice">C. x = 5;</li><li class="question-choice">D. int = 5;</li></ul></div>',
@@ -119,7 +119,7 @@ class JavaQuestionSeeder extends Seeder
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">Can a `void` method call another method?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. No</li><li class="question-choice">B. Yes</li><li class="question-choice">C. Only if it returns a value</li><li class="question-choice">D. Only if it has no parameters</li></ul></div>',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fill in the blank to call `showMenu()` from `main`:</div><div class="level-code-input">public static void showMenu() {<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Menu");<br>}<br><br>public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;_______();<br>}</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">What is the output?</div><div class="level-code-input">public static void hello() {<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello");<br>}<br><br>public static void bye() {<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Bye");<br>}<br><br>public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;hello();<br>&nbsp;&nbsp;&nbsp;&nbsp;bye();<br>}</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
-            
+
             // Level 20 is a boss level and has no questions in the document.
         ];
 
@@ -154,7 +154,7 @@ class JavaQuestionSeeder extends Seeder
             'B. average = (double) total / subjects;',
             'double average = (double) total / count;',
             '3.5',
-            
+
             // Level 6
             'C. Java gives a compile-time error',
             'C. final double PI = 3.14;',
@@ -178,7 +178,7 @@ class JavaQuestionSeeder extends Seeder
             'B. if (x == 5)',
             '&&',
             'Fail',
-            
+
             // Level 10 has no questions.
 
             // Level 11
@@ -204,7 +204,7 @@ class JavaQuestionSeeder extends Seeder
             'B. continue',
             'continue',
             '0 1 2',
-            
+
             // Level 15 has no questions.
 
             // Level 16
@@ -230,7 +230,7 @@ class JavaQuestionSeeder extends Seeder
             'B. Yes',
             'showMenu',
             "Hello\\nBye",
-            
+
             // Level 20 has no questions.
         ];
 
