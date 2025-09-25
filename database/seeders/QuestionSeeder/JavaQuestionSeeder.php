@@ -48,7 +48,7 @@ class JavaQuestionSeeder extends Seeder
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">What happens if you try to change a `final` variable?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. Java ignores the change</li><li class="question-choice">B. Java gives a runtime error</li><li class="question-choice">C. Java gives a compile-time error</li><li class="question-choice">D. It still changes the value</li></ul></div>',
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">Which of the following is a correctly declared constant?</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. final int pi = 3.14;</li><li class="question-choice">B. int PI = 3.14;</li><li class="question-choice">C. final double PI = 3.14;</li><li class="question-choice">D. const double PI = 3.14;</li></ul></div>',
             '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fill in the blank to declare a constant maximum age:</div><div class="level-code-input">_____ int MAX_AGE = 65;</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
-            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Fix this code so that it doesn’t give an error:</div><div class="level-code-input">final int LIMIT = 10;<br>LIMIT = 20;<br>System.out.println(LIMIT);</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
+            '<div class="question-header">Complete the Code</div><div class="question-sub-header">Prompt:</div><div class="question-content">Type in the line of code that should be removed:</div><div class="level-code-input">final int LIMIT = 10;<br>LIMIT = 20;<br>System.out.println(LIMIT);</div><div class="question-sub-header">Answer:</div><input type="text" class="question-input">',
 
             // Level 7: Increment and Decrement Operators
             '<div class="question-header">Multiple Choice</div><div class="question-sub-header">Prompt:</div><div class="question-content">What is the result of the following?</div><div class="level-code-input">int i = 3;<br>int x = ++i;<br>System.out.println(x);</div><div class="question-sub-header">Options:</div><div class="question-content"><ul class="question-list"><li class="question-choice">A. 2</li><li class="question-choice">B. 3</li><li class="question-choice">C. 4</li><li class="question-choice">D. Error</li></ul></div>',
@@ -159,7 +159,7 @@ class JavaQuestionSeeder extends Seeder
             'C. Java gives a compile-time error',
             'C. final double PI = 3.14;',
             'final',
-            'final int LIMIT = 10; System.out.println(LIMIT);',
+            'LIMIT = 20;',
 
             // Level 7
             'C. 4',
