@@ -153,13 +153,13 @@ class CourseController extends Controller
         }
 
         $users = $homeController->getLeaderboard();
-        if ($users[0]->point > 0){
+        if ($users->count() > 0 && $users[0]->point > 0){
             $badgeController->addBadge('first_place');
         }
-        if ($users[1]->point > 0){
+        if ($users->count() > 1 && $users[1]->point > 0){
             $badgeController->addBadge('second_place');
         }
-        if ($users[2]->point > 0){
+        if ($users->count() > 2 && $users[2]->point > 0){
             $badgeController->addBadge('third_place');
         }
     }
