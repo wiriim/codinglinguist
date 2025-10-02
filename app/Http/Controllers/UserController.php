@@ -30,13 +30,15 @@ class UserController extends Controller
         $credentials = $request->validate([
             'username' => 'required|min:5',
             'email' => ['required', 'email'],
-            'profilePicture' => ['image', 'nullable'],
-            'oldPassword' => ['required'],
-            'newPassword' => 'required|min:8',
+            'profilePicture' => ['image', 'nullable']
         ]);
 
-        if (!password_verify($credentials['oldPassword'],Auth::user()->password)){
+        if ($request['oldPassword'] != null && 
+            !password_verify($request['oldPassword'],Auth::user()->password)){
             return back()->withErrors(['oldPassword' => 'Password does not match.']);
+        }
+        if ($request['oldPassword'] != null && strlen($request['newPassword']) < 8){
+            return back()->withErrors(['newPassword' => 'Password must be at least 8 characters.']);
         }
 
         $user = Auth::user();
@@ -50,7 +52,9 @@ class UserController extends Controller
             }
             $user->image = $validate['profilePicture'];
         }
-        $user->password = $credentials['newPassword'];
+        if ($request['oldPassword'] != null){
+            $user->password = $request['newPassword'];
+        }
         $user->save();
         return redirect()->route('profile', Auth::id());
 
