@@ -42,7 +42,7 @@ class AuthController extends Controller
 
     public function signUp(Request $request){
         $credentials = $request->validate([
-            'username' => 'required|min:5',
+            'username' => 'required|min:5|unique:users,username',
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => 'required|min:8',
             'confPassword' => ['required'],
