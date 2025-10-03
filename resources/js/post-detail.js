@@ -20,9 +20,11 @@ let postLikeBtns = document.querySelectorAll(".post-like-btn");
 let postDislikeBtns = document.querySelectorAll(".post-dislike-btn");
 let commentEditBtns = document.querySelectorAll('.comment-edit-btn');
 let replyEditBtns = document.querySelectorAll('.reply-edit-btn');
+const user = document.querySelector('#username');
 
 export function loadPostDetailPage(){
-    username = document.querySelector('#username').value;
+    
+    username = user != null ?  document.querySelector('#username').value : null;
 
     commentFilterSelect.addEventListener('change', (e)=>{
         window.location.href = `/posts/${commentFilterSelect.dataset.postId}/comment/${e.target.value}`;
