@@ -5,6 +5,11 @@
         @include('shared.navbar')
 
         <div class="d-flex flex-column align-items-center mt-3">
+            @if (session('status'))
+                <div class="alert alert-danger">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="course-logo">
                 @if ($course->course_name == 'C')
                     <img src="{{ asset('images/C_Programming_Language.png') }}" alt="C_Programming_Language" width="80"

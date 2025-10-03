@@ -84,6 +84,7 @@ Route::get('/course/{course}', [CourseController::class, 'getCoursePage'])->name
 // Level
 Route::get('/course/{course}/level/{level}', [CourseController::class, 'getLevelPage'])->name('level');
 Route::get('/level/answer/{level}', [CourseController::class, 'getBossAnswerInput'])->name('level-answer');
+Route::get('/course/{course}/level/answer/incorrect/{level}', [CourseController::class, 'saveBossAnswerIncorrect'])->name('level-answer');
 Route::get('/level/saveProgress/{level}/{course}', [CourseController::class, 'saveProgress'])->name('save-progress');
 
 // Question

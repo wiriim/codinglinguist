@@ -7,8 +7,11 @@ use App\Models\Level;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\UserLevel;
+use App\Models\UserLevelIncorrect;
 use App\Models\UserQuestion;
+use App\Models\UserQuestionIncorrect;
 use Auth;
+use DB;
 use Gate;
 use Illuminate\Http\Request;
 
@@ -80,9 +83,28 @@ class CourseController extends Controller
             }
             $success = true;
         }
+        else{
+            if(Auth::check()){
+                $uQIncorrect = new UserQuestionIncorrect();
+                $uQIncorrect->user_id = Auth::id();
+                $uQIncorrect->level_id = $level_id;
+                $uQIncorrect->question_id = $question_id;
+                $uQIncorrect->save();
+            }
+        }
 
         if (Auth::check() && UserQuestion::where('level_id', $level_id)->where('user_id', Auth::id())->count() == 4){
             $this->saveProgress($level_id, $course_id);
+            UserQuestionIncorrect::where('level_id', $level_id)->where('user_id', Auth::id())->delete();
+        }
+        if (Auth::check() && UserQuestionIncorrect::where('level_id', $level_id)->where('user_id', Auth::id())->count() >= 5){
+            UserQuestionIncorrect::where('level_id', $level_id)->where('user_id', Auth::id())->delete();
+            UserQuestion::where('level_id', $level_id)->where('user_id', Auth::id())->delete();
+            session()->flash('status', 'Max Attempt Reached. Try Again.');
+            return response()->json([
+                'success' => 'MAX',
+                'url' => route('course', $course_id)
+            ]);
         }
 
         return response()->json([
@@ -173,6 +195,70 @@ class CourseController extends Controller
             'input' => $input
         ]);
     }
+
+    public function saveBossAnswerIncorrect(string $course_id, string $level_id){
+        $success = false;
+        if(Auth::check()){
+            $uQIncorrect = new UserLevelIncorrect();
+            $uQIncorrect->user_id = Auth::id();
+            $uQIncorrect->course_id = $course_id;
+            $uQIncorrect->level_id = $level_id;
+            $uQIncorrect->save();
+            $success = true;
+        }
+        $bossLevel10 = [10, 30, 50];
+        $bossLevel15n20 = [15, 35, 55, 20, 40, 60];
+        $bossLevel10PointReset = 25 * 9; // 225
+        $bossLevel15n20PointReset = 25 * 4; // 100
+        if (Auth::check() && UserLevelIncorrect::where('level_id', $level_id)->where('user_id', Auth::id())->count() >= 7){
+            UserLevelIncorrect::where('level_id', $level_id)->where('user_id', Auth::id())->delete();
+            // Delete all question progress for question-levels before boss until checkpoint (Checkpoint from boss no 10 -> 1, 15 -> 11, 20 -> 16)
+            if (in_array($level_id, $bossLevel10)){ // First boss on level number 10
+                for($i = $level_id; $i >= $level_id-9; $i--){
+                    UserQuestion::where('level_id', $i)->where('user_id', Auth::id())->delete();
+                }
+            }
+            else if (in_array($level_id, $bossLevel15n20)){ // First boss on level number 15 & 20
+                for($i = $level_id; $i >= $level_id-4; $i--){
+                    UserQuestion::where('level_id', $i)->where('user_id', Auth::id())->delete();
+                }
+            }
+
+            // Delete all level progress for levels before boss until checkpoint
+            if (in_array($level_id, $bossLevel10)){ // First boss on level number 10
+                for($i = $level_id; $i >= $level_id-8; $i--){
+                    UserLevel::where('level_id', $i)->where('user_id', Auth::id())->delete();
+                }
+                DB::table('user_level')->where('level_id', $level_id-9)->where('user_id', Auth::id())->update(['status' => 0]);
+            }
+            else if (in_array($level_id, $bossLevel15n20)){ // First boss on level number 15 & 20
+                for($i = $level_id; $i >= $level_id-3; $i--){
+                    UserLevel::where('level_id', $i)->where('user_id', Auth::id())->delete();
+                }
+                DB::table('user_level')->where('level_id', $level_id-4)->where('user_id', Auth::id())->update(['status' => 0]);
+            }
+
+            // Delete all accumulated points for levels before boss until checkpoint
+            $user = Auth::user();
+            if (in_array($level_id, $bossLevel10)){ // First boss on level number 10
+                $user->point -= $bossLevel10PointReset;
+            }
+            else if (in_array($level_id, $bossLevel15n20)){ // First boss on level number 15 & 20
+                $user->point -= $bossLevel15n20PointReset;
+            }
+            $user->save();
+
+            session()->flash('status', 'Boss Max Attempt Reached. Try Again From Checkpoint.');
+            return response()->json([
+                'success' => 'MAX',
+                'url' => route('course', $course_id)
+            ]);
+        }
+        return response()->json([
+            'success' => $success,
+        ]);
+    }
+
     // Private Functions
     private function getCourse(string $course_id){
         $course = Course::find($course_id);

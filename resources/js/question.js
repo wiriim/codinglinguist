@@ -86,7 +86,9 @@ export function loadQuestionPage(){
             }
     
             const result = await response.json();
-            if (result.success) {
+            if (result.success == "MAX"){
+                window.location.href = result.url
+            } else if (result.success) {
                 showSuccess();
             } else {
                 showFail();

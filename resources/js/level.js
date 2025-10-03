@@ -86,6 +86,7 @@ function showResult(){
         successAlert.classList.add('d-none');
         continueBtn.classList.add('d-none');
         dangerAlert.classList.remove('d-none');
+        saveIncorrectAnswer();
     }
 }
 
@@ -159,6 +160,28 @@ async function getAnswerInput(){
         const result = await response.json();
         answer = result.answer.replace(/\\n/g, "\n");
         input = result.input.replace(/\\n/g, "\n");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+async function saveIncorrectAnswer(){
+    try{
+        const response = await fetch(`/course/${courseId}/level/answer/incorrect/${levelId}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": X_CSRF_TOKEN,
+            }
+        });
+        if(!response.ok){
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        if(result.success == "MAX"){
+            window.location.href = result.url;
+        }
     }
     catch(error){
         console.log(error);
