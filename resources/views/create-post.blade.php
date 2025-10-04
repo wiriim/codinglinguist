@@ -8,7 +8,7 @@
             <div class="create-post-container mt-4">
                 <h1 class="fw-bold">Create Post</h1>
 
-                <form action="{{ route('post-create') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('post-create-post') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>

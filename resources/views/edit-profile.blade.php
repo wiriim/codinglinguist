@@ -8,7 +8,7 @@
             <div class="create-post-container mt-4">
                 <h1 class="fw-bold">Edit Profile</h1>
 
-                <form action="{{route('edit-profile')}}" enctype="multipart/form-data" method="post">
+                <form action="{{route('edit-profile-post')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>

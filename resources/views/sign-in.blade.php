@@ -11,7 +11,7 @@
                     <img src="{{ asset('images/SignIn.png') }}" alt="SignIn">
                 </div>
                 <div class="right-side py-4 flex-grow-1 d-flex justify-content-center align-items-center">
-                    <form action="{{ route('sign-in') }}" method="post"
+                    <form action="{{ route('sign-in-post') }}" method="post"
                         class="sign-in-form d-flex flex-column align-items-center">
                         @csrf
                         <h1 class="fw-bold">Sign In</h1>

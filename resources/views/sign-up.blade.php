@@ -7,7 +7,7 @@
         <div class="flex-grow-1 d-flex justify-content-center align-items-center h-100">
             <div class="sign-up-container d-flex flex-wrap">
                 <div class="left-side py-4 flex-grow-1 d-flex justify-content-center align-items-center">
-                    <form action="{{ route('sign-up') }}" method="post"
+                    <form action="{{ route('sign-up-post') }}" method="post"
                         class="sign-up-form d-flex flex-column align-items-center">
                         @csrf
                         <h1 class="fw-bold">Sign Up</h1>
