@@ -12,6 +12,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://codinglinguist.vercel.app",
+        "APP_KEY": "base64:OTWZewXvkzU1U/s1UW0nB7N5TkQRwrpSWFOkC6iYRt4=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
