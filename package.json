@@ -4,8 +4,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite",
-        "vercel-build": "mkdir -p public/storage && cp -r storage/app/public/* public/storage/"
+        "dev": "vite"
     },
     "devDependencies": {
         "bootstrap": "^5.3.8",
