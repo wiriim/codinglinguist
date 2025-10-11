@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
-
+Route::get('/home', function () {
+    Artisan::call('storage:link');
+});
 //Home stuff
 Route::get('/home', [HomeController::class, 'getHomePage'])->name('home');
 Route::get('/about-us', [HomeController::class, 'getAboutUsPage'])->name('about-us');
