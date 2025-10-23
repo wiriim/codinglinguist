@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Storage;
 
 class Forum extends Model
 {
@@ -33,5 +34,12 @@ class Forum extends Model
     public function userLikes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_forum');
+    }
+
+    public function getImage($image){
+        $url = Storage::disk('supabase')->getAdapter()->getPublicUrl($image, [
+            'download' => false, // Set this to true if you want the user's browser to automatically trigger download
+        ]);
+        return $url;
     }
 }
