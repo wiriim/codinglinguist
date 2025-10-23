@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class User extends Authenticatable
 {
@@ -93,36 +94,47 @@ class User extends Authenticatable
         return $this->belongsToMany(Forum::class, 'view_logs');
     }
 
-    public function allowLevel(string $id){
+    public function allowLevel(string $id)
+    {
         $allow = false;
         $allowUserLevel = UserLevel::where('user_id', Auth::id())->where('level_id', $id)->exists();
-        if ($allowUserLevel){
+        if ($allowUserLevel) {
             $allow = true;
         }
 
         return $allow;
     }
 
-    public function questionFinished(string $id){
+    public function questionFinished(string $id)
+    {
         $finished = false;
         $questionFinished = UserQuestion::where('user_id', Auth::id())->where('question_id', $id)->exists();
-        if ($questionFinished){
+        if ($questionFinished) {
             $finished = true;
         }
 
         return $finished;
     }
 
-    public function levelFinished(string $levelId, string $courseId){
+    public function levelFinished(string $levelId, string $courseId)
+    {
         $finished = false;
         // dd(UserLevel::where('user_id', Auth::id())->where('level_id', $levelId)
         // ->where('course_id', $courseId)->first()->status);
         $levelFinished = UserLevel::where('user_id', Auth::id())->where('level_id', $levelId)
-        ->where('course_id', $courseId)->first()->status == 1;
-        if ($levelFinished){
+            ->where('course_id', $courseId)->first()->status == 1;
+        if ($levelFinished) {
             $finished = true;
         }
 
         return $finished;
+    }
+
+    public function getProfilePicture()
+    {
+        $url = Storage::disk('supabase')->getAdapter()->getPublicUrl(Auth::user()->image, [
+            'download' => false, // Set this to true if you want the user's browser to automatically trigger download
+        ]);
+        return $url;
     }
 }

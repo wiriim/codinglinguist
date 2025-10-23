@@ -78,10 +78,10 @@ class ForumController extends Controller
         $post->category_id = $validated['programmingLanguage'];
         $post->category_type_id = $validated['postType'];
         if ($request->has('image')){
-            $path = $request->file('image')->store('images', 'public');
+            $path = Storage::disk('supabase')->put('forum/'.$validated["postTitle"], $request->file('image'));
             $validated['image'] = $path;
             if ($post->image !== null){
-                Storage::disk('public')->delete($post->image);
+                Storage::disk('supabase')->delete($post->image);
             }
             $post->image = $validated['image'];
         }
@@ -99,7 +99,7 @@ class ForumController extends Controller
             abort(403);
         }
         if ($post->image !== null){
-            Storage::disk('public')->delete($post->image);
+            Storage::disk('supabase')->delete($post->image);
         }
         $post->delete();
         return redirect()->route('posts')->with('success','Post has been deleted.');
@@ -147,7 +147,7 @@ class ForumController extends Controller
         $post->title = $validated['postTitle'];
         $post->content = $validated['content'];
         if ($request->has('image')){
-            $path = $request->file('image')->store('images', 'public');
+            $path = Storage::disk('supabase')->put('forum/'.$validated["postTitle"], $request->file('image'));
             $validated['image'] = $path;
             $post->image = $validated['image'];
         }
