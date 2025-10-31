@@ -13,6 +13,7 @@ use App\Models\UserQuestionIncorrect;
 use Auth;
 use DB;
 use Gate;
+use Http;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -259,6 +260,21 @@ class CourseController extends Controller
         ]);
     }
 
+    public function postCodeAnswer(Request $request){
+        $url = 'https://api.jdoodle.com/v1/execute';
+        $param = $request->all();
+
+        $response = Http::withHeader('Content-Type', 'application/json')->post($url, $param);
+        if ($response->successful()){
+            $json = $response->json();
+            return response()->json([
+                'output' => $json['output']
+            ]);
+        }
+        return response()->json([
+            'response' => $response->status()
+        ]);
+    }
     // Private Functions
     private function getCourse(string $course_id){
         $course = Course::find($course_id);

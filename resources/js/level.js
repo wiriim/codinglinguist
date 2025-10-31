@@ -1,5 +1,3 @@
-const PROXY = "https://cors-anywhere.herokuapp.com/";
-const API_URL = "https://api.jdoodle.com/v1/execute";
 const CLIENT_ID = "e7024480696e79a6e8866ff00654532d"; 
 const CLIENT_SECRET = "74708248fb36b51955df12af908c36ddb308aa257a282b7f5d98b23106636a80";
 const API_VERSION = "3";
@@ -126,7 +124,7 @@ async function execute(){
         compileOnly: false,
       };
     try{
-        const response = await fetch(PROXY + API_URL, {
+        const response = await fetch('/level/boss/postCodeAnswer', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
