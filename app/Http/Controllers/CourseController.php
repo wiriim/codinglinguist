@@ -272,7 +272,7 @@ class CourseController extends Controller
             ]);
         }
         return response()->json([
-            'response' => $response->status()
+            'response' => $response->json()
         ]);
     }
     // Private Functions

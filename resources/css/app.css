@@ -124,3 +124,15 @@ textarea{
     text-decoration: none;
     color: black;
 }
+
+.loading-bg{
+    background: none repeat scroll 0 0 rgb(170, 170, 170);
+    position: fixed;
+    display: block;
+    opacity: 0.3;
+    z-index: 1000001;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}

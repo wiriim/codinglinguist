@@ -54,4 +54,7 @@
             </div>
         </div>
     </div>
+    <div class="spinner-border text-danger loading-spinner d-none" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
 @endsection

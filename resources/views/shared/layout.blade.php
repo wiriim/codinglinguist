@@ -10,5 +10,6 @@
 </head>
 <body>
    @yield('content')
+   <div class="loading-bg d-none"></div>
 </body>
 </html>
