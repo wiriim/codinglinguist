@@ -1,7 +1,5 @@
-const PROXY = "https://cors-anywhere.herokuapp.com/";
-const API_URL = "https://api.jdoodle.com/v1/execute";
-const CLIENT_ID = "e7024480696e79a6e8866ff00654532d"; 
-const CLIENT_SECRET = "74708248fb36b51955df12af908c36ddb308aa257a282b7f5d98b23106636a80";
+const CLIENT_ID = "5d28d7a04f92108e233e58c22fec614"; 
+const CLIENT_SECRET = "7747510df5bda3846707c8e95b1d231372f10aaec4e2be4d724348b1e80ec462";
 const API_VERSION = "3";
 const X_CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 let inputContainer;
@@ -126,7 +124,8 @@ async function execute(){
         compileOnly: false,
       };
     try{
-        const response = await fetch(PROXY + API_URL, {
+        showLoading();
+        const response = await fetch('/level/boss/postCodeAnswer', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -139,6 +138,7 @@ async function execute(){
         }
         const result = await response.json();
         output = result.output;
+        hideLoading();
     }
     catch(error){
         console.log(error);
@@ -187,3 +187,15 @@ async function saveIncorrectAnswer(){
         console.log(error);
     }
 }
+
+let spinner = document.querySelector('.loading-spinner');
+let loadBg = document.querySelector('.loading-bg');
+function showLoading(){
+    spinner.classList.remove('d-none');
+    loadBg.classList.remove('d-none');
+}
+function hideLoading(){
+    spinner.classList.add('d-none');
+    loadBg.classList.add('d-none');
+}
+export {showLoading, hideLoading}

@@ -109,3 +109,10 @@
     margin-top: 10px;
     align-self: flex-end;
 }
+
+.loading-spinner{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000002;
+}

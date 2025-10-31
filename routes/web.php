@@ -89,6 +89,8 @@ Route::get('/level/answer/{level}', [CourseController::class, 'getBossAnswerInpu
 Route::get('/course/{course}/level/answer/incorrect/{level}', [CourseController::class, 'saveBossAnswerIncorrect'])->name('level-answer-incorrect');
 Route::get('/level/saveProgress/{level}/{course}', [CourseController::class, 'saveProgress'])->name('save-progress');
 
+Route::post('/level/boss/postCodeAnswer', [CourseController::class, 'postCodeAnswer'])->name('post-code-answer');
+
 // Question
 Route::get('/course/{course}/level/{level}/question/{question}', [CourseController::class, 'getQuestionPage'])->name('question');
 Route::post('/course/{course}/level/{level}/question/{question}', [CourseController::class, 'submitAnswer'])->name('question-post');

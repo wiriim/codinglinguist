@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from "./level";
 let answer = "";
 let btnQuestionSubmit = document.querySelector("#btnQuestionSubmit");
 let btnQuestionContinue = document.querySelector("#btnQuestionContinue");
@@ -71,6 +72,7 @@ export function loadQuestionPage(){
     async function submitAnswer(answer) {
         const url = `/course/${courseId}/level/${levelId}/question/${questionId}`;
         try {
+            showLoading();
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({ answer: answer }),
@@ -86,6 +88,7 @@ export function loadQuestionPage(){
             }
     
             const result = await response.json();
+            hideLoading();
             if (result.success == "MAX"){
                 window.location.href = result.url
             } else if (result.success) {
