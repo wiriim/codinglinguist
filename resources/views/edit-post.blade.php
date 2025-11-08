@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="create-post">
-        @include('shared.navbar')
+        @if (Auth::check() && Auth::id() == 1)
+            @include('shared.navbar-admin')
+        @else
+            @include('shared.navbar')
+        @endif
 
         <div class="d-flex justify-content-center">
             <div class="create-post-container mt-4">
