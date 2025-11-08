@@ -37,14 +37,18 @@ class UserController extends Controller
             'profilePicture' => ['image', 'nullable']
         ]);
 
-        if (
-            $request['oldPassword'] != null &&
-            !password_verify($request['oldPassword'], Auth::user()->password)
-        ) {
+        if ($request['oldPassword'] != null 
+            && !password_verify($request['oldPassword'], Auth::user()->password)){
             return back()->withErrors(['oldPassword' => 'Password does not match.']);
         }
+
         if ($request['oldPassword'] != null && strlen($request['newPassword']) < 8) {
             return back()->withErrors(['newPassword' => 'Password must be at least 8 characters.']);
+        }
+
+        if (User::where('username', '=', $request['username'])->exists() 
+            && User::where('username', '=', $request['username'])->first()->id != Auth::id()){
+            return back()->withErrors(['username' => 'Username has been taken.']); 
         }
 
         $user = Auth::user();
