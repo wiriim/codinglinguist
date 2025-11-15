@@ -9,7 +9,7 @@
             <div class="profile-container my-4 d-flex justify-content-center    ">
                 <div class="profile-header d-flex align-items-center gap-4">
                     <div class="profile-image">
-                        <img src="{{$user->image == null ? asset('images/Boss.png') : Auth::user()->getProfilePicture(Auth::user())}}" alt="profile" width="180" height="180">
+                        <img src="{{$user->image == null ? asset('images/Boss.png') : $user->getProfilePicture($user)}}" alt="profile" width="180" height="180">
                     </div>
                     <div class="profile-info d-flex flex-column justify-content-between">
                         <h3 class="profile-name fw-bold">{{$user->username}} | {{$user->point}} Points</h3>
