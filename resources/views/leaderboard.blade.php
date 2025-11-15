@@ -15,17 +15,9 @@
             @foreach ($users as $user)
                 <div class="leaderboard-user d-flex justify-content-between">
                     <span class="leaderboard-no"></span>
-                    @if (Auth::check()){
-                        <span class="d-flex gap-3 align-items-center"><img src="{{$user->image == null ? asset('images/Boss.png') : Auth::user()->getProfilePicture()}}" alt="image" class="leaderboard-image" width="50" height="50">
-                            <a href="{{route('profile', $user->id)}}" class="leaderboard-name">{{$user->username}}</a></span>
-                        <span>{{$user->point}} Points</span>
-                    }
-                    @else{
-                        <span class="d-flex gap-3 align-items-center"><img src="{{asset('images/Boss.png')}}" alt="image" class="leaderboard-image" width="50" height="50">
-                            <a href="{{route('profile', $user->id)}}" class="leaderboard-name">{{$user->username}}</a></span>
-                        <span>{{$user->point}} Points</span>
-                    }
-                    @endif
+                    <span class="d-flex gap-3 align-items-center"><img src="{{$user->image == null ? asset('images/Boss.png') : $user->getProfilePicture($user)}}" alt="image" class="leaderboard-image" width="50" height="50">
+                        <a href="{{route('profile', $user->id)}}" class="leaderboard-name">{{$user->username}}</a></span>
+                    <span>{{$user->point}} Points</span>
                 </div>
             @endforeach
             <div class="d-flex justify-content-end">{{ $users->links() }}</div>

@@ -130,9 +130,9 @@ class User extends Authenticatable
         return $finished;
     }
 
-    public function getProfilePicture()
+    public function getProfilePicture(User $user)
     {
-        $url = Storage::disk('supabase')->getAdapter()->getPublicUrl(Auth::user()->image, [
+        $url = Storage::disk('supabase')->getAdapter()->getPublicUrl($user->image, [
             'download' => false, // Set this to true if you want the user's browser to automatically trigger download
         ]);
         return $url;
