@@ -16,7 +16,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>
-                        <input type="text" class="form-control" id="postTitle" name="postTitle" required>
+                        <input type="text" class="form-control" id="postTitle" name="postTitle" maxlength="50" required>
                         @error('postTitle')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror

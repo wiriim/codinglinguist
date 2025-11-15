@@ -66,7 +66,7 @@ class ForumController extends Controller
     public function editPost(Request $request, Forum $post)
     {
         $validated = $request->validate([
-            'postTitle' => 'required|min:5',
+            'postTitle' => 'required|min:5|max:50',
             'programmingLanguage' => 'required',
             'postType' => 'required',
             'image' => 'image|nullable',
@@ -134,7 +134,7 @@ class ForumController extends Controller
     public function createPost(Request $request)
     {
         $validated = $request->validate([
-            'postTitle' => 'required|min:5',
+            'postTitle' => 'required|min:5|max:50',
             'programmingLanguage' => 'required',
             'postType' => 'required',
             'image' => 'image|nullable',
