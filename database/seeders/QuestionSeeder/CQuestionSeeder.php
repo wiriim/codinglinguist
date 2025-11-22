@@ -1317,6 +1317,17 @@ class CQuestionSeeder extends Seeder
                 Multiple Choice
             </div>
 
+            <div class="question-sub-header">Code Snippet:</div>
+            <div class="question-code-input">
+                int getAge() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;int age;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;do {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scanf("%d", &amp;age);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;} while (age &lt; 0);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return age;<br>
+                }
+            </div>
+
             <div class="question-sub-header">Prompt:</div>
             <div class="question-content">
                 What does the <code>getAge()</code> function above ensure?
