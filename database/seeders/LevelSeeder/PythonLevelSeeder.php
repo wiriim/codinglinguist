@@ -49,9 +49,9 @@ class PythonLevelSeeder extends Seeder
             '<div class="level-header">Comments & Variables</div>
             <div class="level-content">In Python, comments start with a # symbol. They are ignored by Python and are used to explain your code.<br>Variables are containers for storing data. You don’t need to declare a type, just assign a value using =.</div>
             <div class="level-sub-header">Example:</div>
-            <div class="level-code-input"># This is a comment<br>name = "John Doe"<br>print(name)</div>
+            <div class="level-code-input"># This is a comment<br># String<br>name = "John Doe"<br>print(name)<br><br># Integer<br>number = 67<br>print(number)<br><br># Float<br>height = 170.5<br>print(height)<br><br># Boolean<br>is_student = True<br>print(is_student)<br><br># List<br>scores = [90, 85, 88]<br>print(scores)</div>
             <div class="level-sub-header">Output:</div>
-            <div class="level-code-input">John Doe</div>'
+            <div class="level-code-input">John Doe<br>67<br>170.5<br>True<br>[90, 85, 88]</div>'
             ,
             //level 3
             '<div class="level-header">Data Types & Operations</div>
@@ -297,14 +297,14 @@ class PythonLevelSeeder extends Seeder
             'Customer: Ali\nFinal balance: 850'
         ];
         $inputs = [
-            'Alice\n35000\n40000\n30000\n', 
+            'Alice\n35000\n40000\n30000\n',
             'Farah\n3\n70\n65\n80\n',
             'Ali\n1000\n3\n-200\n150\n-100\n'
         ];
-        
+
         $bossIndex = 0;
         for ($i = 0; $i < count($titles); $i++) {
-            
+
             if($i + 1 == 10 || $i + 1 == 15 || $i + 1 ==20){
                 DB::table('levels')->insert([
                     'course_id' => 2, // Python course_id is 2
