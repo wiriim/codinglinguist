@@ -27,6 +27,12 @@
                 <div class="course-line"></div>
             </div>
 
+            @if (Auth::check() == false)
+                <div class="d-flex gap-3 justify-content-center align-items-center">
+                    <h5 class="d-flex justify-content-center alert alert-warning"><span>Sign In Required For Level 2+</span></h5>
+                </div>
+            @endif
+
             <div class="d-flex flex-column text-center gap-5 w-100 align-items-center">
                 @foreach ($levelBS as $level)
                     @if ((Auth::check() && Auth::user()->allowLevel($level->id)) || $level->id == 1 || $level->id == 21 || $level->id == 41)
