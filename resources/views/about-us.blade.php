@@ -4,8 +4,8 @@
     <div class="about-us-page d-flex flex-column">
         @include('shared.navbar')
 
-        <img src="{{asset('images/rocket.png')}}" alt="rocket" class="about-us-rocket">
-        
+        <img src="{{asset('images/rocket.svg')}}" alt="rocket" class="about-us-rocket">
+
         <div class="what-info-container flex-column justify-content-around">
             <h4>What’s CodingLinguist?</h4>
             <p class="mt-3 fs-5">CodingLinguist is a web-based programming language learning platform designed to make coding education more interactive and engaging. </p>

@@ -144,38 +144,40 @@
                 @endforeach
                 <div class="d-flex justify-content-end mt-4">{{ $posts->links() }}</div>
             </div>
-            <div class="posts-recent-container">
-                <div class="d-flex justify-content-between">
-                    <p class="mb-3">RECENT POSTS</p>
-                    @if (Auth::check() && $logs->count() > 0)
-                        <a href="{{route('clear-logs')}}" class="text-decoration-none">Clear</a>
-                    @endif
-                </div>
-                <div class=" d-flex flex-column gap-3">
-                    @if (Auth::check())
-                        @foreach ($logs as $log)
-                            <div class="posts-recent w-100 bg-white">
-                                <a href="{{ route('post-detail', ['post' => $log->id]) }}"
-                                    class="text-decoration-none text-dark">
-                                    <h5 class="card-title log-title">{{ $log->title }}</h5>
-                                </a>
-                                <div class="d-flex gap-3">
-                                    <div data-category="{{ $log->category->id }}"
-                                        class="category-container d-flex justify-content-center align-items-center log-category">
-                                        {{ $log->category->category_name }}
+            @if (auth::check())
+                <div class="posts-recent-container">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-3">RECENT POSTS</p>
+                        @if (Auth::check() && $logs->count() > 0)
+                            <a href="{{ route('clear-logs') }}" class="text-decoration-none">Clear</a>
+                        @endif
+                    </div>
+                    <div class=" d-flex flex-column gap-3">
+                        @if (Auth::check())
+                            @foreach ($logs as $log)
+                                <div class="posts-recent w-100 bg-white">
+                                    <a href="{{ route('post-detail', ['post' => $log->id]) }}"
+                                        class="text-decoration-none text-dark">
+                                        <h5 class="card-title log-title">{{ $log->title }}</h5>
+                                    </a>
+                                    <div class="d-flex gap-3">
+                                        <div data-category="{{ $log->category->id }}"
+                                            class="category-container d-flex justify-content-center align-items-center log-category">
+                                            {{ $log->category->category_name }}
+                                        </div>
+                                        <div data-categorytype="{{ $log->categoryType->id }}"
+                                            class="category-type-container d-flex justify-content-center align-items-center log-category">
+                                            {{ $log->categoryType->category_type_name }}
+                                        </div>
                                     </div>
-                                    <div data-categorytype="{{ $log->categoryType->id }}"
-                                        class="category-type-container d-flex justify-content-center align-items-center log-category">
-                                        {{ $log->categoryType->category_type_name }}
-                                    </div>
+                                    <p class="card-text log-content">{{ $log->content }}</p>
                                 </div>
-                                <p class="card-text log-content">{{ $log->content }}</p>
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
+                            @endforeach
+                        @endif
+                    </div>
 
-            </div>
+                </div>
+            @endif
         </div>
 
     </div>

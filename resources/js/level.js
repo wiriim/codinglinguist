@@ -60,11 +60,13 @@ export function loadLevelPage(){
     
     if (runBtn != null){
         runBtn.addEventListener('click', async ()=>{
+            showLoading();
             await getAnswerInput();
     
             await execute();
             outputContainer.textContent = output;
             showResult();
+            hideLoading();
         }); 
     }
     
@@ -124,7 +126,6 @@ async function execute(){
         compileOnly: false,
       };
     try{
-        showLoading();
         const response = await fetch('/level/boss/postCodeAnswer', {
             method: 'POST',
             body: JSON.stringify(data),
@@ -138,7 +139,6 @@ async function execute(){
         }
         const result = await response.json();
         output = result.output;
-        hideLoading();
     }
     catch(error){
         console.log(error);
