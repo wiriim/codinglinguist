@@ -18,16 +18,16 @@ export function loadPostsPage(){
         postSearchBtn = document.querySelector('#posts-search-btn');
         
         programmingLanguage.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${e.target.value}/${postType.value}/${sortBy.value}/${postSearchTitle.value}`;
+            window.location.href = encodeURI(`/posts/filter/${e.target.value}/${postType.value}/${sortBy.value}/${postSearchTitle.value}`);
         });
         postType.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${programmingLanguage.value}/${e.target.value}/${sortBy.value}/${postSearchTitle.value}`;
+            window.location.href = encodeURI(`/posts/filter/${programmingLanguage.value}/${e.target.value}/${sortBy.value}/${postSearchTitle.value}`);
         });
         sortBy.addEventListener('change', (e)=>{
-            window.location.href = `/posts/filter/${programmingLanguage.value }/${postType.value}/${e.target.value}/${postSearchTitle.value}`;
+            window.location.href = encodeURI(`/posts/filter/${programmingLanguage.value }/${postType.value}/${e.target.value}/${postSearchTitle.value}`);
         });
         postSearchBtn.addEventListener('click', ()=>{
-            window.location.href = `/posts/filter/${programmingLanguage.value }/${postType.value}/${sortBy.value}/${postSearchTitle.value}`;
+            window.location.href = encodeURI(`/posts/filter/${programmingLanguage.value }/${postType.value}/${sortBy.value}/${postSearchTitle.value}`);
         });
     });
     
