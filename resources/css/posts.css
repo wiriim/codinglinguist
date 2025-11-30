@@ -105,6 +105,10 @@
 .log-title{
     font-size: 1rem;
     font-weight: 600;
+    height: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .log-category{
     height: 15px;
