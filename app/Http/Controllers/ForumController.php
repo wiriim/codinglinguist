@@ -211,16 +211,16 @@ class ForumController extends Controller
         }
 
         if (Str::upper($sortBy) === "NEW"){
-            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'desc')->where('title', 'LIKE', '%'. $search.'%')->paginate(6);
+            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'desc')->where('title', 'iLIKE', '%'. $search.'%')->paginate(6);
         }
         else if (Str::upper($sortBy) === "OLD"){
-            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'asc')->where('title', 'LIKE', '%'. $search.'%')->paginate(6);
+            $posts = Forum::whereIn('id', $ids)->orderby('created_at', 'asc')->where('title', 'iLIKE', '%'. $search.'%')->paginate(6);
         }
         else if (Str::upper($sortBy) === "MOST POPULAR"){
-            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'desc')->paginate(6);
+            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'iLIKE', '%'. $search.'%')->orderby('user_likes_count', 'desc')->paginate(6);
         }
         else if (Str::upper($sortBy) === "LEAST POPULAR"){
-            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'LIKE', '%'. $search.'%')->orderby('user_likes_count', 'asc')->paginate(6);
+            $posts = Forum::whereIn('id', $ids)->withCount('userLikes')->where('title', 'iLIKE', '%'. $search.'%')->orderby('user_likes_count', 'asc')->paginate(6);
         }
 
         $logs = collect();
