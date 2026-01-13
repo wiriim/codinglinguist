@@ -38,7 +38,7 @@ export function loadProfilePage(){
             e.width = 55;
         } 
         else if (e.dataset.category == 2){
-            e.src = "/images/Java_Programming_Language_logo.png";
+            e.src = "/images/Java_programming_language_logo.png";
             e.width = 38;
         } 
         else if (e.dataset.category == 3) e.src = "/images/Python.png";
